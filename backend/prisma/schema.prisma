@@ -15,3 +15,126 @@ datasource db {
 }
 
 
+model User {
+  user_id                     Int                   @id @default(autoincrement())
+  email                       String                @unique
+  username                    String                @unique
+  password                    String
+  profileImage                String?
+  userChecklist               Checklist[]       @relation("UserChecklist")
+  emergencyContact            EmergencyContact[]    @relation("UserContact")
+  quizResults                 QuizResults[]         @relation("UserResult")
+  userBadge                   UserBadge[]           @relation("UserBadge")
+
+  
+  
+
+}
+
+
+model Disaster {
+  disaster_id                Int                   @id @default(autoincrement())           
+  disaster_name              String
+  checklist                  Checklist[]           @relation("DisasterChecklist")
+  Quiz                       Quiz[]                @relation("DisasterQuiz")
+
+}
+
+model Checklist {
+  checklist_id                Int                   @id @default(autoincrement())
+  disaster_id                 Int
+  user_id                     Int               
+  checklist_item              String
+  disaster                    Disaster              @relation("DisasterChecklist",fields: [disaster_id], references: [disaster_id])                 
+  user                        User                  @relation("UserChecklist",fields: [user_id], references: [user_id])                 
+
+}
+
+
+model Country {
+  country_id                  Int                   @id @default(autoincrement())
+  country_name                String                @unique
+  country_code                String                @unique
+  emergencyContact            EmergencyContact[]    @relation("CountryContact")
+
+}
+
+
+model EmergencyContact {
+  contact_id                  Int                   @id @default(autoincrement())
+  country_id                  Int               
+  user_id                     Int    
+  service_type                String
+  phone_number                String
+  description                 String
+  user                        User                  @relation("UserContact",fields: [user_id], references: [user_id])                 
+  country                     Country               @relation("CountryContact",fields: [country_id], references: [country_id])                 
+
+}
+
+
+
+model Quiz {
+  quiz_id                     Int                   @id @default(autoincrement())
+  disaster_id                 Int                  
+  quiz_title                  String
+  quiz_description            String
+  difficulty_level            String
+  disaster                    Disaster               @relation("DisasterQuiz",fields: [disaster_id], references: [disaster_id])                 
+  quizQuestions               QuizQuestions[]        @relation("DisasterQuizQuestions")
+
+}
+
+
+
+model QuizQuestions {
+  question_id                 Int                   @id @default(autoincrement())
+  quiz_id                     Int                  
+  question                    String
+  points                      String
+  quiz                        Quiz                  @relation("DisasterQuizQuestions",fields: [quiz_id], references: [quiz_id])                 
+  quizAnswer                  QuizAnswer[]          @relation("QuizAnswer")
+
+}
+
+
+model QuizAnswer {
+  answer_id                   Int                   @id @default(autoincrement())
+  question_id                 Int                  
+  answer_text                 String
+  is_correct                  Boolean               @default(false)     
+  answer_explanation          String            
+  question                    QuizQuestions         @relation("QuizAnswer",fields: [question_id], references: [question_id])                 
+
+}
+
+model QuizResults {
+  result_id                   Int                   @id @default(autoincrement())
+  user_id                     Int                  
+  quiz_id                     Int
+  score                       Int                         
+  user                        User                  @relation("UserResult",fields: [user_id], references: [user_id])                 
+
+}
+
+
+model Badge {
+  badge_id                    Int                   @id @default(autoincrement())
+  badge_name                  String                  
+  description                 String
+  badge_image                 String     
+  criteria                    String     
+  badge                       UserBadge[]             @relation("Badge")               
+
+}
+
+model UserBadge {
+  user_badge_id               Int                   @id @default(autoincrement())
+  user_id                     Int                  
+  badge_id                    Int
+  earned_at                   DateTime @default(now())      
+  user                        User                  @relation("UserBadge",fields: [user_id], references: [user_id])                 
+  badge                       Badge                  @relation("Badge",fields: [badge_id], references: [badge_id])                 
+
+}
+
