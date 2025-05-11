@@ -33,37 +33,8 @@ function HomeScreen() {
   const [countryLoading, setCountryLoading] = useState(false);
 
 
-  useEffect(() => {
-    (async () => {
-      await getLocationAndFetchData();
-    })();
-  }, []);
 
-
-  // Apply proximity filter whenever location or disaster data changes
-  // If location is available and there's disaster data, it applies proximity filtering else shows all disasters without filtering
-  useEffect(() => {
-    if (location && disasterData.length > 0) {
-      applyProximityFilter();
-    } 
-    
-    else {
-      setFilteredDisasters(disasterData);
-    }
-
-  }, [location, disasterData, proximityRadius, filterByProximity]);
-
-
-  // Get country information when location changes
-  useEffect(() => {
-    if (location) {
-      getUserCountry();
-    }
-
-  }, [location]);
-
-
-  const getLocationAndFetchData = async () => {
+    const getLocationAndFetchData = async () => {
     // Sets the loading state to true
     setLoading(true);
     // Requests permission to access the device's location
@@ -127,6 +98,37 @@ function HomeScreen() {
       setCountryLoading(false);
     }
   };
+
+
+  useEffect(() => {
+    (async () => {
+      await getLocationAndFetchData();
+    })();
+  }, []);
+
+
+  // Apply proximity filter whenever location or disaster data changes
+  // If location is available and there's disaster data, it applies proximity filtering else shows all disasters without filtering
+  useEffect(() => {
+    if (location && disasterData.length > 0) {
+      applyProximityFilter();
+    } 
+    
+    else {
+      setFilteredDisasters(disasterData);
+    }
+
+  }, [location, disasterData, proximityRadius, filterByProximity]);
+
+
+  // Get country information when location changes
+  useEffect(() => {
+    if (location) {
+      getUserCountry();
+    }
+
+  }, [location]);
+
   
   // Calculate distance between two points using Haversine formula
   // Takes two sets of latitude/longitude coordinates
@@ -149,6 +151,7 @@ function HomeScreen() {
     const distance = R * c; 
 
     return distance;
+    
   };
 
   // Apply proximity filter based on user location
@@ -179,6 +182,7 @@ function HomeScreen() {
     // Updates the filtered disasters state
     filtered.sort((a, b) => a.distance - b.distance);
     setFilteredDisasters(filtered);
+
   };
 
   // simply toggles the filter on/off
@@ -186,86 +190,13 @@ function HomeScreen() {
     setFilterByProximity(!filterByProximity);
   };
 
-  // Makes an HTTP request to the GDACS (Global Disaster Alert and Coordination System) RSS feed
+
+
   const fetchDisasterData = async () => {
     try {
-      // GDACS API feed for RSS format (XML)
-      const response = await axios.get('https://www.gdacs.org/xml/rss.xml');
-      const xmlData = response.data;
-
-      // Parses the XML response
-      const parser = new XMLParser({
-        ignoreAttributes: false,
-        attributeNamePrefix: "@_"
-      });
-
-      const parsedData = parser.parse(xmlData);
-      
-      // Extract disaster items from RSS feed
-      let rssItems = parsedData.rss.channel.item;
-      if (!Array.isArray(rssItems)) {
-        rssItems = [rssItems]; // Convert to array if only one item
-      }
-      
-      const items = rssItems.map(item => {
-        // Extract coordinates from georss:point
-        let latitude = 0, longitude = 0;
-        if (item['georss:point']) {
-          const coords = item['georss:point'].split(' ');
-          if (coords.length === 2) {
-            latitude = parseFloat(coords[0]);
-            longitude = parseFloat(coords[1]);
-          }
-        }
-
-        // Extract event type and severityr
-        let eventType = 'Unknown';
-        if (item.title.toLowerCase().includes('earthquake')) eventType = 'Earthquake';
-        else if (item.title.toLowerCase().includes('tropical cyclone')) eventType = 'Tropical Cyclone';
-        else if (item.title.toLowerCase().includes('flood')) eventType = 'Flood';
-        else if (item.title.toLowerCase().includes('volcanic')) eventType = 'Volcano';
-        else if (item.title.toLowerCase().includes('drought')) eventType = 'Drought';
-        else if (item.title.toLowerCase().includes('tsunamis')) eventType = 'Tsunamis';
-        else if (item.title.toLowerCase().includes('forest fire')) eventType = 'Forest Fire';
-
-        let severity = 'Unknown';
-        // Try to get alert level directly from gdacs:alertlevel element
-        if (item['gdacs:alertlevel']) {
-          severity = item['gdacs:alertlevel'].charAt(0).toUpperCase() + item['gdacs:alertlevel'].slice(1).toLowerCase();
-        }
-        // Fallback to alertscore if alert level not available
-        else if (item['gdacs:alertscore']) {
-          const alertScore = parseFloat(item['gdacs:alertscore']);
-          if (alertScore >= 2) severity = 'Red';
-          else if (alertScore >= 1) severity = 'Orange';
-          else if (alertScore >= 0.5) severity = 'Yellow';
-          else severity = 'Green';
-        }
-
-        // Cleans up description text by removing HTML tags
-        const strippedDescription = item.description.replace(/<\/?[^>]+(>|$)/g, '');
-
-        // Creates a structured object with all relevant information
-        return {
-          id: item.link,
-          title: item.title,
-          description: strippedDescription,
-          pubDate: item.pubDate,
-          formattedDate: moment(item.pubDate).format('DD MM, YYYY'),
-          link: item.link,
-          latitude,
-          longitude,
-          eventType,
-          severity,
-          distance: null // Will be calculated if location is available
-        };
-      });
-
-      // Sorts disasters by date (newest first)
-      items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-      
-      // Updates the disaster data state
-      setDisasterData(items);
+      // Replace with your actual server URL if deployed
+      const response = await axios.get('http://192.168.50.181:3000/api/disasterData/disasters'); 
+      setDisasterData(response.data);
     } 
     
     catch (error) {
@@ -273,6 +204,7 @@ function HomeScreen() {
       Alert.alert('Error', 'Failed to fetch disaster data. Please try again later.');
     }
   };
+
 
   // Handles pull-to-refresh functionality for the disaster list
   const onRefresh = async () => {
