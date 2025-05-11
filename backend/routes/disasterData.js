@@ -75,7 +75,7 @@ router.get('/disasters', async (req, res) => {
                 title: item.title,
                 description: strippedDescription,
                 pubDate: item.pubDate,
-                formattedDate: moment(item.pubDate).format('DD MM, YYYY'),
+                formattedDate: moment(item.pubDate).format('DD/MM/YYYY'),
                 link: item.link,
                 latitude,
                 longitude,
