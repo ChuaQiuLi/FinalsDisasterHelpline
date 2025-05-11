@@ -40,7 +40,7 @@ router.get('/disasters', async (req, res) => {
                 }
             }
 
-            // Extract event type and severityr
+            // Extract event type and severity
             let eventType = 'Unknown';
             if (item.title.toLowerCase().includes('earthquake')) eventType = 'Earthquake';
             else if (item.title.toLowerCase().includes('tropical cyclone')) eventType = 'Tropical Cyclone';
