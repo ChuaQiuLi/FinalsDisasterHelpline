@@ -1,5 +1,5 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require('../generated/prisma');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
@@ -162,7 +162,7 @@ router.post('/update-theme', async (req, res) => {
 
   try {
     // Upsert to create or update the theme settings
-    const updatedSettings = await prisma.User.upsert({
+    const updatedSettings = await prisma.User.update({
       where: { user_id: parseInt(user_id) },
       update: { theme },
       create: { user_id: parseInt(user_id), theme }
@@ -179,27 +179,21 @@ router.post('/update-theme', async (req, res) => {
 
 });
 
-console.log("prisma client:", prisma);
 
 router.get('/get-theme/:userId', async (req, res) => {
 
   const { userId } = req.params;
-  console.log("User ID:", userId);
 
   try {
-    console.log("prisma.User:", prisma.User);
-    const settings = await prisma.User.findUnique({
+    const user = await prisma.User.findUnique({
       where: { user_id: parseInt(userId) }
 
     });
 
-    console.log("settings:", settings);
-
-    // If settings is null, return a default theme
-    const response = settings ? settings : { theme: 'system' };
+    // If theme is null, return a default theme
+    const response = user ? user : { theme: 'system' };
 
     res.json(response);
-    console.log("response:", response);
 
   }
 

@@ -35,9 +35,11 @@ function HomeScreen() {
   const { isDarkMode } = useTheme(); 
   const styles = isDarkMode ? darkStyles : lightStyles; 
 
+  
 
 
-    const getLocationAndFetchData = async () => {
+
+  const getLocationAndFetchData = async () => {
     // Sets the loading state to true
     setLoading(true);
     // Requests permission to access the device's location
@@ -71,6 +73,7 @@ function HomeScreen() {
     finally {
       setLoading(false);
     }
+
   };
 
   // Function to get country from coordinates using Expo's reverseGeocodeAsync
@@ -78,6 +81,7 @@ function HomeScreen() {
     if (!location) return;
     
     setCountryLoading(true);
+
     try {
       const { latitude, longitude } = location.coords;
       const geocodeResult = await Location.reverseGeocodeAsync({ latitude, longitude});
@@ -91,15 +95,15 @@ function HomeScreen() {
         setCountry("Unknown");
       }
     } 
-    
-    catch (error) {
-      console.error('Error getting country:', error);
-      setCountry("Could not determine country");
-    } 
-    
-    finally {
-      setCountryLoading(false);
-    }
+      
+      catch (error) {
+        console.error('Error getting country:', error);
+        setCountry("Could not determine country");
+      } 
+      
+      finally {
+        setCountryLoading(false);
+      }
   };
 
 

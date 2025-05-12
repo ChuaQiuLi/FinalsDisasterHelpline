@@ -4,6 +4,7 @@ const lightStyles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    
     scrollViewContent: {
         width: '100%',
         flexGrow: 1,

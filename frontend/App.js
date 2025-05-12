@@ -34,6 +34,7 @@ const AppContent = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth.loading);
   const [themeLoading, setThemeLoading] = useState(true);
+ 
 
 
   React.useEffect(() => {
@@ -65,7 +66,7 @@ const AppContent = () => {
 
 const App = () => (
   <Provider store={store}>
-     <ThemeProvider>
+    <ThemeProvider>
       <AppContent />
     </ThemeProvider>
   </Provider>
@@ -147,20 +148,7 @@ const MainTabNavigator = ({ navigation, theme }) => {
 
     >
 
-    <Tab.Screen 
-      name="Home" 
-      component={HomeScreen} 
-      listeners={{
-        tabPress: (e) => {
-          if (e.defaultPrevented) return;
-          e.preventDefault();
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'Home' }],
-          });
-        },
-      }}
-    />
+    <Tab.Screen name="Home" component={HomeScreen} />
 
     {/* <Tab.Screen 
       name="Emergency Contact" 

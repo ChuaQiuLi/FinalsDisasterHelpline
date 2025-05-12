@@ -11,6 +11,7 @@ export const ThemeProvider = ({ children }) => {
   const [useSystemTheme, setUseSystemTheme] = useState(true);
   const user = useSelector((state) => state.auth.user); 
 
+  // Always react to system theme changes
   useEffect(() => {
     if (useSystemTheme) {
       setIsDarkMode(systemColorScheme === 'dark');
@@ -45,14 +46,20 @@ export const ThemeProvider = ({ children }) => {
       fetchTheme();
     } 
     
-    else if (useSystemTheme) {
+    else {
+      // If no user logged in, stick to system theme
       setIsDarkMode(systemColorScheme === 'dark');
     }
-  }, [user, systemColorScheme, useSystemTheme]);
+  }, [user, systemColorScheme]);
 
 
+
+  
+
+  // Toggle theme manually (overrides system theme if set to false)
   const toggleTheme = () => {
     const newTheme = isDarkMode ? 'light' : 'dark';
+    // Don't use system theme anymore
     setUseSystemTheme(false);
     setIsDarkMode(!isDarkMode);
 
