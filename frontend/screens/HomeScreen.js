@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, FlatList, TouchableOpacity, ActivityIndicator, Alert, RefreshControl } from 'react-native';
 import * as Location from 'expo-location';
-import axios from 'axios';
-import moment from 'moment';
-import { XMLParser } from 'fast-xml-parser';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { styles } from '../styles/homeScreenStyle';
+import { lightStyles, darkStyles } from '../styles/homeScreenStyle';
+import { useTheme } from '../context/themeContext'; 
+import API from '../api';
+
 
 
 function HomeScreen() {
@@ -31,6 +31,9 @@ function HomeScreen() {
   const [country, setCountry] = useState(null);
   // Track if country data is being fetched
   const [countryLoading, setCountryLoading] = useState(false);
+  // Dark or light theme
+  const { isDarkMode } = useTheme(); 
+  const styles = isDarkMode ? darkStyles : lightStyles; 
 
 
 
@@ -195,7 +198,7 @@ function HomeScreen() {
   const fetchDisasterData = async () => {
     try {
       // Replace with your actual server URL if deployed
-      const response = await axios.get('http://192.168.50.181:3000/api/disasterData/disasters'); 
+      const response = await API.get('/api/disasterData/disasters'); 
       setDisasterData(response.data);
     } 
     
@@ -342,6 +345,7 @@ function HomeScreen() {
           </View>
         )}
       </View>
+      
     </SafeAreaView>
   );
 }

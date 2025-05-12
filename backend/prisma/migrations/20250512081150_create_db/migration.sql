@@ -10,6 +10,15 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
+CREATE TABLE "Setting" (
+    "setting_id" SERIAL NOT NULL,
+    "theme" TEXT NOT NULL DEFAULT 'system',
+    "user_id" INTEGER NOT NULL,
+
+    CONSTRAINT "Setting_pkey" PRIMARY KEY ("setting_id")
+);
+
+-- CreateTable
 CREATE TABLE "Disaster" (
     "disaster_id" SERIAL NOT NULL,
     "disaster_name" TEXT NOT NULL,
@@ -118,10 +127,16 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Setting_user_id_key" ON "Setting"("user_id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Country_country_name_key" ON "Country"("country_name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Country_country_code_key" ON "Country"("country_code");
+
+-- AddForeignKey
+ALTER TABLE "Setting" ADD CONSTRAINT "Setting_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Checklist" ADD CONSTRAINT "Checklist_disaster_id_fkey" FOREIGN KEY ("disaster_id") REFERENCES "Disaster"("disaster_id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -130,10 +145,10 @@ ALTER TABLE "Checklist" ADD CONSTRAINT "Checklist_disaster_id_fkey" FOREIGN KEY 
 ALTER TABLE "Checklist" ADD CONSTRAINT "Checklist_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "EmergencyContact" ADD CONSTRAINT "EmergencyContact_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "EmergencyContact" ADD CONSTRAINT "EmergencyContact_country_id_fkey" FOREIGN KEY ("country_id") REFERENCES "Country"("country_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "EmergencyContact" ADD CONSTRAINT "EmergencyContact_country_id_fkey" FOREIGN KEY ("country_id") REFERENCES "Country"("country_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "EmergencyContact" ADD CONSTRAINT "EmergencyContact_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Quiz" ADD CONSTRAINT "Quiz_disaster_id_fkey" FOREIGN KEY ("disaster_id") REFERENCES "Disaster"("disaster_id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -148,7 +163,7 @@ ALTER TABLE "QuizAnswer" ADD CONSTRAINT "QuizAnswer_question_id_fkey" FOREIGN KE
 ALTER TABLE "QuizResults" ADD CONSTRAINT "QuizResults_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserBadge" ADD CONSTRAINT "UserBadge_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserBadge" ADD CONSTRAINT "UserBadge_badge_id_fkey" FOREIGN KEY ("badge_id") REFERENCES "Badge"("badge_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserBadge" ADD CONSTRAINT "UserBadge_badge_id_fkey" FOREIGN KEY ("badge_id") REFERENCES "Badge"("badge_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserBadge" ADD CONSTRAINT "UserBadge_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;

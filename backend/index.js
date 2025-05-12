@@ -20,9 +20,16 @@ app.get('/', (req, res) => {
 
 
 // Routes
+
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+
 const disasterData = require('./routes/disasterData');
 app.use('/api/disasterData', disasterData);
 
+
+const userRoutes = require('./routes/user');
+app.use('/api/user', userRoutes);
 
 
 

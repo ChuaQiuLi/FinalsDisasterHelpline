@@ -2026,6 +2026,7 @@ export namespace Prisma {
     username: string | null
     password: string | null
     profileImage: string | null
+    theme: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -2034,6 +2035,7 @@ export namespace Prisma {
     username: string | null
     password: string | null
     profileImage: string | null
+    theme: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -2042,6 +2044,7 @@ export namespace Prisma {
     username: number
     password: number
     profileImage: number
+    theme: number
     _all: number
   }
 
@@ -2060,6 +2063,7 @@ export namespace Prisma {
     username?: true
     password?: true
     profileImage?: true
+    theme?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -2068,6 +2072,7 @@ export namespace Prisma {
     username?: true
     password?: true
     profileImage?: true
+    theme?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -2076,6 +2081,7 @@ export namespace Prisma {
     username?: true
     password?: true
     profileImage?: true
+    theme?: true
     _all?: true
   }
 
@@ -2171,6 +2177,7 @@ export namespace Prisma {
     username: string
     password: string
     profileImage: string | null
+    theme: string
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -2198,6 +2205,7 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     profileImage?: boolean
+    theme?: boolean
     userChecklist?: boolean | User$userChecklistArgs<ExtArgs>
     emergencyContact?: boolean | User$emergencyContactArgs<ExtArgs>
     quizResults?: boolean | User$quizResultsArgs<ExtArgs>
@@ -2211,6 +2219,7 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     profileImage?: boolean
+    theme?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2219,6 +2228,7 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     profileImage?: boolean
+    theme?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -2227,9 +2237,10 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     profileImage?: boolean
+    theme?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "email" | "username" | "password" | "profileImage", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "email" | "username" | "password" | "profileImage" | "theme", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     userChecklist?: boolean | User$userChecklistArgs<ExtArgs>
     emergencyContact?: boolean | User$emergencyContactArgs<ExtArgs>
@@ -2254,6 +2265,7 @@ export namespace Prisma {
       username: string
       password: string
       profileImage: string | null
+      theme: string
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2686,6 +2698,7 @@ export namespace Prisma {
     readonly username: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly profileImage: FieldRef<"User", 'String'>
+    readonly theme: FieldRef<"User", 'String'>
   }
     
 
@@ -6668,8 +6681,8 @@ export namespace Prisma {
     service_type?: boolean
     phone_number?: boolean
     description?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     country?: boolean | CountryDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["emergencyContact"]>
 
   export type EmergencyContactSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6679,8 +6692,8 @@ export namespace Prisma {
     service_type?: boolean
     phone_number?: boolean
     description?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     country?: boolean | CountryDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["emergencyContact"]>
 
   export type EmergencyContactSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6690,8 +6703,8 @@ export namespace Prisma {
     service_type?: boolean
     phone_number?: boolean
     description?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     country?: boolean | CountryDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["emergencyContact"]>
 
   export type EmergencyContactSelectScalar = {
@@ -6705,23 +6718,23 @@ export namespace Prisma {
 
   export type EmergencyContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"contact_id" | "country_id" | "user_id" | "service_type" | "phone_number" | "description", ExtArgs["result"]["emergencyContact"]>
   export type EmergencyContactInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     country?: boolean | CountryDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type EmergencyContactIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     country?: boolean | CountryDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type EmergencyContactIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     country?: boolean | CountryDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $EmergencyContactPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "EmergencyContact"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       country: Prisma.$CountryPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       contact_id: number
@@ -7124,8 +7137,8 @@ export namespace Prisma {
    */
   export interface Prisma__EmergencyContactClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     country<T extends CountryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CountryDefaultArgs<ExtArgs>>): Prisma__CountryClient<$Result.GetResult<Prisma.$CountryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8895,8 +8908,8 @@ export namespace Prisma {
     quiz_id?: boolean
     question?: boolean
     points?: boolean
-    quiz?: boolean | QuizDefaultArgs<ExtArgs>
     quizAnswer?: boolean | QuizQuestions$quizAnswerArgs<ExtArgs>
+    quiz?: boolean | QuizDefaultArgs<ExtArgs>
     _count?: boolean | QuizQuestionsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["quizQuestions"]>
 
@@ -8925,8 +8938,8 @@ export namespace Prisma {
 
   export type QuizQuestionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"question_id" | "quiz_id" | "question" | "points", ExtArgs["result"]["quizQuestions"]>
   export type QuizQuestionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    quiz?: boolean | QuizDefaultArgs<ExtArgs>
     quizAnswer?: boolean | QuizQuestions$quizAnswerArgs<ExtArgs>
+    quiz?: boolean | QuizDefaultArgs<ExtArgs>
     _count?: boolean | QuizQuestionsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type QuizQuestionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8939,8 +8952,8 @@ export namespace Prisma {
   export type $QuizQuestionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "QuizQuestions"
     objects: {
-      quiz: Prisma.$QuizPayload<ExtArgs>
       quizAnswer: Prisma.$QuizAnswerPayload<ExtArgs>[]
+      quiz: Prisma.$QuizPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       question_id: number
@@ -9341,8 +9354,8 @@ export namespace Prisma {
    */
   export interface Prisma__QuizQuestionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    quiz<T extends QuizDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuizDefaultArgs<ExtArgs>>): Prisma__QuizClient<$Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     quizAnswer<T extends QuizQuestions$quizAnswerArgs<ExtArgs> = {}>(args?: Subset<T, QuizQuestions$quizAnswerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    quiz<T extends QuizDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuizDefaultArgs<ExtArgs>>): Prisma__QuizClient<$Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13303,8 +13316,8 @@ export namespace Prisma {
     user_id?: boolean
     badge_id?: boolean
     earned_at?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     badge?: boolean | BadgeDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userBadge"]>
 
   export type UserBadgeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13312,8 +13325,8 @@ export namespace Prisma {
     user_id?: boolean
     badge_id?: boolean
     earned_at?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     badge?: boolean | BadgeDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userBadge"]>
 
   export type UserBadgeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13321,8 +13334,8 @@ export namespace Prisma {
     user_id?: boolean
     badge_id?: boolean
     earned_at?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     badge?: boolean | BadgeDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userBadge"]>
 
   export type UserBadgeSelectScalar = {
@@ -13334,23 +13347,23 @@ export namespace Prisma {
 
   export type UserBadgeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_badge_id" | "user_id" | "badge_id" | "earned_at", ExtArgs["result"]["userBadge"]>
   export type UserBadgeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     badge?: boolean | BadgeDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type UserBadgeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     badge?: boolean | BadgeDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type UserBadgeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     badge?: boolean | BadgeDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $UserBadgePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "UserBadge"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       badge: Prisma.$BadgePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       user_badge_id: number
@@ -13751,8 +13764,8 @@ export namespace Prisma {
    */
   export interface Prisma__UserBadgeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     badge<T extends BadgeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BadgeDefaultArgs<ExtArgs>>): Prisma__BadgeClient<$Result.GetResult<Prisma.$BadgePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14219,7 +14232,8 @@ export namespace Prisma {
     email: 'email',
     username: 'username',
     password: 'password',
-    profileImage: 'profileImage'
+    profileImage: 'profileImage',
+    theme: 'theme'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -14431,6 +14445,7 @@ export namespace Prisma {
     username?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     profileImage?: StringNullableFilter<"User"> | string | null
+    theme?: StringFilter<"User"> | string
     userChecklist?: ChecklistListRelationFilter
     emergencyContact?: EmergencyContactListRelationFilter
     quizResults?: QuizResultsListRelationFilter
@@ -14443,6 +14458,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     profileImage?: SortOrderInput | SortOrder
+    theme?: SortOrder
     userChecklist?: ChecklistOrderByRelationAggregateInput
     emergencyContact?: EmergencyContactOrderByRelationAggregateInput
     quizResults?: QuizResultsOrderByRelationAggregateInput
@@ -14458,6 +14474,7 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     password?: StringFilter<"User"> | string
     profileImage?: StringNullableFilter<"User"> | string | null
+    theme?: StringFilter<"User"> | string
     userChecklist?: ChecklistListRelationFilter
     emergencyContact?: EmergencyContactListRelationFilter
     quizResults?: QuizResultsListRelationFilter
@@ -14470,6 +14487,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     profileImage?: SortOrderInput | SortOrder
+    theme?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -14486,6 +14504,7 @@ export namespace Prisma {
     username?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     profileImage?: StringNullableWithAggregatesFilter<"User"> | string | null
+    theme?: StringWithAggregatesFilter<"User"> | string
   }
 
   export type DisasterWhereInput = {
@@ -14645,8 +14664,8 @@ export namespace Prisma {
     service_type?: StringFilter<"EmergencyContact"> | string
     phone_number?: StringFilter<"EmergencyContact"> | string
     description?: StringFilter<"EmergencyContact"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     country?: XOR<CountryScalarRelationFilter, CountryWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type EmergencyContactOrderByWithRelationInput = {
@@ -14656,8 +14675,8 @@ export namespace Prisma {
     service_type?: SortOrder
     phone_number?: SortOrder
     description?: SortOrder
-    user?: UserOrderByWithRelationInput
     country?: CountryOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type EmergencyContactWhereUniqueInput = Prisma.AtLeast<{
@@ -14670,8 +14689,8 @@ export namespace Prisma {
     service_type?: StringFilter<"EmergencyContact"> | string
     phone_number?: StringFilter<"EmergencyContact"> | string
     description?: StringFilter<"EmergencyContact"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     country?: XOR<CountryScalarRelationFilter, CountryWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "contact_id">
 
   export type EmergencyContactOrderByWithAggregationInput = {
@@ -14768,8 +14787,8 @@ export namespace Prisma {
     quiz_id?: IntFilter<"QuizQuestions"> | number
     question?: StringFilter<"QuizQuestions"> | string
     points?: StringFilter<"QuizQuestions"> | string
-    quiz?: XOR<QuizScalarRelationFilter, QuizWhereInput>
     quizAnswer?: QuizAnswerListRelationFilter
+    quiz?: XOR<QuizScalarRelationFilter, QuizWhereInput>
   }
 
   export type QuizQuestionsOrderByWithRelationInput = {
@@ -14777,8 +14796,8 @@ export namespace Prisma {
     quiz_id?: SortOrder
     question?: SortOrder
     points?: SortOrder
-    quiz?: QuizOrderByWithRelationInput
     quizAnswer?: QuizAnswerOrderByRelationAggregateInput
+    quiz?: QuizOrderByWithRelationInput
   }
 
   export type QuizQuestionsWhereUniqueInput = Prisma.AtLeast<{
@@ -14789,8 +14808,8 @@ export namespace Prisma {
     quiz_id?: IntFilter<"QuizQuestions"> | number
     question?: StringFilter<"QuizQuestions"> | string
     points?: StringFilter<"QuizQuestions"> | string
-    quiz?: XOR<QuizScalarRelationFilter, QuizWhereInput>
     quizAnswer?: QuizAnswerListRelationFilter
+    quiz?: XOR<QuizScalarRelationFilter, QuizWhereInput>
   }, "question_id">
 
   export type QuizQuestionsOrderByWithAggregationInput = {
@@ -14989,8 +15008,8 @@ export namespace Prisma {
     user_id?: IntFilter<"UserBadge"> | number
     badge_id?: IntFilter<"UserBadge"> | number
     earned_at?: DateTimeFilter<"UserBadge"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     badge?: XOR<BadgeScalarRelationFilter, BadgeWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type UserBadgeOrderByWithRelationInput = {
@@ -14998,8 +15017,8 @@ export namespace Prisma {
     user_id?: SortOrder
     badge_id?: SortOrder
     earned_at?: SortOrder
-    user?: UserOrderByWithRelationInput
     badge?: BadgeOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type UserBadgeWhereUniqueInput = Prisma.AtLeast<{
@@ -15010,8 +15029,8 @@ export namespace Prisma {
     user_id?: IntFilter<"UserBadge"> | number
     badge_id?: IntFilter<"UserBadge"> | number
     earned_at?: DateTimeFilter<"UserBadge"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     badge?: XOR<BadgeScalarRelationFilter, BadgeWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "user_badge_id">
 
   export type UserBadgeOrderByWithAggregationInput = {
@@ -15041,6 +15060,7 @@ export namespace Prisma {
     username: string
     password: string
     profileImage?: string | null
+    theme?: string
     userChecklist?: ChecklistCreateNestedManyWithoutUserInput
     emergencyContact?: EmergencyContactCreateNestedManyWithoutUserInput
     quizResults?: QuizResultsCreateNestedManyWithoutUserInput
@@ -15053,6 +15073,7 @@ export namespace Prisma {
     username: string
     password: string
     profileImage?: string | null
+    theme?: string
     userChecklist?: ChecklistUncheckedCreateNestedManyWithoutUserInput
     emergencyContact?: EmergencyContactUncheckedCreateNestedManyWithoutUserInput
     quizResults?: QuizResultsUncheckedCreateNestedManyWithoutUserInput
@@ -15064,6 +15085,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: StringFieldUpdateOperationsInput | string
     userChecklist?: ChecklistUpdateManyWithoutUserNestedInput
     emergencyContact?: EmergencyContactUpdateManyWithoutUserNestedInput
     quizResults?: QuizResultsUpdateManyWithoutUserNestedInput
@@ -15076,6 +15098,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: StringFieldUpdateOperationsInput | string
     userChecklist?: ChecklistUncheckedUpdateManyWithoutUserNestedInput
     emergencyContact?: EmergencyContactUncheckedUpdateManyWithoutUserNestedInput
     quizResults?: QuizResultsUncheckedUpdateManyWithoutUserNestedInput
@@ -15088,6 +15111,7 @@ export namespace Prisma {
     username: string
     password: string
     profileImage?: string | null
+    theme?: string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -15095,6 +15119,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -15103,6 +15128,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: StringFieldUpdateOperationsInput | string
   }
 
   export type DisasterCreateInput = {
@@ -15236,8 +15262,8 @@ export namespace Prisma {
     service_type: string
     phone_number: string
     description: string
-    user: UserCreateNestedOneWithoutEmergencyContactInput
     country: CountryCreateNestedOneWithoutEmergencyContactInput
+    user: UserCreateNestedOneWithoutEmergencyContactInput
   }
 
   export type EmergencyContactUncheckedCreateInput = {
@@ -15253,8 +15279,8 @@ export namespace Prisma {
     service_type?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    user?: UserUpdateOneRequiredWithoutEmergencyContactNestedInput
     country?: CountryUpdateOneRequiredWithoutEmergencyContactNestedInput
+    user?: UserUpdateOneRequiredWithoutEmergencyContactNestedInput
   }
 
   export type EmergencyContactUncheckedUpdateInput = {
@@ -15349,8 +15375,8 @@ export namespace Prisma {
   export type QuizQuestionsCreateInput = {
     question: string
     points: string
-    quiz: QuizCreateNestedOneWithoutQuizQuestionsInput
     quizAnswer?: QuizAnswerCreateNestedManyWithoutQuestionInput
+    quiz: QuizCreateNestedOneWithoutQuizQuestionsInput
   }
 
   export type QuizQuestionsUncheckedCreateInput = {
@@ -15364,8 +15390,8 @@ export namespace Prisma {
   export type QuizQuestionsUpdateInput = {
     question?: StringFieldUpdateOperationsInput | string
     points?: StringFieldUpdateOperationsInput | string
-    quiz?: QuizUpdateOneRequiredWithoutQuizQuestionsNestedInput
     quizAnswer?: QuizAnswerUpdateManyWithoutQuestionNestedInput
+    quiz?: QuizUpdateOneRequiredWithoutQuizQuestionsNestedInput
   }
 
   export type QuizQuestionsUncheckedUpdateInput = {
@@ -15551,8 +15577,8 @@ export namespace Prisma {
 
   export type UserBadgeCreateInput = {
     earned_at?: Date | string
-    user: UserCreateNestedOneWithoutUserBadgeInput
     badge: BadgeCreateNestedOneWithoutBadgeInput
+    user: UserCreateNestedOneWithoutUserBadgeInput
   }
 
   export type UserBadgeUncheckedCreateInput = {
@@ -15564,8 +15590,8 @@ export namespace Prisma {
 
   export type UserBadgeUpdateInput = {
     earned_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutUserBadgeNestedInput
     badge?: BadgeUpdateOneRequiredWithoutBadgeNestedInput
+    user?: UserUpdateOneRequiredWithoutUserBadgeNestedInput
   }
 
   export type UserBadgeUncheckedUpdateInput = {
@@ -15685,6 +15711,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     profileImage?: SortOrder
+    theme?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -15697,6 +15724,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     profileImage?: SortOrder
+    theme?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -15705,6 +15733,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     profileImage?: SortOrder
+    theme?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -15953,15 +15982,15 @@ export namespace Prisma {
     disaster_id?: SortOrder
   }
 
-  export type QuizScalarRelationFilter = {
-    is?: QuizWhereInput
-    isNot?: QuizWhereInput
-  }
-
   export type QuizAnswerListRelationFilter = {
     every?: QuizAnswerWhereInput
     some?: QuizAnswerWhereInput
     none?: QuizAnswerWhereInput
+  }
+
+  export type QuizScalarRelationFilter = {
+    is?: QuizWhereInput
+    isNot?: QuizWhereInput
   }
 
   export type QuizAnswerOrderByRelationAggregateInput = {
@@ -16519,24 +16548,16 @@ export namespace Prisma {
     deleteMany?: EmergencyContactScalarWhereInput | EmergencyContactScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutEmergencyContactInput = {
-    create?: XOR<UserCreateWithoutEmergencyContactInput, UserUncheckedCreateWithoutEmergencyContactInput>
-    connectOrCreate?: UserCreateOrConnectWithoutEmergencyContactInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type CountryCreateNestedOneWithoutEmergencyContactInput = {
     create?: XOR<CountryCreateWithoutEmergencyContactInput, CountryUncheckedCreateWithoutEmergencyContactInput>
     connectOrCreate?: CountryCreateOrConnectWithoutEmergencyContactInput
     connect?: CountryWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutEmergencyContactNestedInput = {
+  export type UserCreateNestedOneWithoutEmergencyContactInput = {
     create?: XOR<UserCreateWithoutEmergencyContactInput, UserUncheckedCreateWithoutEmergencyContactInput>
     connectOrCreate?: UserCreateOrConnectWithoutEmergencyContactInput
-    upsert?: UserUpsertWithoutEmergencyContactInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEmergencyContactInput, UserUpdateWithoutEmergencyContactInput>, UserUncheckedUpdateWithoutEmergencyContactInput>
   }
 
   export type CountryUpdateOneRequiredWithoutEmergencyContactNestedInput = {
@@ -16545,6 +16566,14 @@ export namespace Prisma {
     upsert?: CountryUpsertWithoutEmergencyContactInput
     connect?: CountryWhereUniqueInput
     update?: XOR<XOR<CountryUpdateToOneWithWhereWithoutEmergencyContactInput, CountryUpdateWithoutEmergencyContactInput>, CountryUncheckedUpdateWithoutEmergencyContactInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutEmergencyContactNestedInput = {
+    create?: XOR<UserCreateWithoutEmergencyContactInput, UserUncheckedCreateWithoutEmergencyContactInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEmergencyContactInput
+    upsert?: UserUpsertWithoutEmergencyContactInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEmergencyContactInput, UserUpdateWithoutEmergencyContactInput>, UserUncheckedUpdateWithoutEmergencyContactInput>
   }
 
   export type DisasterCreateNestedOneWithoutQuizInput = {
@@ -16603,12 +16632,6 @@ export namespace Prisma {
     deleteMany?: QuizQuestionsScalarWhereInput | QuizQuestionsScalarWhereInput[]
   }
 
-  export type QuizCreateNestedOneWithoutQuizQuestionsInput = {
-    create?: XOR<QuizCreateWithoutQuizQuestionsInput, QuizUncheckedCreateWithoutQuizQuestionsInput>
-    connectOrCreate?: QuizCreateOrConnectWithoutQuizQuestionsInput
-    connect?: QuizWhereUniqueInput
-  }
-
   export type QuizAnswerCreateNestedManyWithoutQuestionInput = {
     create?: XOR<QuizAnswerCreateWithoutQuestionInput, QuizAnswerUncheckedCreateWithoutQuestionInput> | QuizAnswerCreateWithoutQuestionInput[] | QuizAnswerUncheckedCreateWithoutQuestionInput[]
     connectOrCreate?: QuizAnswerCreateOrConnectWithoutQuestionInput | QuizAnswerCreateOrConnectWithoutQuestionInput[]
@@ -16616,19 +16639,17 @@ export namespace Prisma {
     connect?: QuizAnswerWhereUniqueInput | QuizAnswerWhereUniqueInput[]
   }
 
+  export type QuizCreateNestedOneWithoutQuizQuestionsInput = {
+    create?: XOR<QuizCreateWithoutQuizQuestionsInput, QuizUncheckedCreateWithoutQuizQuestionsInput>
+    connectOrCreate?: QuizCreateOrConnectWithoutQuizQuestionsInput
+    connect?: QuizWhereUniqueInput
+  }
+
   export type QuizAnswerUncheckedCreateNestedManyWithoutQuestionInput = {
     create?: XOR<QuizAnswerCreateWithoutQuestionInput, QuizAnswerUncheckedCreateWithoutQuestionInput> | QuizAnswerCreateWithoutQuestionInput[] | QuizAnswerUncheckedCreateWithoutQuestionInput[]
     connectOrCreate?: QuizAnswerCreateOrConnectWithoutQuestionInput | QuizAnswerCreateOrConnectWithoutQuestionInput[]
     createMany?: QuizAnswerCreateManyQuestionInputEnvelope
     connect?: QuizAnswerWhereUniqueInput | QuizAnswerWhereUniqueInput[]
-  }
-
-  export type QuizUpdateOneRequiredWithoutQuizQuestionsNestedInput = {
-    create?: XOR<QuizCreateWithoutQuizQuestionsInput, QuizUncheckedCreateWithoutQuizQuestionsInput>
-    connectOrCreate?: QuizCreateOrConnectWithoutQuizQuestionsInput
-    upsert?: QuizUpsertWithoutQuizQuestionsInput
-    connect?: QuizWhereUniqueInput
-    update?: XOR<XOR<QuizUpdateToOneWithWhereWithoutQuizQuestionsInput, QuizUpdateWithoutQuizQuestionsInput>, QuizUncheckedUpdateWithoutQuizQuestionsInput>
   }
 
   export type QuizAnswerUpdateManyWithoutQuestionNestedInput = {
@@ -16643,6 +16664,14 @@ export namespace Prisma {
     update?: QuizAnswerUpdateWithWhereUniqueWithoutQuestionInput | QuizAnswerUpdateWithWhereUniqueWithoutQuestionInput[]
     updateMany?: QuizAnswerUpdateManyWithWhereWithoutQuestionInput | QuizAnswerUpdateManyWithWhereWithoutQuestionInput[]
     deleteMany?: QuizAnswerScalarWhereInput | QuizAnswerScalarWhereInput[]
+  }
+
+  export type QuizUpdateOneRequiredWithoutQuizQuestionsNestedInput = {
+    create?: XOR<QuizCreateWithoutQuizQuestionsInput, QuizUncheckedCreateWithoutQuizQuestionsInput>
+    connectOrCreate?: QuizCreateOrConnectWithoutQuizQuestionsInput
+    upsert?: QuizUpsertWithoutQuizQuestionsInput
+    connect?: QuizWhereUniqueInput
+    update?: XOR<XOR<QuizUpdateToOneWithWhereWithoutQuizQuestionsInput, QuizUpdateWithoutQuizQuestionsInput>, QuizUncheckedUpdateWithoutQuizQuestionsInput>
   }
 
   export type QuizAnswerUncheckedUpdateManyWithoutQuestionNestedInput = {
@@ -16733,28 +16762,20 @@ export namespace Prisma {
     deleteMany?: UserBadgeScalarWhereInput | UserBadgeScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutUserBadgeInput = {
-    create?: XOR<UserCreateWithoutUserBadgeInput, UserUncheckedCreateWithoutUserBadgeInput>
-    connectOrCreate?: UserCreateOrConnectWithoutUserBadgeInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type BadgeCreateNestedOneWithoutBadgeInput = {
     create?: XOR<BadgeCreateWithoutBadgeInput, BadgeUncheckedCreateWithoutBadgeInput>
     connectOrCreate?: BadgeCreateOrConnectWithoutBadgeInput
     connect?: BadgeWhereUniqueInput
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
-  export type UserUpdateOneRequiredWithoutUserBadgeNestedInput = {
+  export type UserCreateNestedOneWithoutUserBadgeInput = {
     create?: XOR<UserCreateWithoutUserBadgeInput, UserUncheckedCreateWithoutUserBadgeInput>
     connectOrCreate?: UserCreateOrConnectWithoutUserBadgeInput
-    upsert?: UserUpsertWithoutUserBadgeInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserBadgeInput, UserUpdateWithoutUserBadgeInput>, UserUncheckedUpdateWithoutUserBadgeInput>
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type BadgeUpdateOneRequiredWithoutBadgeNestedInput = {
@@ -16763,6 +16784,14 @@ export namespace Prisma {
     upsert?: BadgeUpsertWithoutBadgeInput
     connect?: BadgeWhereUniqueInput
     update?: XOR<XOR<BadgeUpdateToOneWithWhereWithoutBadgeInput, BadgeUpdateWithoutBadgeInput>, BadgeUncheckedUpdateWithoutBadgeInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutUserBadgeNestedInput = {
+    create?: XOR<UserCreateWithoutUserBadgeInput, UserUncheckedCreateWithoutUserBadgeInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserBadgeInput
+    upsert?: UserUpsertWithoutUserBadgeInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserBadgeInput, UserUpdateWithoutUserBadgeInput>, UserUncheckedUpdateWithoutUserBadgeInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -17218,6 +17247,7 @@ export namespace Prisma {
     username: string
     password: string
     profileImage?: string | null
+    theme?: string
     emergencyContact?: EmergencyContactCreateNestedManyWithoutUserInput
     quizResults?: QuizResultsCreateNestedManyWithoutUserInput
     userBadge?: UserBadgeCreateNestedManyWithoutUserInput
@@ -17229,6 +17259,7 @@ export namespace Prisma {
     username: string
     password: string
     profileImage?: string | null
+    theme?: string
     emergencyContact?: EmergencyContactUncheckedCreateNestedManyWithoutUserInput
     quizResults?: QuizResultsUncheckedCreateNestedManyWithoutUserInput
     userBadge?: UserBadgeUncheckedCreateNestedManyWithoutUserInput
@@ -17277,6 +17308,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: StringFieldUpdateOperationsInput | string
     emergencyContact?: EmergencyContactUpdateManyWithoutUserNestedInput
     quizResults?: QuizResultsUpdateManyWithoutUserNestedInput
     userBadge?: UserBadgeUpdateManyWithoutUserNestedInput
@@ -17288,6 +17320,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: StringFieldUpdateOperationsInput | string
     emergencyContact?: EmergencyContactUncheckedUpdateManyWithoutUserNestedInput
     quizResults?: QuizResultsUncheckedUpdateManyWithoutUserNestedInput
     userBadge?: UserBadgeUncheckedUpdateManyWithoutUserNestedInput
@@ -17334,32 +17367,6 @@ export namespace Prisma {
     data: XOR<EmergencyContactUpdateManyMutationInput, EmergencyContactUncheckedUpdateManyWithoutCountryInput>
   }
 
-  export type UserCreateWithoutEmergencyContactInput = {
-    email: string
-    username: string
-    password: string
-    profileImage?: string | null
-    userChecklist?: ChecklistCreateNestedManyWithoutUserInput
-    quizResults?: QuizResultsCreateNestedManyWithoutUserInput
-    userBadge?: UserBadgeCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutEmergencyContactInput = {
-    user_id?: number
-    email: string
-    username: string
-    password: string
-    profileImage?: string | null
-    userChecklist?: ChecklistUncheckedCreateNestedManyWithoutUserInput
-    quizResults?: QuizResultsUncheckedCreateNestedManyWithoutUserInput
-    userBadge?: UserBadgeUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutEmergencyContactInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutEmergencyContactInput, UserUncheckedCreateWithoutEmergencyContactInput>
-  }
-
   export type CountryCreateWithoutEmergencyContactInput = {
     country_name: string
     country_code: string
@@ -17376,36 +17383,32 @@ export namespace Prisma {
     create: XOR<CountryCreateWithoutEmergencyContactInput, CountryUncheckedCreateWithoutEmergencyContactInput>
   }
 
-  export type UserUpsertWithoutEmergencyContactInput = {
-    update: XOR<UserUpdateWithoutEmergencyContactInput, UserUncheckedUpdateWithoutEmergencyContactInput>
+  export type UserCreateWithoutEmergencyContactInput = {
+    email: string
+    username: string
+    password: string
+    profileImage?: string | null
+    theme?: string
+    userChecklist?: ChecklistCreateNestedManyWithoutUserInput
+    quizResults?: QuizResultsCreateNestedManyWithoutUserInput
+    userBadge?: UserBadgeCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutEmergencyContactInput = {
+    user_id?: number
+    email: string
+    username: string
+    password: string
+    profileImage?: string | null
+    theme?: string
+    userChecklist?: ChecklistUncheckedCreateNestedManyWithoutUserInput
+    quizResults?: QuizResultsUncheckedCreateNestedManyWithoutUserInput
+    userBadge?: UserBadgeUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutEmergencyContactInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutEmergencyContactInput, UserUncheckedCreateWithoutEmergencyContactInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutEmergencyContactInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutEmergencyContactInput, UserUncheckedUpdateWithoutEmergencyContactInput>
-  }
-
-  export type UserUpdateWithoutEmergencyContactInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
-    userChecklist?: ChecklistUpdateManyWithoutUserNestedInput
-    quizResults?: QuizResultsUpdateManyWithoutUserNestedInput
-    userBadge?: UserBadgeUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutEmergencyContactInput = {
-    user_id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
-    userChecklist?: ChecklistUncheckedUpdateManyWithoutUserNestedInput
-    quizResults?: QuizResultsUncheckedUpdateManyWithoutUserNestedInput
-    userBadge?: UserBadgeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CountryUpsertWithoutEmergencyContactInput = {
@@ -17428,6 +17431,40 @@ export namespace Prisma {
     country_id?: IntFieldUpdateOperationsInput | number
     country_name?: StringFieldUpdateOperationsInput | string
     country_code?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UserUpsertWithoutEmergencyContactInput = {
+    update: XOR<UserUpdateWithoutEmergencyContactInput, UserUncheckedUpdateWithoutEmergencyContactInput>
+    create: XOR<UserCreateWithoutEmergencyContactInput, UserUncheckedCreateWithoutEmergencyContactInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutEmergencyContactInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutEmergencyContactInput, UserUncheckedUpdateWithoutEmergencyContactInput>
+  }
+
+  export type UserUpdateWithoutEmergencyContactInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: StringFieldUpdateOperationsInput | string
+    userChecklist?: ChecklistUpdateManyWithoutUserNestedInput
+    quizResults?: QuizResultsUpdateManyWithoutUserNestedInput
+    userBadge?: UserBadgeUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutEmergencyContactInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: StringFieldUpdateOperationsInput | string
+    userChecklist?: ChecklistUncheckedUpdateManyWithoutUserNestedInput
+    quizResults?: QuizResultsUncheckedUpdateManyWithoutUserNestedInput
+    userBadge?: UserBadgeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type DisasterCreateWithoutQuizInput = {
@@ -17517,26 +17554,6 @@ export namespace Prisma {
     points?: StringFilter<"QuizQuestions"> | string
   }
 
-  export type QuizCreateWithoutQuizQuestionsInput = {
-    quiz_title: string
-    quiz_description: string
-    difficulty_level: string
-    disaster: DisasterCreateNestedOneWithoutQuizInput
-  }
-
-  export type QuizUncheckedCreateWithoutQuizQuestionsInput = {
-    quiz_id?: number
-    disaster_id: number
-    quiz_title: string
-    quiz_description: string
-    difficulty_level: string
-  }
-
-  export type QuizCreateOrConnectWithoutQuizQuestionsInput = {
-    where: QuizWhereUniqueInput
-    create: XOR<QuizCreateWithoutQuizQuestionsInput, QuizUncheckedCreateWithoutQuizQuestionsInput>
-  }
-
   export type QuizAnswerCreateWithoutQuestionInput = {
     answer_text: string
     is_correct?: boolean
@@ -17560,30 +17577,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type QuizUpsertWithoutQuizQuestionsInput = {
-    update: XOR<QuizUpdateWithoutQuizQuestionsInput, QuizUncheckedUpdateWithoutQuizQuestionsInput>
+  export type QuizCreateWithoutQuizQuestionsInput = {
+    quiz_title: string
+    quiz_description: string
+    difficulty_level: string
+    disaster: DisasterCreateNestedOneWithoutQuizInput
+  }
+
+  export type QuizUncheckedCreateWithoutQuizQuestionsInput = {
+    quiz_id?: number
+    disaster_id: number
+    quiz_title: string
+    quiz_description: string
+    difficulty_level: string
+  }
+
+  export type QuizCreateOrConnectWithoutQuizQuestionsInput = {
+    where: QuizWhereUniqueInput
     create: XOR<QuizCreateWithoutQuizQuestionsInput, QuizUncheckedCreateWithoutQuizQuestionsInput>
-    where?: QuizWhereInput
-  }
-
-  export type QuizUpdateToOneWithWhereWithoutQuizQuestionsInput = {
-    where?: QuizWhereInput
-    data: XOR<QuizUpdateWithoutQuizQuestionsInput, QuizUncheckedUpdateWithoutQuizQuestionsInput>
-  }
-
-  export type QuizUpdateWithoutQuizQuestionsInput = {
-    quiz_title?: StringFieldUpdateOperationsInput | string
-    quiz_description?: StringFieldUpdateOperationsInput | string
-    difficulty_level?: StringFieldUpdateOperationsInput | string
-    disaster?: DisasterUpdateOneRequiredWithoutQuizNestedInput
-  }
-
-  export type QuizUncheckedUpdateWithoutQuizQuestionsInput = {
-    quiz_id?: IntFieldUpdateOperationsInput | number
-    disaster_id?: IntFieldUpdateOperationsInput | number
-    quiz_title?: StringFieldUpdateOperationsInput | string
-    quiz_description?: StringFieldUpdateOperationsInput | string
-    difficulty_level?: StringFieldUpdateOperationsInput | string
   }
 
   export type QuizAnswerUpsertWithWhereUniqueWithoutQuestionInput = {
@@ -17611,6 +17622,32 @@ export namespace Prisma {
     answer_text?: StringFilter<"QuizAnswer"> | string
     is_correct?: BoolFilter<"QuizAnswer"> | boolean
     answer_explanation?: StringFilter<"QuizAnswer"> | string
+  }
+
+  export type QuizUpsertWithoutQuizQuestionsInput = {
+    update: XOR<QuizUpdateWithoutQuizQuestionsInput, QuizUncheckedUpdateWithoutQuizQuestionsInput>
+    create: XOR<QuizCreateWithoutQuizQuestionsInput, QuizUncheckedCreateWithoutQuizQuestionsInput>
+    where?: QuizWhereInput
+  }
+
+  export type QuizUpdateToOneWithWhereWithoutQuizQuestionsInput = {
+    where?: QuizWhereInput
+    data: XOR<QuizUpdateWithoutQuizQuestionsInput, QuizUncheckedUpdateWithoutQuizQuestionsInput>
+  }
+
+  export type QuizUpdateWithoutQuizQuestionsInput = {
+    quiz_title?: StringFieldUpdateOperationsInput | string
+    quiz_description?: StringFieldUpdateOperationsInput | string
+    difficulty_level?: StringFieldUpdateOperationsInput | string
+    disaster?: DisasterUpdateOneRequiredWithoutQuizNestedInput
+  }
+
+  export type QuizUncheckedUpdateWithoutQuizQuestionsInput = {
+    quiz_id?: IntFieldUpdateOperationsInput | number
+    disaster_id?: IntFieldUpdateOperationsInput | number
+    quiz_title?: StringFieldUpdateOperationsInput | string
+    quiz_description?: StringFieldUpdateOperationsInput | string
+    difficulty_level?: StringFieldUpdateOperationsInput | string
   }
 
   export type QuizQuestionsCreateWithoutQuizAnswerInput = {
@@ -17660,6 +17697,7 @@ export namespace Prisma {
     username: string
     password: string
     profileImage?: string | null
+    theme?: string
     userChecklist?: ChecklistCreateNestedManyWithoutUserInput
     emergencyContact?: EmergencyContactCreateNestedManyWithoutUserInput
     userBadge?: UserBadgeCreateNestedManyWithoutUserInput
@@ -17671,6 +17709,7 @@ export namespace Prisma {
     username: string
     password: string
     profileImage?: string | null
+    theme?: string
     userChecklist?: ChecklistUncheckedCreateNestedManyWithoutUserInput
     emergencyContact?: EmergencyContactUncheckedCreateNestedManyWithoutUserInput
     userBadge?: UserBadgeUncheckedCreateNestedManyWithoutUserInput
@@ -17697,6 +17736,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: StringFieldUpdateOperationsInput | string
     userChecklist?: ChecklistUpdateManyWithoutUserNestedInput
     emergencyContact?: EmergencyContactUpdateManyWithoutUserNestedInput
     userBadge?: UserBadgeUpdateManyWithoutUserNestedInput
@@ -17708,6 +17748,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: StringFieldUpdateOperationsInput | string
     userChecklist?: ChecklistUncheckedUpdateManyWithoutUserNestedInput
     emergencyContact?: EmergencyContactUncheckedUpdateManyWithoutUserNestedInput
     userBadge?: UserBadgeUncheckedUpdateManyWithoutUserNestedInput
@@ -17750,32 +17791,6 @@ export namespace Prisma {
     data: XOR<UserBadgeUpdateManyMutationInput, UserBadgeUncheckedUpdateManyWithoutBadgeInput>
   }
 
-  export type UserCreateWithoutUserBadgeInput = {
-    email: string
-    username: string
-    password: string
-    profileImage?: string | null
-    userChecklist?: ChecklistCreateNestedManyWithoutUserInput
-    emergencyContact?: EmergencyContactCreateNestedManyWithoutUserInput
-    quizResults?: QuizResultsCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutUserBadgeInput = {
-    user_id?: number
-    email: string
-    username: string
-    password: string
-    profileImage?: string | null
-    userChecklist?: ChecklistUncheckedCreateNestedManyWithoutUserInput
-    emergencyContact?: EmergencyContactUncheckedCreateNestedManyWithoutUserInput
-    quizResults?: QuizResultsUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutUserBadgeInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutUserBadgeInput, UserUncheckedCreateWithoutUserBadgeInput>
-  }
-
   export type BadgeCreateWithoutBadgeInput = {
     badge_name: string
     description: string
@@ -17796,36 +17811,32 @@ export namespace Prisma {
     create: XOR<BadgeCreateWithoutBadgeInput, BadgeUncheckedCreateWithoutBadgeInput>
   }
 
-  export type UserUpsertWithoutUserBadgeInput = {
-    update: XOR<UserUpdateWithoutUserBadgeInput, UserUncheckedUpdateWithoutUserBadgeInput>
+  export type UserCreateWithoutUserBadgeInput = {
+    email: string
+    username: string
+    password: string
+    profileImage?: string | null
+    theme?: string
+    userChecklist?: ChecklistCreateNestedManyWithoutUserInput
+    emergencyContact?: EmergencyContactCreateNestedManyWithoutUserInput
+    quizResults?: QuizResultsCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutUserBadgeInput = {
+    user_id?: number
+    email: string
+    username: string
+    password: string
+    profileImage?: string | null
+    theme?: string
+    userChecklist?: ChecklistUncheckedCreateNestedManyWithoutUserInput
+    emergencyContact?: EmergencyContactUncheckedCreateNestedManyWithoutUserInput
+    quizResults?: QuizResultsUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutUserBadgeInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutUserBadgeInput, UserUncheckedCreateWithoutUserBadgeInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutUserBadgeInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutUserBadgeInput, UserUncheckedUpdateWithoutUserBadgeInput>
-  }
-
-  export type UserUpdateWithoutUserBadgeInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
-    userChecklist?: ChecklistUpdateManyWithoutUserNestedInput
-    emergencyContact?: EmergencyContactUpdateManyWithoutUserNestedInput
-    quizResults?: QuizResultsUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutUserBadgeInput = {
-    user_id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
-    userChecklist?: ChecklistUncheckedUpdateManyWithoutUserNestedInput
-    emergencyContact?: EmergencyContactUncheckedUpdateManyWithoutUserNestedInput
-    quizResults?: QuizResultsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BadgeUpsertWithoutBadgeInput = {
@@ -17852,6 +17863,40 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     badge_image?: StringFieldUpdateOperationsInput | string
     criteria?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UserUpsertWithoutUserBadgeInput = {
+    update: XOR<UserUpdateWithoutUserBadgeInput, UserUncheckedUpdateWithoutUserBadgeInput>
+    create: XOR<UserCreateWithoutUserBadgeInput, UserUncheckedCreateWithoutUserBadgeInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUserBadgeInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUserBadgeInput, UserUncheckedUpdateWithoutUserBadgeInput>
+  }
+
+  export type UserUpdateWithoutUserBadgeInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: StringFieldUpdateOperationsInput | string
+    userChecklist?: ChecklistUpdateManyWithoutUserNestedInput
+    emergencyContact?: EmergencyContactUpdateManyWithoutUserNestedInput
+    quizResults?: QuizResultsUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUserBadgeInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: StringFieldUpdateOperationsInput | string
+    userChecklist?: ChecklistUncheckedUpdateManyWithoutUserNestedInput
+    emergencyContact?: EmergencyContactUncheckedUpdateManyWithoutUserNestedInput
+    quizResults?: QuizResultsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ChecklistCreateManyUserInput = {

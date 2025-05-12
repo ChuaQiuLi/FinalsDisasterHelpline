@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -20,6 +14,7 @@ model User {
   username         String             @unique
   password         String
   profileImage     String?
+  theme            String             @default("system")
   userChecklist    Checklist[]        @relation("UserChecklist")
   emergencyContact EmergencyContact[] @relation("UserContact")
   quizResults      QuizResults[]      @relation("UserResult")
@@ -56,8 +51,8 @@ model EmergencyContact {
   service_type String
   phone_number String
   description  String
-  user         User    @relation("UserContact", fields: [user_id], references: [user_id])
   country      Country @relation("CountryContact", fields: [country_id], references: [country_id])
+  user         User    @relation("UserContact", fields: [user_id], references: [user_id])
 }
 
 model Quiz {
@@ -75,8 +70,8 @@ model QuizQuestions {
   quiz_id     Int
   question    String
   points      String
-  quiz        Quiz         @relation("DisasterQuizQuestions", fields: [quiz_id], references: [quiz_id])
   quizAnswer  QuizAnswer[] @relation("QuizAnswer")
+  quiz        Quiz         @relation("DisasterQuizQuestions", fields: [quiz_id], references: [quiz_id])
 }
 
 model QuizAnswer {
@@ -110,6 +105,6 @@ model UserBadge {
   user_id       Int
   badge_id      Int
   earned_at     DateTime @default(now())
-  user          User     @relation("UserBadge", fields: [user_id], references: [user_id])
   badge         Badge    @relation("Badge", fields: [badge_id], references: [badge_id])
+  user          User     @relation("UserBadge", fields: [user_id], references: [user_id])
 }
