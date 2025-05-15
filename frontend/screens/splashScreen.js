@@ -1,8 +1,8 @@
 // SplashScreen.js
 import React from 'react';
 import { View, Image } from 'react-native';
-import { lightStyles, darkStyles } from '../styles/splashScreenStyle'
-import { useTheme } from '../context/themeContext'; 
+import { lightStyles, darkStyles } from '../styles/SplashScreenStyle'
+import { useTheme } from '../context/ThemeContext'; 
 
 const SplashScreen = () => {
   const { isDarkMode } = useTheme(); 

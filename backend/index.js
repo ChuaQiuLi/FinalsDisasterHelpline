@@ -24,12 +24,15 @@ app.get('/', (req, res) => {
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
-const disasterData = require('./routes/disasterData');
-app.use('/api/disasterData', disasterData);
+const disaster = require('./routes/disaster');
+app.use('/api/disaster', disaster);
 
 
 const userRoutes = require('./routes/user');
 app.use('/api/user', userRoutes);
+
+const contactRoutes = require('./routes/contact');
+app.use('/api/contact', contactRoutes);
 
 
 

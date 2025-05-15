@@ -1,5 +1,5 @@
 const express = require('express');
-const { PrismaClient } = require('../generated/prisma');
+const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
@@ -161,7 +161,7 @@ router.post('/update-theme', async (req, res) => {
   const { user_id, theme } = req.body;
 
   try {
-    // Upsert to create or update the theme settings
+    // Update the theme settings
     const updatedSettings = await prisma.User.update({
       where: { user_id: parseInt(user_id) },
       update: { theme },
@@ -200,6 +200,35 @@ router.get('/get-theme/:userId', async (req, res) => {
   catch (error) {
     console.error('Failed to retrieve theme:', error);
     res.status(500).json({ error: 'Failed to retrieve theme' });
+  }
+
+});
+
+
+
+router.post('/updateCountry', async (req, res) => {
+
+  const { country, userId } = req.body;
+
+  if (!country || !userId) {
+    return res.status(400).json({ message: 'Country and userId are required' });
+  }
+
+  try {
+    // Update the user's country in the database
+    const user = await prisma.User.update({
+      where: { user_id: userId },
+      data: { country: country },
+
+    });
+
+    res.status(200).json({ message: 'Country updated successfully', user });
+
+  } 
+  
+  catch (error) {
+    console.error('Error updating country:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 
 });

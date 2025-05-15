@@ -8,18 +8,18 @@ import { Ionicons } from '@expo/vector-icons';
 import Toast, {BaseToast} from 'react-native-toast-message'; 
 import { useDispatch, Provider, useSelector } from 'react-redux';
 import store from './store';
-import { checkAuth } from './slices/authSlice';
-import { useTheme } from './context/themeContext'; 
+import { checkAuth } from './slices/AuthSlice';
+import { useTheme } from './context/ThemeContext'; 
 
 
 // Import HomeScreen component
-import { ThemeProvider } from './context/themeContext';
-import SplashScreen from './screens/splashScreen';
-import LoginScreen from './screens/loginScreen';
-import RegisterScreen from './screens/registerScreen';
-import ForgetPassword from './screens/forgetPasswordScreen';
+import { ThemeProvider } from './context/ThemeContext';
+import SplashScreen from './screens/SplashScreen';
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import ForgetPassword from './screens/ForgetPasswordScreen';
 import HomeScreen from './screens/HomeScreen';
-import SettingScreen from './screens/settingScreen';
+import EmergencyContactScreen from './screens/EmergencyContactScreen';
 
 
 
@@ -109,9 +109,9 @@ const MainTabNavigator = ({ navigation, theme }) => {
             iconName = focused ? 'home' : 'home-outline';
             break;
 
-          // case 'Emergency Contact':
-          //   iconName = focused ? 'call' : 'call-outline';
-          //   break;
+          case 'Emergency Contact':
+            iconName = focused ? 'call' : 'call-outline';
+            break;
 
           // case 'Checklist':
           //   iconName = focused ? 'checkmark-circle' : 'checkmark-circle-outline';
@@ -150,20 +150,9 @@ const MainTabNavigator = ({ navigation, theme }) => {
 
     <Tab.Screen name="Home" component={HomeScreen} />
 
-    {/* <Tab.Screen 
-      name="Emergency Contact" 
-      component={EmergencyContactScreen} 
-      listeners={{
-        tabPress: (e) => {
-          if (e.defaultPrevented) return;
-          e.preventDefault();
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'Emergency Contact' }],
-          });
-        },
-      }}
-    />
+    <Tab.Screen name="Emergency Contact" component={EmergencyContactScreen} />
+
+    {/* 
     
     <Tab.Screen 
       name="Checklist" 

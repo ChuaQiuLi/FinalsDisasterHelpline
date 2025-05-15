@@ -2,14 +2,14 @@ import React from 'react';
 import { View, Text, Switch, TouchableHighlight, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
-import { lightStyles, darkStyles } from '../styles/settingScreenStyle';
+import { lightStyles, darkStyles } from '../styles/SettingScreenStyle';
 import { useDispatch } from 'react-redux';
-import { logout } from '../slices/authSlice';
+import { logout } from '../slices/AuthSlice';
 import API from '../api';
-import { useTheme } from '../context/themeContext'; 
+import { useTheme } from '../context/ThemeContext'; 
 
 // Import components
-import BackButton from '../components/backButton';
+import BackButton from '../components/BackButton';
 
 
 export default function SettingScreen({ navigation }) {

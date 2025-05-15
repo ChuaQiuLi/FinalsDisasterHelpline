@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableHighlight, Image, ScrollView, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch} from 'react-redux';
-import { loginUser } from '../slices/authSlice';
-import { lightStyles, darkStyles } from '../styles/loginScreenStyle';
-import { useTheme } from '../context/themeContext';
+import { loginUser } from '../slices/AuthSlice';
+import { lightStyles, darkStyles } from '../styles/LoginScreenStyle';
+import { useTheme } from '../context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
 
 import * as SecureStore from 'expo-secure-store';

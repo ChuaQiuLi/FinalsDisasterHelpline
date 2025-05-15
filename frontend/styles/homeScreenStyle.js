@@ -213,11 +213,14 @@ const darkStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#000000',
   },
 
   loadingText: {
     marginTop: 10,
     fontSize: 16,
+    color: '#FFFFFF',
+
   },
 
   header: {
@@ -227,17 +230,22 @@ const darkStyles = StyleSheet.create({
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0',
+    backgroundColor: '#000000',
   },
 
   headerTitle: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: '#FFFFFF',
+
   },
   
   locationText: {
     fontSize: 12,
     color: '#666',
     marginTop: 4,
+    color: '#FFFFFF',
+
   },
 
   countryText: {

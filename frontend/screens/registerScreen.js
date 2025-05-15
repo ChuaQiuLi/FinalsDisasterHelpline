@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableHighlight, Image, ScrollView, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { lightStyles, darkStyles } from '../styles/registerScreenStyle';
-import { useTheme } from '../context/themeContext';
+import { lightStyles, darkStyles } from '../styles/RegisterScreenStyle';
+import { useTheme } from '../context/ThemeContext';
 import API from '../api';
 import { Ionicons } from '@expo/vector-icons';
 

@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  
 }
 
 datasource db {
@@ -15,8 +15,8 @@ model User {
   password         String
   profileImage     String?
   theme            String             @default("system")
+  country          String?
   userChecklist    Checklist[]        @relation("UserChecklist")
-  emergencyContact EmergencyContact[] @relation("UserContact")
   quizResults      QuizResults[]      @relation("UserResult")
   userBadge        UserBadge[]        @relation("UserBadge")
 }
@@ -48,13 +48,16 @@ model Country {
 model EmergencyContact {
   contact_id   Int     @id @default(autoincrement())
   country_id   Int
-  user_id      Int
-  service_type String
-  phone_number String
+  police       String
+  fire         String
+  medical      String      
   description  String
   country      Country @relation("CountryContact", fields: [country_id], references: [country_id])
-  user         User    @relation("UserContact", fields: [user_id], references: [user_id])
+
+  @@unique([country_id, police, fire, medical]) 
+
 }
+
 
 model Quiz {
   quiz_id          Int             @id @default(autoincrement())

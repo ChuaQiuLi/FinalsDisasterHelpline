@@ -1,4 +1,10 @@
 {
+  "name": "backend",
+  "version": "1.0.0",
+  "scripts": {
+    "seed": "node prisma/seedContact.js"
+  },
+
   "dependencies": {
     "@prisma/client": "^6.7.0",
     "@react-native-async-storage/async-storage": "^2.1.2",

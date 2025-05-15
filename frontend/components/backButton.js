@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Pressable } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { lightStyles, darkStyles } from '../styles/backButtonStyle'; 
-import { useTheme } from '../context/themeContext'; 
+import { lightStyles, darkStyles } from '../styles/BackButtonStyle'; 
+import { useTheme } from '../context/ThemeContext'; 
 
 
 
