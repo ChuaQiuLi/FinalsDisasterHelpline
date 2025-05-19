@@ -20,6 +20,8 @@ import RegisterScreen from './screens/RegisterScreen';
 import ForgetPassword from './screens/ForgetPasswordScreen';
 import HomeScreen from './screens/HomeScreen';
 import EmergencyContactScreen from './screens/EmergencyContactScreen';
+import ChecklistScreen from './screens/CheckListScreen';
+import ChecklistDetailScreen from './screens/ChecklistDetailScreen';
 
 
 
@@ -113,9 +115,9 @@ const MainTabNavigator = ({ navigation, theme }) => {
             iconName = focused ? 'call' : 'call-outline';
             break;
 
-          // case 'Checklist':
-          //   iconName = focused ? 'checkmark-circle' : 'checkmark-circle-outline';
-          //   break;
+          case 'Checklist':
+            iconName = focused ? 'checkmark-circle' : 'checkmark-circle-outline';
+            break;
 
           // case 'Game':
           //   iconName = focused ? 'game-controller' : 'game-controller-outline';
@@ -152,52 +154,24 @@ const MainTabNavigator = ({ navigation, theme }) => {
 
     <Tab.Screen name="Emergency Contact" component={EmergencyContactScreen} />
 
-    {/* 
-    
+
     <Tab.Screen 
       name="Checklist" 
       component={ChecklistStack} 
-      listeners={{
+      listeners={({ navigation }) => ({ 
         tabPress: (e) => {
           if (e.defaultPrevented) return;
           e.preventDefault();
+
           navigation.reset({
             index: 0,
             routes: [{ name: 'Checklist' }],
           });
         },
-      }}
+      })}
     />
 
-    <Tab.Screen 
-      name="Game" 
-      component={GameStack} 
-      listeners={{
-        tabPress: (e) => {
-          if (e.defaultPrevented) return;
-          e.preventDefault();
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'Game' }],
-          });
-        },
-      }}
-    />
 
-    <Tab.Screen 
-      name="Profile" 
-      component={ProfileScreenStack} 
-      listeners={{
-        tabPress: (e) => {
-          if (e.defaultPrevented) return;
-          e.preventDefault();
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'Profile' }],
-          });
-        },
-      }}
-    /> */}
  
 
     </Tab.Navigator>
@@ -208,12 +182,14 @@ const MainTabNavigator = ({ navigation, theme }) => {
 };
 
 
-// const ChecklistStack = () => (
-//   <Stack.Navigator>
+const ChecklistStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="ChecklistScreen" component={ChecklistScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="ChecklistDetailScreen" component={ChecklistDetailScreen} options={{ headerShown: false }} />
 
-//   </Stack.Navigator>
+  </Stack.Navigator>
 
-// );
+);
 
 
 // const GameStack = () => (

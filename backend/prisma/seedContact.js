@@ -2,39 +2,54 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function upsertCountryWithContacts(data) {
-  const existingCountry = await prisma.country.findUnique({
-    where: { country_code: data.country_code },
-  });
-
-  if (existingCountry) {
-    // Update country and emergency contact
-    await prisma.country.update({
+  try {
+    const existingCountry = await prisma.country.findUnique({
       where: { country_code: data.country_code },
-      data: {
-        country_name: data.country_name,
-        emergencyContact: {
-            // remove old contacts
-          deleteMany: {}, 
-          create: data.emergencyContact,
-        },
-      },
     });
-    console.log(`Updated ${data.country_name}`);
-  } 
-  
-  else {
-    // Create country and emergency contact
-    await prisma.country.create({
-      data: {
-        country_name: data.country_name,
-        country_code: data.country_code,
-        emergencyContact: {
-          create: data.emergencyContact,
+
+    if (existingCountry) {
+      // Update country and emergency contact
+      await prisma.country.update({
+        where: { country_code: data.country_code },
+        data: {
+          country_name: data.country_name,
+          emergencyContact: {
+              // remove old contacts
+            deleteMany: {}, 
+            create: data.emergencyContact,
+          },
         },
-      },
-    });
-    console.log(`Created ${data.country_name}`);
+
+      });
+
+      console.log(`Updated ${data.country_name}`);
+
+    } 
+    
+    else {
+      // Create country and emergency contact
+      await prisma.country.create({
+        data: {
+          country_name: data.country_name,
+          country_code: data.country_code,
+          emergencyContact: {
+            create: data.emergencyContact,
+          },
+        },
+
+      });
+      
+      console.log(`Created ${data.country_name}`);
+
+    }
+
   }
+
+  catch (error) {
+    console.error(`Error upserting disaster '${data.disaster_name}':`, error);
+
+  }
+
 
 }
 
@@ -550,19 +565,27 @@ async function main() {
    
   ];
 
-  for (const data of seedData) {
-    await upsertCountryWithContacts(data);
+  try {
+    for (const data of seedData) {
+      await upsertCountryWithContacts(data);
+    }
+
   }
+
+  catch (error) {
+    console.error("Unexpected error in main loop:", error);
+  }
+
 
 }
 
 main()
   .then(() => {
-    console.log("Seeding complete.");
+    console.log("Seeding contacts complete.");
     prisma.$disconnect();
   })
   .catch((e) => {
-    console.error("Seeding error:", e);
+    console.error("Seeding error for contacts:", e);
     prisma.$disconnect();
     process.exit(1);
   });

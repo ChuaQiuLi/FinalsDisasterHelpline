@@ -5,17 +5,10 @@ CREATE TABLE "User" (
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "profileImage" TEXT,
+    "theme" TEXT NOT NULL DEFAULT 'system',
+    "country" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("user_id")
-);
-
--- CreateTable
-CREATE TABLE "Setting" (
-    "setting_id" SERIAL NOT NULL,
-    "theme" TEXT NOT NULL DEFAULT 'system',
-    "user_id" INTEGER NOT NULL,
-
-    CONSTRAINT "Setting_pkey" PRIMARY KEY ("setting_id")
 );
 
 -- CreateTable
@@ -27,13 +20,32 @@ CREATE TABLE "Disaster" (
 );
 
 -- CreateTable
+CREATE TABLE "ChecklistTitle" (
+    "title_id" SERIAL NOT NULL,
+    "disaster_id" INTEGER NOT NULL,
+    "title" TEXT NOT NULL,
+
+    CONSTRAINT "ChecklistTitle_pkey" PRIMARY KEY ("title_id")
+);
+
+-- CreateTable
 CREATE TABLE "Checklist" (
     "checklist_id" SERIAL NOT NULL,
     "disaster_id" INTEGER NOT NULL,
     "user_id" INTEGER NOT NULL,
+    "title_id" INTEGER NOT NULL,
     "checklist_item" TEXT NOT NULL,
 
     CONSTRAINT "Checklist_pkey" PRIMARY KEY ("checklist_id")
+);
+
+-- CreateTable
+CREATE TABLE "ChecklistTemplate" (
+    "template_id" SERIAL NOT NULL,
+    "title_id" INTEGER NOT NULL,
+    "checklist_item" TEXT NOT NULL,
+
+    CONSTRAINT "ChecklistTemplate_pkey" PRIMARY KEY ("template_id")
 );
 
 -- CreateTable
@@ -49,9 +61,9 @@ CREATE TABLE "Country" (
 CREATE TABLE "EmergencyContact" (
     "contact_id" SERIAL NOT NULL,
     "country_id" INTEGER NOT NULL,
-    "user_id" INTEGER NOT NULL,
-    "service_type" TEXT NOT NULL,
-    "phone_number" TEXT NOT NULL,
+    "police" TEXT NOT NULL,
+    "fire" TEXT NOT NULL,
+    "medical" TEXT NOT NULL,
     "description" TEXT NOT NULL,
 
     CONSTRAINT "EmergencyContact_pkey" PRIMARY KEY ("contact_id")
@@ -127,7 +139,7 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Setting_user_id_key" ON "Setting"("user_id");
+CREATE UNIQUE INDEX "Disaster_disaster_name_key" ON "Disaster"("disaster_name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Country_country_name_key" ON "Country"("country_name");
@@ -135,8 +147,11 @@ CREATE UNIQUE INDEX "Country_country_name_key" ON "Country"("country_name");
 -- CreateIndex
 CREATE UNIQUE INDEX "Country_country_code_key" ON "Country"("country_code");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "EmergencyContact_country_id_police_fire_medical_key" ON "EmergencyContact"("country_id", "police", "fire", "medical");
+
 -- AddForeignKey
-ALTER TABLE "Setting" ADD CONSTRAINT "Setting_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ChecklistTitle" ADD CONSTRAINT "ChecklistTitle_disaster_id_fkey" FOREIGN KEY ("disaster_id") REFERENCES "Disaster"("disaster_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Checklist" ADD CONSTRAINT "Checklist_disaster_id_fkey" FOREIGN KEY ("disaster_id") REFERENCES "Disaster"("disaster_id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -145,10 +160,13 @@ ALTER TABLE "Checklist" ADD CONSTRAINT "Checklist_disaster_id_fkey" FOREIGN KEY 
 ALTER TABLE "Checklist" ADD CONSTRAINT "Checklist_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "EmergencyContact" ADD CONSTRAINT "EmergencyContact_country_id_fkey" FOREIGN KEY ("country_id") REFERENCES "Country"("country_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Checklist" ADD CONSTRAINT "Checklist_title_id_fkey" FOREIGN KEY ("title_id") REFERENCES "ChecklistTitle"("title_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "EmergencyContact" ADD CONSTRAINT "EmergencyContact_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ChecklistTemplate" ADD CONSTRAINT "ChecklistTemplate_title_id_fkey" FOREIGN KEY ("title_id") REFERENCES "ChecklistTitle"("title_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "EmergencyContact" ADD CONSTRAINT "EmergencyContact_country_id_fkey" FOREIGN KEY ("country_id") REFERENCES "Country"("country_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Quiz" ADD CONSTRAINT "Quiz_disaster_id_fkey" FOREIGN KEY ("disaster_id") REFERENCES "Disaster"("disaster_id") ON DELETE RESTRICT ON UPDATE CASCADE;

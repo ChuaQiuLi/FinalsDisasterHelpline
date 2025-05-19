@@ -2,7 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "scripts": {
-    "seed": "node prisma/seedContact.js"
+    "seed:contact": "node prisma/seedContact.js",
+    "seed:checklist": "node prisma/seedChecklist.js",
+    "seed:all": "node prisma/seedContact.js && node prisma/seedChecklist.js"
   },
 
   "dependencies": {

@@ -23,7 +23,7 @@ function EmergencyContactScreen() {
 
     useEffect(() => {
         fetchUserCountryEmergContact();
-    
+
     }, []);
 
 
@@ -70,8 +70,8 @@ function EmergencyContactScreen() {
             const response = await API.get(`/api/contact/countries?search=${query}`);
             setSuggestions(response.data);
             setSearched(true);
-        } 
-        
+        }
+
         catch (error) {
             console.error('Error fetching suggestions:', error);
             setSuggestions([]);
@@ -87,10 +87,10 @@ function EmergencyContactScreen() {
             const response = await API.get(`/api/contact/countries/${country_id}/contacts`);
             setSelectedCountry(response.data);
             // Hide suggestions after selection
-            setSuggestions([]); 
+            setSuggestions([]);
             // Update input with selected country
             setQuery(response.data.country_name);
-            setSearched(false); 
+            setSearched(false);
 
         }
 
@@ -102,15 +102,15 @@ function EmergencyContactScreen() {
     };
 
 
-    
+
     const renderItem = ({ item }) => (
         <TouchableHighlight onPress={() => fetchCountryDetails(item.country_id)} underlayColor={isDarkMode ? '#999999' : '#999999'}>
             <View style={styles.item}>
                 <Text style={styles.searchItem}>{item.country_name}</Text>
             </View>
         </TouchableHighlight>
-    
-        
+
+
     );
 
 
@@ -127,16 +127,16 @@ function EmergencyContactScreen() {
                         <Text style={styles.contactText}>Police: {userCountryEmergContact.emergencyContact[0].police} </Text>
                         <Text style={styles.contactText}>Fire: {userCountryEmergContact.emergencyContact[0].fire}</Text>
                         <Text style={styles.contactText}>Medical: {userCountryEmergContact.emergencyContact[0].medical}</Text>
-                        
+
                     </>
 
                 )}
 
 
                 <View style={styles.searchContainer}>
-                    <TextInput style={styles.searchInput}  placeholder="Search Country" value={query} onChangeText={setQuery} placeholderTextColor={isDarkMode ? '#888888' : '#888888'} />
+                    <TextInput style={styles.searchInput} placeholder="Search Country" value={query} onChangeText={setQuery} placeholderTextColor={isDarkMode ? '#888888' : '#888888'} />
                     <TouchableHighlight onPress={fetchSuggestions} underlayColor={isDarkMode ? '#999999' : '#999999'}>
-                        <Ionicons name="search-outline" size={14} color="black"/>
+                        <Ionicons name="search-outline" size={14} color="black" />
                     </TouchableHighlight>
 
                 </View>
@@ -166,7 +166,7 @@ function EmergencyContactScreen() {
                                 <Text style={styles.contactText}>Police: {selectedCountry.emergencyContact[0].police} </Text>
                                 <Text style={styles.contactText}>Fire: {selectedCountry.emergencyContact[0].fire}</Text>
                                 <Text style={styles.contactText}>Medical: {selectedCountry.emergencyContact[0].medical}</Text>
-                            
+
                             </>
 
                         )}
@@ -177,7 +177,7 @@ function EmergencyContactScreen() {
 
             </View>
 
- 
+
         </SafeAreaView>
 
     )

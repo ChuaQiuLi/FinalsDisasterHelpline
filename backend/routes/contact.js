@@ -28,7 +28,7 @@ router.get('/user/country', async (req, res) => {
     }
 
     // Have a default country when user country cannot be found
-    const countryName = user.country || "Singapore "; 
+    const countryName = user.country?.trim() || "Singapore";
 
     const emergencyContact = await prisma.country.findUnique({
       where: {

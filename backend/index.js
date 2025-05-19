@@ -35,6 +35,9 @@ const contactRoutes = require('./routes/contact');
 app.use('/api/contact', contactRoutes);
 
 
+const checklistRoutes = require('./routes/checklist');
+app.use('/api/checklist', checklistRoutes);
+
 
 const PORT = process.env.PORT 
 
