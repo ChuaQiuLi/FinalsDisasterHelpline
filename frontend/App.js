@@ -22,6 +22,8 @@ import HomeScreen from './screens/HomeScreen';
 import EmergencyContactScreen from './screens/EmergencyContactScreen';
 import ChecklistScreen from './screens/CheckListScreen';
 import ChecklistDetailScreen from './screens/ChecklistDetailScreen';
+import AddChecklistScreen from './screens/AddChecklistScreen';
+
 
 
 
@@ -186,6 +188,8 @@ const ChecklistStack = () => (
   <Stack.Navigator>
     <Stack.Screen name="ChecklistScreen" component={ChecklistScreen} options={{ headerShown: false }} />
     <Stack.Screen name="ChecklistDetailScreen" component={ChecklistDetailScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="AddChecklistScreen" component={AddChecklistScreen} options={{ headerShown: false }} />
+
 
   </Stack.Navigator>
 

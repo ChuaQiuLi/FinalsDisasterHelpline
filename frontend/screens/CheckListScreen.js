@@ -90,12 +90,6 @@ const ChecklistScreen= () => {
     
 
     );
-    
-
-
-
-
-
 
 };
 

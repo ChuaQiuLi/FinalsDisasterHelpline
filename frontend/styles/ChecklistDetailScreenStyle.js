@@ -23,9 +23,18 @@ const lightStyles = StyleSheet.create({
 
     },
 
+    listContainer: {
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        marginVertical: 5, 
+    },
+
     checklistItem: {
         marginLeft: 10,
         fontSize: 16, 
+        flexShrink: 1, 
+        flexWrap: 'wrap', 
+        flex: 1
 
 
     },
@@ -36,7 +45,21 @@ const lightStyles = StyleSheet.create({
         marginTop: 20, 
         marginBottom: 10,
 
-    }
+    },
+
+    fab: {
+        position: 'absolute',
+        width: 56,
+        height: 56,
+        right: 20,
+        bottom: 20,
+        backgroundColor: '#FFE4A1',
+        borderRadius: 28,
+        elevation: 8,
+        justifyContent: 'center', 
+        alignItems: 'center', 
+    
+    },
 
 
 });
@@ -66,11 +89,19 @@ const darkStyles = StyleSheet.create({
 
     },
 
+    listContainer: {
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        marginVertical: 5, 
+    },
+
     checklistItem: {
         color: '#ffffff',
         marginLeft: 10,
         fontSize: 16, 
-
+        flexShrink: 1, 
+        flexWrap: 'wrap', 
+        flex: 1
 
     },
 
@@ -81,7 +112,21 @@ const darkStyles = StyleSheet.create({
         color: '#ffffff',
         marginBottom: 10,
 
-    }
+    },
+
+    fab: {
+        position: 'absolute',
+        width: 56,
+        height: 56,
+        right: 20,
+        bottom: 20,
+        backgroundColor: '#FFE4A1',
+        borderRadius: 28,
+        elevation: 8,
+        justifyContent: 'center', 
+        alignItems: 'center', 
+    
+  },
 
 
 });

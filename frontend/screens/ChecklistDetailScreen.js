@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation  } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { useTheme } from '../context/ThemeContext';
+import { Ionicons } from '@expo/vector-icons';
 import { lightStyles, darkStyles } from '../styles/ChecklistDetailScreenStyle';
 import Checkbox from 'expo-checkbox';
 import API from '../api';
@@ -13,7 +14,7 @@ import API from '../api';
 import BackButton from '../components/BackButton';
 
 
-const ChecklistDetailScreen= ({ route }) => {
+const ChecklistDetailScreen = ({ route }) => {
     const { isDarkMode } = useTheme(); 
     const styles = isDarkMode ? darkStyles : lightStyles; 
     const userId = useSelector((state) => state.auth.user?.id);
@@ -114,6 +115,12 @@ const ChecklistDetailScreen= ({ route }) => {
     };
 
 
+    const handleAddPress = () => {
+        navigation.navigate('AddChecklistScreen');
+
+    };
+
+
  
     return (
         <SafeAreaView style={styles.container}>
@@ -126,7 +133,7 @@ const ChecklistDetailScreen= ({ route }) => {
                 sections={sections}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 5 }}>
+                    <View style={styles.listContainer}>
                         <Checkbox value={checkedItems[item.id]} onValueChange={(isChecked) => toggleCheckbox(item.id, isChecked )}/>
                         <Text style={styles.checklistItem}>{item.label}</Text>
                     </View>
@@ -139,6 +146,10 @@ const ChecklistDetailScreen= ({ route }) => {
                 )}
 
             />
+
+            <TouchableHighlight underlayColor={isDarkMode ? '#999999' : '#999999'} style={styles.fab} onPress={handleAddPress}>
+                <Ionicons name="add" size={32} color="black" />
+            </TouchableHighlight>
 
 
         </SafeAreaView>
