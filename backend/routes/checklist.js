@@ -216,4 +216,69 @@ router.post('/change-user-checklist-status', async (req, res) => {
 
 
 
+router.get('/title', async (req, res) => {
+
+  const { disaster_id } = req.query;
+
+  try {
+    const checklistTitle = await prisma.checklistTitle.findMany({
+      where: {
+        disaster_id: parseInt(disaster_id)
+
+      },
+
+      select: {
+        title_id: true,
+        title: true
+      },
+
+
+    });
+
+    res.json(checklistTitle);
+
+  }
+
+  catch (error) {
+    console.error('Error fetching checklist title:', error);
+    res.status(500).json({ error: 'Failed to fetch checklist title' });
+
+  }
+
+});
+
+
+
+
+router.post('/add-checklist-item', async (req, res) => {
+
+  const { user_id, disaster_id, title_id, checklist_item } = req.body;
+
+  try {
+    const checklistTitle = await prisma.checklist.create({
+      data: {
+        user_id: parseInt(user_id),
+        disaster_id: parseInt(disaster_id),
+        title_id: parseInt(title_id),
+        checklist_item: checklist_item.trim()
+        
+      },
+
+    });
+
+    res.json(checklistTitle);
+
+  }
+
+  catch (error) {
+    console.error('Error creating checklist:', error);
+    res.status(500).json({ error: 'Failed to create checklist' });
+
+  }
+
+});
+
+
+
+
 module.exports = router;

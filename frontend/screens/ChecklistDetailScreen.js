@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableHighlight, SectionList } from 'react-native';
+import { View, Text, TouchableHighlight, SectionList, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation  } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { useTheme } from '../context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
@@ -116,7 +116,7 @@ const ChecklistDetailScreen = ({ route }) => {
 
 
     const handleAddPress = () => {
-        navigation.navigate('AddChecklistScreen');
+        navigation.navigate('AddChecklistScreen', {disaster_id: checklist.disaster_id, disaster_name: checklist.disaster_name});
 
     };
 
@@ -132,6 +132,11 @@ const ChecklistDetailScreen = ({ route }) => {
             <SectionList
                 sections={sections}
                 keyExtractor={(item) => item.id}
+                renderSectionHeader={({ section: { title } }) => (
+                    <Text style={styles.title}>{title}</Text>
+                
+                )}
+
                 renderItem={({ item }) => (
                     <View style={styles.listContainer}>
                         <Checkbox value={checkedItems[item.id]} onValueChange={(isChecked) => toggleCheckbox(item.id, isChecked )}/>
@@ -140,10 +145,7 @@ const ChecklistDetailScreen = ({ route }) => {
 
                 )}
 
-                renderSectionHeader={({ section: { title } }) => (
-                    <Text style={styles.title}>{title}</Text>
-                
-                )}
+
 
             />
 

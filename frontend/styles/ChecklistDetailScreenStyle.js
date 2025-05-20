@@ -17,7 +17,7 @@ const lightStyles = StyleSheet.create({
     },
   
     header: {
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: 'bold',
         flex: 1,
 
@@ -43,7 +43,7 @@ const lightStyles = StyleSheet.create({
         fontSize: 18, 
         fontWeight: 'bold',
         marginTop: 20, 
-        marginBottom: 10,
+        marginBottom: 8,
 
     },
 
@@ -82,7 +82,7 @@ const darkStyles = StyleSheet.create({
     },
   
     header: {
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: 'bold',
         flex: 1,
         color: '#ffffff',
@@ -110,7 +110,7 @@ const darkStyles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 20, 
         color: '#ffffff',
-        marginBottom: 10,
+        marginBottom: 8,
 
     },
 
