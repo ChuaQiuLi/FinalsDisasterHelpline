@@ -20,7 +20,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import ForgetPassword from './screens/ForgetPasswordScreen';
 import HomeScreen from './screens/HomeScreen';
 import EmergencyContactScreen from './screens/EmergencyContactScreen';
-import ChecklistScreen from './screens/CheckListScreen';
+import ChecklistScreen from './screens/ChecklistScreen';
 import ChecklistDetailScreen from './screens/ChecklistDetailScreen';
 import AddChecklistScreen from './screens/AddChecklistScreen';
 
@@ -60,7 +60,7 @@ const AppContent = () => {
   
   return (
     <NavigationContainer>
-      <StatusBar style={theme.statusBarStyle} backgroundColor={theme.statusBarBackgroundColor}  />
+      <StatusBar style={isDarkMode ? 'light' : 'dark'} translucent />
       <RootNavigator theme={theme} />
       <Toast config={toastConfig} />
     </NavigationContainer>
@@ -241,9 +241,7 @@ const toastConfig = {
 const lightTheme = {
   tabBarActiveTintColor: '#000000',
   tabBarInactiveTintColor: '#808080',
-  tabBarBackgroundColor: '#FFFFFF',
-  statusBarStyle: 'dark',
-  statusBarBackgroundColor: '#FFFFFF',
+  tabBarBackgroundColor: '#FFFFFF'
 
 };
 
@@ -252,9 +250,6 @@ const darkTheme = {
   tabBarActiveTintColor: '#FFFFFF',
   tabBarInactiveTintColor: '#808080',
   tabBarBackgroundColor: '#000000',
-  statusBarStyle: 'light',
-  statusBarBackgroundColor: '#000000',
-
 };
 
 

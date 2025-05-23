@@ -249,7 +249,6 @@ router.get('/title', async (req, res) => {
 
 
 
-
 router.post('/add-checklist-item', async (req, res) => {
 
   const { user_id, disaster_id, title_id, checklist_item } = req.body;
@@ -273,6 +272,58 @@ router.post('/add-checklist-item', async (req, res) => {
   catch (error) {
     console.error('Error creating checklist:', error);
     res.status(500).json({ error: 'Failed to create checklist' });
+
+  }
+
+});
+
+
+
+router.delete('/delete-user-checklist-item', async (req, res) => {
+
+  const { checklist_id, user_id } = req.query;
+
+  try {
+
+    const checklistExists = await prisma.checklist.findUnique({
+      where: { 
+        checklist_id: parseInt(checklist_id)
+      
+      }
+
+    });
+    
+    if (!checklistExists) {
+      return res.status(404).json({ error: 'Checklist not found' });
+    }
+
+
+
+    // delete related user status if exists
+    await prisma.userChecklistStatus.deleteMany({
+      where: {
+        checklist_id: parseInt(checklist_id),
+        user_id: parseInt(user_id),
+      },
+      
+    });
+
+
+    const deleteChecklistItem = await prisma.checklist.delete({
+      where: { 
+        checklist_id: parseInt(checklist_id)
+      }
+
+    });
+    
+
+    res.status(200).json({ message: 'Checklist item deleted successfully', checklist: deleteChecklistItem });
+  
+  }
+
+  catch (error) {
+    console.error('Error deleting checklist item:', error);
+    res.status(500).json({ error: 'Failed to delete checklist item' });
 
   }
 

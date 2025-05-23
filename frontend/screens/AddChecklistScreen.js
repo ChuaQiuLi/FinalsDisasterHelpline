@@ -87,7 +87,7 @@ const AddChecklistScreen = ({ route }) => {
 
             if (response.status === 200) {
                 Toast.show({ type: 'success', position: 'bottom', text1: 'Checklist item saved successfully', visibilityTime: 2000, autoHide: true, bottomOffset: 60, });
-                // Go back to previous screen
+                // Go back to checklist screen
                 navigation.navigate('ChecklistScreen');
 
             }

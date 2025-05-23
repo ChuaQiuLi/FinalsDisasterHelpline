@@ -7,6 +7,7 @@ import { useTheme } from '../context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
 import { lightStyles, darkStyles } from '../styles/ChecklistDetailScreenStyle';
 import Checkbox from 'expo-checkbox';
+import Toast from 'react-native-toast-message';
 import API from '../api';
 
 
@@ -21,6 +22,7 @@ const ChecklistDetailScreen = ({ route }) => {
     const navigation = useNavigation();
     const { checklist } = route.params;
     const [checkedItems, setCheckedItems] = useState({});
+    const [sections, setSections] = useState([]);
 
 
     const previousPage = () => {
@@ -28,25 +30,30 @@ const ChecklistDetailScreen = ({ route }) => {
     }
 
 
-    // Combine templates and checklists into one array of items per section
-    const sections = checklist.title.map((section) => ({
-        title: section.title,
-        data: [
-            ...(section.templates || []).map(item => ({
-                // to differentiate template id and checklist id
-                id: `template-${item.template_id}`,
-                label: item.checklist_item
-            })),
+    // Initialize sections from checklist
+    useEffect(() => {
+        if (checklist && checklist.title) {
+            const initialSections = checklist.title.map((section) => ({
+                title: section.title,
+                data: [
+                    ...(section.templates || []).map(item => ({
+                        id: `template-${item.template_id}`,
+                        label: item.checklist_item
+                    })),
+                    
+                    ...(section.checklists || []).map(item => ({
+                        id: `checklist-${item.checklist_id}`,
+                        label: item.checklist_item
+                    }))
+                ]
 
-            ...(section.checklists || []).map(item => ({
-                // to differentiate template id and checklist id
-                id: `checklist-${item.checklist_id}`,
-                label: item.checklist_item
-            }))
+            }));
 
-        ]
+            setSections(initialSections);
+        }
 
-    }));
+    }, [checklist]);
+
 
 
     // Fetch existing checklist status 
@@ -115,6 +122,73 @@ const ChecklistDetailScreen = ({ route }) => {
     };
 
 
+
+    const handleLongPress = (item) => {
+
+        const [type, id] = item.id.split('-');
+
+        // Only allow delete if user created the checklist item
+        if (type === 'checklist') {
+            Alert.alert('Delete Checklist Item','Do you want to delete this checklist item?', [
+                { text: 'Cancel', style: 'cancel' },
+                { text: 'Delete', style: 'destructive', onPress: () => deleteChecklistItem(id),},
+            ]
+
+            );
+
+        }
+    
+    };
+
+
+    const deleteChecklistItem = async (checklist_id) => {
+        
+        try {
+            const response = await API.delete('/api/checklist/delete-user-checklist-item', { params: { checklist_id: checklist_id, user_id: userId }});
+
+            if (response.status === 200) {
+                // Successfully deleted
+                Toast.show({ type: 'success',  position: 'bottom', text1: 'Checklist item deleted successfully', visibilityTime: 2000, autoHide: true, bottomOffset: 60,});
+                // // Go back to previous screen
+                // navigation.goBack();
+            }
+            
+            else {
+                // Handle other status codes or errors
+                Alert.alert('Error', 'Failed to delete checklist item');
+    
+            }
+
+            // Remove item from UI
+            setCheckedItems(prev => {
+                const updated = { ...prev };
+                delete updated[`checklist-${checklist_id}`];
+                return updated;
+            });
+
+            // Remove from sections state too — optional if items are dynamic
+            const updatedSections = sections.map(section => ({
+                ...section,
+                data: section.data.filter(item => item.id !== `checklist-${checklist_id}`)
+
+            }));
+
+            setSections(updatedSections);
+
+        } 
+        
+        catch (error) {
+            console.error('Failed to delete checklist item:', error);
+            Alert.alert('Error', 'Failed to delete checklist item. Please try again later.');
+        }
+    
+    };
+
+
+
+
+
+
     const handleAddPress = () => {
         navigation.navigate('AddChecklistScreen', {disaster_id: checklist.disaster_id, disaster_name: checklist.disaster_name});
 
@@ -140,11 +214,13 @@ const ChecklistDetailScreen = ({ route }) => {
                 renderItem={({ item }) => (
                     <View style={styles.listContainer}>
                         <Checkbox value={checkedItems[item.id]} onValueChange={(isChecked) => toggleCheckbox(item.id, isChecked )}/>
-                        <Text style={styles.checklistItem}>{item.label}</Text>
+                        <TouchableHighlight  underlayColor={isDarkMode ? '#999999' : '#999999'} onLongPress={() => handleLongPress(item)}>
+                            <Text style={styles.checklistItem}>{item.label}</Text>
+                        </TouchableHighlight>
+                       
                     </View>
 
                 )}
-
 
 
             />
