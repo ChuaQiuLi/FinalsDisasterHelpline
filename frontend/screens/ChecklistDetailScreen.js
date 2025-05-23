@@ -149,8 +149,23 @@ const ChecklistDetailScreen = ({ route }) => {
             if (response.status === 200) {
                 // Successfully deleted
                 Toast.show({ type: 'success',  position: 'bottom', text1: 'Checklist item deleted successfully', visibilityTime: 2000, autoHide: true, bottomOffset: 60,});
-                // // Go back to previous screen
-                // navigation.goBack();
+    
+                // Remove item from UI
+                setCheckedItems(prev => {
+                    const updated = { ...prev };
+                    delete updated[`checklist-${checklist_id}`];
+                    return updated;
+                });
+
+                // Remove from sections state
+                const updatedSections = sections.map(section => ({
+                    ...section,
+                    data: section.data.filter(item => item.id !== `checklist-${checklist_id}`)
+
+                }));
+
+                setSections(updatedSections);
+
             }
             
             else {
@@ -159,21 +174,6 @@ const ChecklistDetailScreen = ({ route }) => {
     
             }
 
-            // Remove item from UI
-            setCheckedItems(prev => {
-                const updated = { ...prev };
-                delete updated[`checklist-${checklist_id}`];
-                return updated;
-            });
-
-            // Remove from sections state too — optional if items are dynamic
-            const updatedSections = sections.map(section => ({
-                ...section,
-                data: section.data.filter(item => item.id !== `checklist-${checklist_id}`)
-
-            }));
-
-            setSections(updatedSections);
 
         } 
         
