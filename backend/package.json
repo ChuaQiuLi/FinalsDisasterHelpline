@@ -4,7 +4,14 @@
   "scripts": {
     "seed:contact": "node prisma/seedContact.js",
     "seed:checklist": "node prisma/seedChecklist.js",
-    "seed:all": "node prisma/seedContact.js && node prisma/seedChecklist.js"
+    "seed:earthquakeQuizQns": "node prisma/seedEarthquakeQuizQns.js",
+    "seed:floodQuizQns": "node prisma/seedFloodQuizQns.js",
+    "seed:TropicalCycloneQuizQns": "node prisma/seedTropicalCycloneQuizQns.js",
+    "seed:VolcanoQuizQns": "node prisma/seedVolcanoQuizQns.js",
+    "seed:DroughtQuizQns": "node prisma/seedDroughtQuizQns.js",
+    "seed:TsunamiQuizQns": "node prisma/seedTsunamiQuizQns.js",
+    "seed:ForestFireQuizQns": "node prisma/seedForestFireQuizQns.js",
+    "seed:all": "node prisma/seedContact.js && node prisma/seedChecklist.js && node prisma/seedEarthquakeQuizQns.js && node prisma/seedFloodQuizQns.js && node prisma/seedTropicalCycloneQuizQns.js && node prisma/seedVolcanoQuizQns.js && node prisma/seedDroughtQuizQns.js && node prisma/seedTsunamiQuizQns.js && node prisma/seedForestFireQuizQns.js"
   },
 
   "dependencies": {

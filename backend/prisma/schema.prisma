@@ -20,6 +20,7 @@ model User {
   quizResults      QuizResults[]      @relation("UserResult")
   userBadge        UserBadge[]        @relation("UserBadge")
   userChecklistStatus  UserChecklistStatus[]
+  userAnswer       UserAnswer[]
 }
 
 
@@ -103,7 +104,7 @@ model EmergencyContact {
 model Quiz {
   quiz_id          Int             @id @default(autoincrement())
   disaster_id      Int
-  quiz_title       String
+  quiz_title       String          @unique
   quiz_description String
   difficulty_level String
   disaster         Disaster        @relation("DisasterQuiz", fields: [disaster_id], references: [disaster_id])
@@ -117,6 +118,7 @@ model QuizQuestions {
   points      String
   quizAnswer  QuizAnswer[] @relation("QuizAnswer")
   quiz        Quiz         @relation("DisasterQuizQuestions", fields: [quiz_id], references: [quiz_id])
+  userAnswer  UserAnswer[]
 }
 
 model QuizAnswer {
@@ -124,9 +126,23 @@ model QuizAnswer {
   question_id        Int
   answer_text        String
   is_correct         Boolean       @default(false)
-  answer_explanation String
+  answer_explanation String?
   question           QuizQuestions @relation("QuizAnswer", fields: [question_id], references: [question_id])
+  userAnswer         UserAnswer[]
 }
+
+
+model UserAnswer {
+  id           Int           @id @default(autoincrement())
+  user_id      Int
+  question_id  Int
+  answer_id    Int
+  is_correct   Boolean
+  user         User          @relation(fields: [user_id], references: [user_id])
+  question     QuizQuestions @relation(fields: [question_id], references: [question_id])
+  answer       QuizAnswer    @relation(fields: [answer_id], references: [answer_id])
+}
+
 
 model QuizResults {
   result_id Int  @id @default(autoincrement())
@@ -135,6 +151,7 @@ model QuizResults {
   score     Int
   user      User @relation("UserResult", fields: [user_id], references: [user_id])
 }
+
 
 model Badge {
   badge_id    Int         @id @default(autoincrement())

@@ -14,8 +14,9 @@ async function upsertCountryWithContacts(data) {
         data: {
           country_name: data.country_name,
           emergencyContact: {
-              // remove old contacts
+            // remove old contacts
             deleteMany: {}, 
+            // add new contacts
             create: data.emergencyContact,
           },
         },
@@ -46,7 +47,7 @@ async function upsertCountryWithContacts(data) {
   }
 
   catch (error) {
-    console.error(`Error upserting disaster '${data.disaster_name}':`, error);
+    console.error(`Error upserting disaster '${data.country_name}':`, error);
 
   }
 

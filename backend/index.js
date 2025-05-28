@@ -39,6 +39,10 @@ const checklistRoutes = require('./routes/checklist');
 app.use('/api/checklist', checklistRoutes);
 
 
+const quizRoutes = require('./routes/quiz');
+app.use('/api/quiz', quizRoutes);
+
+
 const PORT = process.env.PORT 
 
 app.listen(PORT, '192.168.50.181', () => {

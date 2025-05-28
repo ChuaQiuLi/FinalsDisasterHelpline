@@ -23,6 +23,8 @@ import EmergencyContactScreen from './screens/EmergencyContactScreen';
 import ChecklistScreen from './screens/ChecklistScreen';
 import ChecklistDetailScreen from './screens/ChecklistDetailScreen';
 import AddChecklistScreen from './screens/AddChecklistScreen';
+import QuizScreen from './screens/QuizScreen'
+import QuizQuestionScreen from './screens/QuizQuestionScreen'
 
 
 
@@ -121,9 +123,9 @@ const MainTabNavigator = ({ navigation, theme }) => {
             iconName = focused ? 'checkmark-circle' : 'checkmark-circle-outline';
             break;
 
-          // case 'Game':
-          //   iconName = focused ? 'game-controller' : 'game-controller-outline';
-          //   break;
+          case 'Game':
+            iconName = focused ? 'game-controller' : 'game-controller-outline';
+            break;
 
           case 'Profile':
             iconName = focused ? 'person' : 'person-outline';
@@ -174,6 +176,23 @@ const MainTabNavigator = ({ navigation, theme }) => {
     />
 
 
+    <Tab.Screen 
+      name="Game" 
+      component={GameStack} 
+      listeners={({ navigation }) => ({ 
+        tabPress: (e) => {
+          if (e.defaultPrevented) return;
+          e.preventDefault();
+
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Game' }],
+          });
+        },
+      })}
+    />
+
+
  
 
     </Tab.Navigator>
@@ -196,12 +215,14 @@ const ChecklistStack = () => (
 );
 
 
-// const GameStack = () => (
-//   <Stack.Navigator>
+const GameStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="QuizScreen" component={QuizScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="QuizQuestionScreen" component={QuizQuestionScreen} options={{ headerShown: false }} />
 
-//   </Stack.Navigator>
+  </Stack.Navigator>
 
-// );
+);
 
 
 
@@ -211,6 +232,7 @@ const ChecklistStack = () => (
 
 //   </Stack.Navigator>
 // );
+
 
 
 const toastConfig = {

@@ -49,6 +49,17 @@ CREATE TABLE "ChecklistTemplate" (
 );
 
 -- CreateTable
+CREATE TABLE "UserChecklistStatus" (
+    "checklist_status_id" SERIAL NOT NULL,
+    "user_id" INTEGER NOT NULL,
+    "template_id" INTEGER,
+    "checklist_id" INTEGER,
+    "is_checked" BOOLEAN NOT NULL DEFAULT false,
+
+    CONSTRAINT "UserChecklistStatus_pkey" PRIMARY KEY ("checklist_status_id")
+);
+
+-- CreateTable
 CREATE TABLE "Country" (
     "country_id" SERIAL NOT NULL,
     "country_name" TEXT NOT NULL,
@@ -96,9 +107,20 @@ CREATE TABLE "QuizAnswer" (
     "question_id" INTEGER NOT NULL,
     "answer_text" TEXT NOT NULL,
     "is_correct" BOOLEAN NOT NULL DEFAULT false,
-    "answer_explanation" TEXT NOT NULL,
+    "answer_explanation" TEXT,
 
     CONSTRAINT "QuizAnswer_pkey" PRIMARY KEY ("answer_id")
+);
+
+-- CreateTable
+CREATE TABLE "UserAnswer" (
+    "id" SERIAL NOT NULL,
+    "user_id" INTEGER NOT NULL,
+    "question_id" INTEGER NOT NULL,
+    "answer_id" INTEGER NOT NULL,
+    "is_correct" BOOLEAN NOT NULL,
+
+    CONSTRAINT "UserAnswer_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -142,6 +164,12 @@ CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 CREATE UNIQUE INDEX "Disaster_disaster_name_key" ON "Disaster"("disaster_name");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "UserChecklistStatus_user_id_template_id_key" ON "UserChecklistStatus"("user_id", "template_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UserChecklistStatus_user_id_checklist_id_key" ON "UserChecklistStatus"("user_id", "checklist_id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Country_country_name_key" ON "Country"("country_name");
 
 -- CreateIndex
@@ -149,6 +177,9 @@ CREATE UNIQUE INDEX "Country_country_code_key" ON "Country"("country_code");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "EmergencyContact_country_id_police_fire_medical_key" ON "EmergencyContact"("country_id", "police", "fire", "medical");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Quiz_quiz_title_key" ON "Quiz"("quiz_title");
 
 -- AddForeignKey
 ALTER TABLE "ChecklistTitle" ADD CONSTRAINT "ChecklistTitle_disaster_id_fkey" FOREIGN KEY ("disaster_id") REFERENCES "Disaster"("disaster_id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -166,6 +197,15 @@ ALTER TABLE "Checklist" ADD CONSTRAINT "Checklist_title_id_fkey" FOREIGN KEY ("t
 ALTER TABLE "ChecklistTemplate" ADD CONSTRAINT "ChecklistTemplate_title_id_fkey" FOREIGN KEY ("title_id") REFERENCES "ChecklistTitle"("title_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "UserChecklistStatus" ADD CONSTRAINT "UserChecklistStatus_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserChecklistStatus" ADD CONSTRAINT "UserChecklistStatus_template_id_fkey" FOREIGN KEY ("template_id") REFERENCES "ChecklistTemplate"("template_id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserChecklistStatus" ADD CONSTRAINT "UserChecklistStatus_checklist_id_fkey" FOREIGN KEY ("checklist_id") REFERENCES "Checklist"("checklist_id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "EmergencyContact" ADD CONSTRAINT "EmergencyContact_country_id_fkey" FOREIGN KEY ("country_id") REFERENCES "Country"("country_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -176,6 +216,15 @@ ALTER TABLE "QuizQuestions" ADD CONSTRAINT "QuizQuestions_quiz_id_fkey" FOREIGN 
 
 -- AddForeignKey
 ALTER TABLE "QuizAnswer" ADD CONSTRAINT "QuizAnswer_question_id_fkey" FOREIGN KEY ("question_id") REFERENCES "QuizQuestions"("question_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserAnswer" ADD CONSTRAINT "UserAnswer_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserAnswer" ADD CONSTRAINT "UserAnswer_question_id_fkey" FOREIGN KEY ("question_id") REFERENCES "QuizQuestions"("question_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserAnswer" ADD CONSTRAINT "UserAnswer_answer_id_fkey" FOREIGN KEY ("answer_id") REFERENCES "QuizAnswer"("answer_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "QuizResults" ADD CONSTRAINT "QuizResults_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
