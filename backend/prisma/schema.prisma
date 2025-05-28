@@ -109,6 +109,7 @@ model Quiz {
   difficulty_level String
   disaster         Disaster        @relation("DisasterQuiz", fields: [disaster_id], references: [disaster_id])
   quizQuestions    QuizQuestions[] @relation("DisasterQuizQuestions")
+  quizResults      QuizResults[]
 }
 
 model QuizQuestions {
@@ -150,6 +151,7 @@ model QuizResults {
   quiz_id   Int
   score     Int
   user      User @relation("UserResult", fields: [user_id], references: [user_id])
+  quiz      Quiz @relation(fields: [quiz_id], references: [quiz_id])
 }
 
 
@@ -159,6 +161,7 @@ model Badge {
   description String
   badge_image String
   criteria    String
+  earned_from String
   badge       UserBadge[] @relation("Badge")
 }
 
