@@ -13,14 +13,13 @@ model User {
   email            String             @unique
   username         String             @unique
   password         String
-  profileImage     String?
   theme            String             @default("system")
   country          String?
   userChecklist    Checklist[]        @relation("UserChecklist")
   quizResults      QuizResults[]      @relation("UserResult")
   userBadge        UserBadge[]        @relation("UserBadge")
   userChecklistStatus  UserChecklistStatus[]
-  userAnswer       UserAnswer[]
+
 }
 
 
@@ -28,7 +27,7 @@ model Disaster {
   disaster_id   Int         @id @default(autoincrement())
   disaster_name String      @unique
   checklist     Checklist[] @relation("DisasterChecklist")
-  Quiz          Quiz[]      @relation("DisasterQuiz")
+  quiz          Quiz[]      @relation("DisasterQuiz")
   title         ChecklistTitle[]  
 }
 
@@ -116,10 +115,9 @@ model QuizQuestions {
   question_id Int          @id @default(autoincrement())
   quiz_id     Int
   question    String
-  points      String
+  points      Int
   quizAnswer  QuizAnswer[] @relation("QuizAnswer")
   quiz        Quiz         @relation("DisasterQuizQuestions", fields: [quiz_id], references: [quiz_id])
-  userAnswer  UserAnswer[]
 }
 
 model QuizAnswer {
@@ -129,19 +127,6 @@ model QuizAnswer {
   is_correct         Boolean       @default(false)
   answer_explanation String?
   question           QuizQuestions @relation("QuizAnswer", fields: [question_id], references: [question_id])
-  userAnswer         UserAnswer[]
-}
-
-
-model UserAnswer {
-  id           Int           @id @default(autoincrement())
-  user_id      Int
-  question_id  Int
-  answer_id    Int
-  is_correct   Boolean
-  user         User          @relation(fields: [user_id], references: [user_id])
-  question     QuizQuestions @relation(fields: [question_id], references: [question_id])
-  answer       QuizAnswer    @relation(fields: [answer_id], references: [answer_id])
 }
 
 
@@ -152,6 +137,9 @@ model QuizResults {
   score     Int
   user      User @relation("UserResult", fields: [user_id], references: [user_id])
   quiz      Quiz @relation(fields: [quiz_id], references: [quiz_id])
+
+  @@unique([user_id, quiz_id]) 
+  
 }
 
 

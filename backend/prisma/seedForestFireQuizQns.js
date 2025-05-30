@@ -114,7 +114,7 @@ async function main() {
       questions: [
         {
           question: 'Question 1: What is the most common natural cause of forest fires?',
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Campfires',
@@ -140,7 +140,7 @@ async function main() {
         },
         {
           question: `Question 2: Which condition increases the risk of forest fires the most?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'High humidity',
@@ -169,7 +169,7 @@ async function main() {
 
         {
           question: `Question 3: What should you do if you're caught in a forest fire?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Move to a cleared area',
@@ -196,7 +196,7 @@ async function main() {
 
         {
           question: `Question 4: Which of the following is a way to help prevent forest fires?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Leaving campfires unattended',
@@ -224,7 +224,7 @@ async function main() {
         
         {
           question: `Question 5: What is a firebreak?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'A tool for fighting fire',
@@ -254,7 +254,7 @@ async function main() {
 
         {
           question: `Question 6: Which tool do firefighters often use to detect forest fires early?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Microscope',
@@ -283,7 +283,7 @@ async function main() {
 
         {
           question: `Question 7: Which season is forest fire risk usually the highest?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Winter',
@@ -312,7 +312,7 @@ async function main() {
 
         {
           question: `Question 8: What does defensible space mean around a home near a forest?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Keeping your house hidden',
@@ -341,7 +341,7 @@ async function main() {
 
         {
           question: `Question 9: What is the purpose of the "Stop, Drop, and Roll" fire safety technique?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Avoiding falling',
@@ -369,7 +369,7 @@ async function main() {
 
         {
           question: `Question 10: What should you wear to protect yourself if near a fire zone?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Flip-flops and shorts',

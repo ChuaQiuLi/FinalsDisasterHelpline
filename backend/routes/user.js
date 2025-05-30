@@ -47,7 +47,6 @@ router.get('/details', async (req, res) => {
       select: {
         username: true,
         email: true,
-        profileImage: true
       }
 
     });
@@ -110,7 +109,7 @@ router.post('/change-password', async (req, res) => {
 
 router.post('/update-details', async (req, res) => {
 
-  const { user_id, username, email, profileImage } = req.body;
+  const { user_id, username, email } = req.body;
 
   try {
     // Check if the username already exists for a different user
@@ -141,7 +140,7 @@ router.post('/update-details', async (req, res) => {
     // Update the user details
     const updatedUser = await prisma.User.update({
       where: { user_id: user_id },
-      data: { username: username, email: email, profileImage: profileImage || null }
+      data: { username: username, email: email }
     });
 
     res.json(updatedUser);
@@ -164,8 +163,7 @@ router.post('/update-theme', async (req, res) => {
     // Update the theme settings
     const updatedSettings = await prisma.User.update({
       where: { user_id: parseInt(user_id) },
-      update: { theme },
-      create: { user_id: parseInt(user_id), theme }
+      data: { theme },
 
     });
 
@@ -305,21 +303,29 @@ router.post('/request-reset', async (req, res) => {
     // Check if email exists in the database
     const user = await prisma.user.findUnique({
       where: { email },
+
     });
+
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
+
     const code = crypto.randomBytes(3).toString('hex');
     const expiresAt = Date.now() + 3600000; // 1 hour expiration
     resetRequests[email] = { code, expiresAt };
     await sendResetCode(email, code);
 
     res.status(200).json({ message: 'Reset code sent' });
-  } catch (error) {
+  } 
+  
+  catch (error) {
     console.error('Error sending reset code:', error);
     res.status(500).json({ error: 'Failed to send reset code' });
   }
+   
 });
+
+
 
 // Verify reset code
 router.post('/verify-code', (req, res) => {
@@ -343,9 +349,12 @@ router.post('/verify-code', (req, res) => {
   // Compare codes
   if (code.trim() === resetCode.trim()) {
     return res.status(200).json({ message: 'Code verified successfully' });
-  } else {
+  } 
+  
+  else {
     return res.status(400).json({ message: 'Invalid reset code' });
   }
+
 });
 
 // Reset password
@@ -358,11 +367,16 @@ router.post('/reset-password', async (req, res) => {
       where: { email },
       data: { password: hashedPassword },
     });
+
     res.status(200).json({ message: 'Password reset successful' });
-  } catch (error) {
+
+  } 
+  
+  catch (error) {
     console.error('Error updating password:', error);
     res.status(500).json({ message: 'Failed to reset password' });
   }
+  
 });
 
 

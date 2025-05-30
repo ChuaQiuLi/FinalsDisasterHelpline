@@ -25,6 +25,10 @@ import ChecklistDetailScreen from './screens/ChecklistDetailScreen';
 import AddChecklistScreen from './screens/AddChecklistScreen';
 import QuizScreen from './screens/QuizScreen'
 import QuizQuestionScreen from './screens/QuizQuestionScreen'
+import SettingScreen from './screens/SettingScreen';
+import EditProfileScreen from './screens/EditProfileScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import ChangePasswordScreen from './screens/EditPasswordScreen';
 
 
 
@@ -192,6 +196,23 @@ const MainTabNavigator = ({ navigation, theme }) => {
       })}
     />
 
+    
+    <Tab.Screen 
+      name="Profile" 
+      component={ProfileScreenStack} 
+      listeners={({ navigation }) => ({ 
+        tabPress: (e) => {
+          if (e.defaultPrevented) return;
+          e.preventDefault();
+
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Profile' }],
+          });
+        },
+      })}
+    />
+
 
  
 
@@ -225,13 +246,15 @@ const GameStack = () => (
 );
 
 
+const ProfileScreenStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="Settings" component={SettingScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="EditProfile" component={EditProfileScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} options={{ headerShown: false }} />
 
-// // Profile stack navigator
-// const ProfileScreenStack = () => (
-//   <Stack.Navigator>
-
-//   </Stack.Navigator>
-// );
+  </Stack.Navigator>
+);
 
 
 

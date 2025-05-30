@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, FlatList, TouchableHighlight, Alert, TextInput, Button } from 'react-native';
+import { Text, View, FlatList, TouchableHighlight, Alert, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
 import { lightStyles, darkStyles } from '../styles/EmergencyContactStyle';

@@ -114,7 +114,7 @@ async function main() {
       questions: [
         {
           question: 'Question 1: What is a tsunami?',
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'A giant thunderstorm',
@@ -140,7 +140,7 @@ async function main() {
         },
         {
           question: `Question 2: Which of the following can cause a tsunami?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Forest fire',
@@ -168,7 +168,7 @@ async function main() {
 
         {
           question: `Question 3: What is a common warning sign of a tsunami at the beach?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Sudden and unusual receding of the water from the shoreline',
@@ -195,7 +195,7 @@ async function main() {
 
         {
           question: `Question 4: Which ocean is most prone to tsunamis?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Atlantic Ocean',
@@ -222,7 +222,7 @@ async function main() {
         
         {
           question: `Question 5: What should you do if there is a tsunami warning in your area?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Wait for instructions before doing anything',
@@ -251,7 +251,7 @@ async function main() {
 
         {
           question: `Question 6: How fast can a tsunami travel in the open ocean?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Over 500 km/h',
@@ -279,7 +279,7 @@ async function main() {
 
         {
           question: `Question 7: Which of these is a good safety tip during a tsunami?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Hide under a table',
@@ -308,7 +308,7 @@ async function main() {
 
         {
           question: `Question 8: How many waves can a tsunami have?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Several waves over hours',
@@ -337,7 +337,7 @@ async function main() {
 
         {
           question: `Question 9: What should you do after a tsunami hits your area?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Return to your home immediately',
@@ -366,7 +366,7 @@ async function main() {
 
         {
           question: `Question 10: Can a tsunami be predicted with 100% accuracy before it happens?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Yes, always',

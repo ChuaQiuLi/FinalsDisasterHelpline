@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 
-router.get('/template', async (req, res) => {
+router.get('/details', async (req, res) => {
 
   const { user_id } = req.query;
 
@@ -24,8 +24,8 @@ router.get('/template', async (req, res) => {
             
             templates: {
               select: {
-                 template_id: true,
-                  checklist_item: true,
+                template_id: true,
+                checklist_item: true,
 
               },
 

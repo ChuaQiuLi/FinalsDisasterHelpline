@@ -114,7 +114,7 @@ async function main() {
       questions: [
         {
           question: 'Question 1: What is a flood?',
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'A sudden snowfall',
@@ -138,7 +138,7 @@ async function main() {
         },
         {
           question: `Question 2: Which of the following is a common cause of flooding?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Tornadoes',
@@ -164,7 +164,7 @@ async function main() {
 
         {
           question: `Question 3: What should you do if there's a flood warning in your area?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Go swimming in the water',
@@ -190,7 +190,7 @@ async function main() {
 
         {
           question: `Question 4: What item is essential in a flood emergency kit?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Board games',
@@ -216,7 +216,7 @@ async function main() {
         
         {
           question: `Question 5: Why is it dangerous to walk or drive through floodwaters?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: `It's very cold`,
@@ -243,7 +243,7 @@ async function main() {
 
         {
           question: `Question 6: Which of the following is a sign that flooding might occur soon?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: `Heavy rain that doesn't stop`,
@@ -270,7 +270,7 @@ async function main() {
 
         {
           question: `Question 7: What should you do before a flood to prepare your home?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Dig holes in the ground',
@@ -297,7 +297,7 @@ async function main() {
 
         {
           question: `Question 8: What is the safest thing to do if you are outside and see floodwaters rising?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Move to higher ground immediately',
@@ -324,7 +324,7 @@ async function main() {
 
         {
           question: `Question 9: Which of these buildings is least likely to be damaged by a flood?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'A house in a valley',
@@ -351,7 +351,7 @@ async function main() {
 
         {
           question: `Question 10: What should you never do during a flood?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Watch the news for updates',

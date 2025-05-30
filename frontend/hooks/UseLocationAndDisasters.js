@@ -109,7 +109,7 @@ const useLocationAndDisasters = (userId) => {
     
     catch (err) {
       console.error('Error getting location:', err);
-      setErrorMsg('Could not get your location.');
+      setErrorMsg('Displaying all disaster as location is disabled.');
       await fetchDisasterData();
     } 
     

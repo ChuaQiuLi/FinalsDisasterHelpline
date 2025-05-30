@@ -96,7 +96,7 @@ CREATE TABLE "QuizQuestions" (
     "question_id" SERIAL NOT NULL,
     "quiz_id" INTEGER NOT NULL,
     "question" TEXT NOT NULL,
-    "points" TEXT NOT NULL,
+    "points" INTEGER NOT NULL,
 
     CONSTRAINT "QuizQuestions_pkey" PRIMARY KEY ("question_id")
 );
@@ -110,17 +110,6 @@ CREATE TABLE "QuizAnswer" (
     "answer_explanation" TEXT,
 
     CONSTRAINT "QuizAnswer_pkey" PRIMARY KEY ("answer_id")
-);
-
--- CreateTable
-CREATE TABLE "UserAnswer" (
-    "id" SERIAL NOT NULL,
-    "user_id" INTEGER NOT NULL,
-    "question_id" INTEGER NOT NULL,
-    "answer_id" INTEGER NOT NULL,
-    "is_correct" BOOLEAN NOT NULL,
-
-    CONSTRAINT "UserAnswer_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -140,6 +129,7 @@ CREATE TABLE "Badge" (
     "description" TEXT NOT NULL,
     "badge_image" TEXT NOT NULL,
     "criteria" TEXT NOT NULL,
+    "earned_from" TEXT NOT NULL,
 
     CONSTRAINT "Badge_pkey" PRIMARY KEY ("badge_id")
 );
@@ -218,16 +208,10 @@ ALTER TABLE "QuizQuestions" ADD CONSTRAINT "QuizQuestions_quiz_id_fkey" FOREIGN 
 ALTER TABLE "QuizAnswer" ADD CONSTRAINT "QuizAnswer_question_id_fkey" FOREIGN KEY ("question_id") REFERENCES "QuizQuestions"("question_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserAnswer" ADD CONSTRAINT "UserAnswer_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "UserAnswer" ADD CONSTRAINT "UserAnswer_question_id_fkey" FOREIGN KEY ("question_id") REFERENCES "QuizQuestions"("question_id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "UserAnswer" ADD CONSTRAINT "UserAnswer_answer_id_fkey" FOREIGN KEY ("answer_id") REFERENCES "QuizAnswer"("answer_id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "QuizResults" ADD CONSTRAINT "QuizResults_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "QuizResults" ADD CONSTRAINT "QuizResults_quiz_id_fkey" FOREIGN KEY ("quiz_id") REFERENCES "Quiz"("quiz_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "UserBadge" ADD CONSTRAINT "UserBadge_badge_id_fkey" FOREIGN KEY ("badge_id") REFERENCES "Badge"("badge_id") ON DELETE RESTRICT ON UPDATE CASCADE;

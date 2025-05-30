@@ -27,19 +27,19 @@ const AddChecklistScreen = ({ route }) => {
     // store the list of titles
     const [items, setItems] = useState([]);
     const [checklistText, setChecklistText] = useState('');
-    const [loading, setLoading] = useState(false); 
+    const [loading, setLoading] = useState(false);
 
-    
+
     const previousPage = () => {
         navigation.goBack();
     }
 
 
     useEffect(() => {
-        fetchChecklistTitle(); 
+        fetchChecklistTitle();
 
     }, [disaster_id]);
-    
+
 
 
     const fetchChecklistTitle = async () => {
@@ -66,12 +66,12 @@ const AddChecklistScreen = ({ route }) => {
     };
 
 
-    
+
     const handleSave = async () => {
 
         // Prevent multiple requests if already loading
         if (loading) return;
-        
+
         // Check if drop down is selected and whether there is checklist item
         if (!select || !checklistText.trim()) {
             Alert.alert('Error', 'Please select a checklist title and write a checklist item.');
@@ -83,7 +83,7 @@ const AddChecklistScreen = ({ route }) => {
 
         try {
 
-            const response = await API.post('/api/checklist/add-checklist-item', { user_id: userId, disaster_id: disaster_id,  title_id: select, checklist_item: checklistText });
+            const response = await API.post('/api/checklist/add-checklist-item', { user_id: userId, disaster_id: disaster_id, title_id: select, checklist_item: checklistText });
 
             if (response.status === 200) {
                 Toast.show({ type: 'success', position: 'bottom', text1: 'Checklist item saved successfully', visibilityTime: 2000, autoHide: true, bottomOffset: 60, });
@@ -98,9 +98,9 @@ const AddChecklistScreen = ({ route }) => {
             console.error('Error saving checklist item:', error);
             Alert.alert('Error', 'Failed to save checklist item. Please try again later.');
 
-        } 
-        
-        
+        }
+
+
         finally {
             // Add a delay before resetting loading state
             setTimeout(() => {
@@ -114,28 +114,28 @@ const AddChecklistScreen = ({ route }) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.headerContainer}>
-                <BackButton onPress={previousPage} /> 
+                <BackButton onPress={previousPage} />
                 <Text style={styles.header}>Add Disaster Checklist Item For {disaster_name}</Text>
             </View>
-            
+
             <DropDownPicker
-            open={open}
-            value={select}
-            items={items}
-            setOpen={setOpen}
-            setValue={setSelectedItem}
-            setItems={setItems}
-            placeholder="Select a checklist title"
-            style={styles.dropdown}
-            dropDownContainerStyle={styles.dropdownContainer}
+                open={open}
+                value={select}
+                items={items}
+                setOpen={setOpen}
+                setValue={setSelectedItem}
+                setItems={setItems}
+                placeholder="Select a checklist title"
+                style={styles.dropdown}
+                dropDownContainerStyle={styles.dropdownContainer}
             />
 
             <TextInput multiline value={checklistText} onChangeText={setChecklistText} style={styles.textInput} placeholder="write checklist item..." placeholderTextColor={isDarkMode ? '#FFFFFF' : '#888888'} />
-            
-            <TouchableHighlight style={styles.addButton} onPress={handleSave} underlayColor={isDarkMode ? '#999999' : '#999999'}  disabled={loading}>
+
+            <TouchableHighlight style={styles.addButton} onPress={handleSave} underlayColor={isDarkMode ? '#999999' : '#999999'} disabled={loading}>
                 <Text style={styles.addButtonText}>{loading ? 'Saving...' : 'Save'}</Text>
             </TouchableHighlight>
-      
+
 
         </SafeAreaView>
 

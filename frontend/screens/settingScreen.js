@@ -41,6 +41,7 @@ export default function SettingScreen({ navigation }) {
               dispatch(logout());
               navigation.navigate('Login');
             } 
+
             catch (error) {
               Alert.alert('Error', 'Logout failed. Please try again later.');
               console.error('Logout error:', error);
@@ -72,7 +73,9 @@ export default function SettingScreen({ navigation }) {
               dispatch(logout());
               navigation.navigate('Login');
               Alert.alert('Success', 'Account deleted successfully.');
-            } catch (error) {
+            } 
+            
+            catch (error) {
               Alert.alert('Error', 'Failed to delete account. Please try again later.');
               console.log(error);
             }
@@ -96,32 +99,46 @@ export default function SettingScreen({ navigation }) {
       <View style={styles.header}>
         <BackButton onPress={previousPage} />
         <Text style={styles.title}>Settings</Text>
+        
       </View>
-      <View style={styles.menu}>
-          <View style={styles.switchContainer}>
-            <Text style={styles.switchLabel}>Dark Mode</Text>
-            <Switch
-              trackColor={{ false: "#808080", true: "#808080" }}
-              thumbColor="#FFFFFF"
-              onValueChange={() => {
-                if (useSystemTheme) {
-                  setUseSystemTheme(false);
-                }
-                toggleTheme();
-              }}
-              value={isDarkMode}
-            />
 
-          </View>
+      <View style={styles.menu}>
+        <View style={styles.switchContainer}>
+          <Text style={styles.switchLabel}>Dark Mode</Text>
+          <Switch
+            trackColor={{ false: "#808080", true: "#808080" }}
+            thumbColor="#FFFFFF"
+            onValueChange={() => {
+              if (useSystemTheme) {
+                setUseSystemTheme(false);
+              }
+
+              toggleTheme();
+
+            }}
+
+            value={isDarkMode}
+
+          />
+
+        </View>
+
         <View style={styles.buttonContainer}>
           <TouchableHighlight style={styles.logoutButton} onPress={handleLogout} underlayColor={isDarkMode ? '#999999' : '#999999'}>
             <Text style={styles.logoutButtonText}>Log Out</Text>
           </TouchableHighlight>
+
+
           <TouchableHighlight style={styles.acctDeleteButton} onPress={handleDeleteAccount} underlayColor={isDarkMode ? '#999999' : '#999999'}>
             <Text style={styles.acctDeleteButtonText}>Delete Account</Text>
           </TouchableHighlight>
+
         </View>
+
       </View>
+
     </SafeAreaView>
+
   );
+
 }

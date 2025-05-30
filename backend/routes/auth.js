@@ -58,7 +58,6 @@ router.post('/register', async (req, res) => {
         username,
         email,
         password: hashedPassword,
-        profileImage: 'pic1',
       },
 
     });
@@ -78,12 +77,16 @@ router.post('/register', async (req, res) => {
 
 const login = async (req, res) => {
   const { username, password } = req.body;
+
   try {
     const user = await prisma.User.findUnique({
       where: {
         username,
       },
+
     });
+
+
     if (!user) {
       return res.status(401).json({ message: 'Invalid username or password' });
     }
@@ -101,20 +104,27 @@ const login = async (req, res) => {
         id: user.user_id,
         username: user.username,
         email: user.email,
-        profileImage: user.profileImage,
       },
+
       token,
+
     });
 
-  } catch (error) {
+  } 
+  
+  catch (error) {
     res.status(500).json({ error: error.message });
   }
+
 };
+
+
 
 const getAuthenticatedUser = async (req, res) => {
   try {
     const user = await prisma.User.findUnique({
       where: { user_id: req.userId },
+
     });
 
     if (!user) {
@@ -126,12 +136,14 @@ const getAuthenticatedUser = async (req, res) => {
         id: user.user_id,
         username: user.username,
         email: user.email,
-        profileImage: user.profileImage,
       },
     });
-  } catch (error) {
+  } 
+  
+  catch (error) {
     res.status(500).json({ error: error.message });
   }
+
 };
 
 router.post('/login', login);

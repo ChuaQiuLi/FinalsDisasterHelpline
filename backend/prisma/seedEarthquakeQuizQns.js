@@ -114,7 +114,7 @@ async function main() {
       questions: [
         {
           question: 'Question 1: What causes an earthquake?',
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Heavy rainfall',
@@ -138,7 +138,7 @@ async function main() {
         },
         {
           question: `Question 2: What should you do during an earthquake if you're indoors?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Run outside immediately',
@@ -164,7 +164,7 @@ async function main() {
 
         {
           question: `Question 3: Where is the safest place to be during an earthquake if you're inside a building?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Next to large windows',
@@ -190,7 +190,7 @@ async function main() {
 
         {
           question: `Question 4: Which of the following is NOT part of an earthquake emergency kit?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Flashlight',
@@ -216,7 +216,7 @@ async function main() {
         
         {
           question: `Question 5: Why should you not use elevators during or after an earthquake?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Elevators might go too fast',
@@ -243,7 +243,7 @@ async function main() {
 
         {
           question: `Question 6: Which item is most important to have in your emergency kit?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'A video game',
@@ -270,7 +270,7 @@ async function main() {
 
         {
           question: `Question 7: How should you prepare your furniture to make your home safer in an earthquake?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Paint it',
@@ -297,7 +297,7 @@ async function main() {
 
         {
           question: `Question 8: What should you avoid doing during an earthquake?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Standing under a doorway in modern homes',
@@ -324,7 +324,7 @@ async function main() {
 
         {
           question: `Question 9: What should you do if you're driving when an earthquake begins?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Speed up',
@@ -351,7 +351,7 @@ async function main() {
 
         {
           question: `Question 10: What is an "aftershock"?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'A second unrelated earthquake',

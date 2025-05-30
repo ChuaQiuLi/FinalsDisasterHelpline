@@ -114,7 +114,7 @@ async function main() {
       questions: [
         {
           question: 'Question 1: What is a volcano?',
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'A type of mountain formed by earthquakes',
@@ -139,7 +139,7 @@ async function main() {
         },
         {
           question: `Question 2: Which of the following is a famous volcano?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Mount Everest',
@@ -166,7 +166,7 @@ async function main() {
 
         {
           question: `Question 3: Which tool is used to measure volcanic activity?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Thermometer',
@@ -193,7 +193,7 @@ async function main() {
 
         {
           question: `Question 4: What should you do during a volcanic eruption?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Stay indoors, close windows and doors',
@@ -220,7 +220,7 @@ async function main() {
         
         {
           question: `Question 5: What causes a volcano to erupt?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: `Heavy rain`,
@@ -248,7 +248,7 @@ async function main() {
 
         {
           question: `Question 6: How can communities stay safe from volcanoes?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: `Ignore warnings`,
@@ -276,7 +276,7 @@ async function main() {
 
         {
           question: `Question 7: Where are most volcanoes found?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'In the middle of continents',
@@ -303,7 +303,7 @@ async function main() {
 
         {
           question: `Question 8: What should you bring in a volcanic emergency kit?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Toys and games',
@@ -332,7 +332,7 @@ async function main() {
 
         {
           question: `Question 9: Why do people live near volcanoes?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'They like danger',
@@ -361,7 +361,7 @@ async function main() {
 
         {
           question: `Question 10: Which gas is released by volcanoes and can be harmful in large amounts?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Oxygen',

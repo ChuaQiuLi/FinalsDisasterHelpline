@@ -114,7 +114,7 @@ async function main() {
       questions: [
         {
           question: 'Question 1: What is a drought?',
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Heavy rainfall',
@@ -139,7 +139,7 @@ async function main() {
         },
         {
           question: `Question 2: Which of the following is a common effect of droughts?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Forest fires',
@@ -166,7 +166,7 @@ async function main() {
 
         {
           question: `Question 3: What should people do during a drought?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Take long showers',
@@ -192,7 +192,7 @@ async function main() {
 
         {
           question: `Question 4: Which weather tool helps monitor droughts?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Thermometer',
@@ -218,7 +218,7 @@ async function main() {
         
         {
           question: `Question 5: What is one major danger of long-term drought?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Too much snow',
@@ -246,7 +246,7 @@ async function main() {
 
         {
           question: `Question 6: Which of these can help during a drought?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Leaving sprinklers on all day',
@@ -273,7 +273,7 @@ async function main() {
 
         {
           question: `Question 7: What does it mean when a city is under water restrictions?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'People can only drink bottled water',
@@ -301,7 +301,7 @@ async function main() {
 
         {
           question: `Question 8: What is one sign that a drought might be happening?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Thunderstorms every week',
@@ -329,7 +329,7 @@ async function main() {
 
         {
           question: `Question 9: What color is often used to show drought areas on a weather map?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Green',
@@ -357,7 +357,7 @@ async function main() {
 
         {
           question: `Question 10: Which season is most often linked to droughts?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Winter',

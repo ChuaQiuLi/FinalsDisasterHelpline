@@ -6,6 +6,7 @@ import { useTheme } from '../context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
 import API from '../api';
 
+
 export default function ForgetPasswordScreen({ navigation }) {
     const [step, setStep] = useState(1);
     const [email, setEmail] = useState('');
@@ -17,10 +18,12 @@ export default function ForgetPasswordScreen({ navigation }) {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const styles = isDarkMode ? darkStyles : lightStyles;
 
+
     // Determine the logo source based on the theme
     const logoSource = isDarkMode
         ? require('../assets/icon.png')
         : require('../assets/icon.png');
+
 
     const validatePassword = (password) => {
         const minLength = 8;
@@ -32,6 +35,7 @@ export default function ForgetPasswordScreen({ navigation }) {
         const isCommon = commonWords.some(word => password.toLowerCase().includes(word));
 
         return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChars && !isCommon;
+    
     };
 
     const handleEmailVerification = async () => {
@@ -42,10 +46,13 @@ export default function ForgetPasswordScreen({ navigation }) {
             Alert.alert('Error', 'Please enter your email');
             return;
         }
+
         else if (!emailRegex.test(trimmedEmail)) {
             Alert.alert('Error', 'Invalid email format!');
             return;
         }
+        
+
         try {
             const response = await fetch('http://192.168.50.181:3000/api/user/request-reset', {
                 method: 'POST',
@@ -61,36 +68,47 @@ export default function ForgetPasswordScreen({ navigation }) {
             } else {
                 Alert.alert('Error', 'Failed to send reset code. Please try again.');
             }
-        } catch (error) {
+        } 
+        
+        catch (error) {
             Alert.alert('Error', 'Failed to send reset code. Please try again.');
             console.error('Error sending reset code:', error);
         }
+
     };
 
     const handleCodeVerification = async () => {
         const trimmedEmail = email.trim();
         const trimmedResetCode = resetCode.trim();
+
         try {
             const response = await fetch('http://192.168.50.181:3000/api/user/verify-code', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+
                 body: JSON.stringify({ email: trimmedEmail, resetCode: trimmedResetCode }),
+
             });
 
             const data = await response.json();
 
             if (response.ok) {
                 setStep(3); // Move to the next step
-            } else {
+            } 
+            
+            else {
                 console.log('Error:', data.message);
                 Alert.alert('Error', data.message || 'Invalid reset code. Please try again.');
             }
-        } catch (error) {
+        } 
+        
+        catch (error) {
             console.error('Error verifying reset code:', error);
             Alert.alert('Error', 'Failed to verify reset code. Please try again.');
         }
+
     };
 
     const handlePasswordReset = async () => {
@@ -113,14 +131,22 @@ export default function ForgetPasswordScreen({ navigation }) {
                 Alert.alert('Success', 'Your password has been reset successfully!');
                 setStep(1);
                 navigation.navigate('Login');
-            } else {
+            } 
+            
+            else {
                 Alert.alert('Error', response.data.message);
             }
-        } catch (error) {
+
+        } 
+        
+        catch (error) {
             console.error('Error resetting password:', error);
             Alert.alert('Error', 'Failed to reset password');
         }
+
     };
+
+
 
     return (
         <SafeAreaView style={styles.container}>

@@ -114,7 +114,7 @@ async function main() {
       questions: [
         {
           question: 'Question 1: What is another common name for a tropical cyclone in the Atlantic Ocean?',
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Typhoon',
@@ -138,7 +138,7 @@ async function main() {
         },
         {
           question: `Question 2: What is the center of a tropical cyclone called?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Core',
@@ -164,7 +164,7 @@ async function main() {
 
         {
           question: `Question 3: Which of the following causes the most damage during a tropical cyclone?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Wind',
@@ -190,7 +190,7 @@ async function main() {
 
         {
           question: `Question 4: Tropical cyclones usually form over:`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Warm oceans',
@@ -217,7 +217,7 @@ async function main() {
         
         {
           question: `Question 5: What is a typical early warning sign of a tropical cyclone?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: `Falling barometric pressure`,
@@ -244,7 +244,7 @@ async function main() {
 
         {
           question: `Question 6: What should people do when a cyclone warning is issued?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: `Go swimming`,
@@ -272,7 +272,7 @@ async function main() {
 
         {
           question: `Question 7: What shape does a tropical cyclone usually have when viewed from space?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Square',
@@ -299,7 +299,7 @@ async function main() {
 
         {
           question: `Question 8: What season do tropical cyclones most commonly occur in?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Winter',
@@ -327,7 +327,7 @@ async function main() {
 
         {
           question: `Question 9: What is the first step in preparing for a tropical cyclone?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Ignore the news',
@@ -355,7 +355,7 @@ async function main() {
 
         {
           question: `Question 10: Which emergency kit item is essential during a tropical cyclone?`,
-          points: '10',
+          points: 10,
           answers: [
             {
               answer_text: 'Flashlight and batteries',
