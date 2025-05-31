@@ -98,8 +98,25 @@ const lightStyles = StyleSheet.create({
         color: 'black'
     },
 
+    badgeButton: {
+        width: '80%',
+        backgroundColor: '#1976D2',
+        padding: 10,
+        alignItems: 'center',
+        borderRadius: 12,
+        marginTop: 25,
+    },
+
+    
+    badgeText: {
+        color: '#FFFFFF'
+
+    }
+
 
 });
+
+
 
 
 const darkStyles = StyleSheet.create({
@@ -197,7 +214,7 @@ const darkStyles = StyleSheet.create({
         padding: 10,
         alignItems: 'center',
         borderRadius: 12,
-        marginTop: 25,
+        marginTop: 20,
     },
     
     changePasswordButtonText: {
@@ -208,6 +225,20 @@ const darkStyles = StyleSheet.create({
     settingsIcon: {
         color: '#FFFFFF'
     },
+
+    badgeButton: {
+        width: '80%',
+        backgroundColor: '#4C9AFF',
+        padding: 10,
+        alignItems: 'center',
+        borderRadius: 12,
+        marginTop: 25,
+    },
+
+    badgeText: {
+        color: '#FFFFFF'
+
+    }
 
 
 });

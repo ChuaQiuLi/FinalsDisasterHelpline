@@ -249,9 +249,9 @@ const GameStack = () => (
 const ProfileScreenStack = () => (
   <Stack.Navigator>
     <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }} />
-    <Stack.Screen name="Settings" component={SettingScreen} options={{ headerShown: false }} />
-    <Stack.Screen name="EditProfile" component={EditProfileScreen} options={{ headerShown: false }} />
-    <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="SettingScreen" component={SettingScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} options={{ headerShown: false }} />
 
   </Stack.Navigator>
 );

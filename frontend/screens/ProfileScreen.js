@@ -14,7 +14,6 @@ const ProfileScreen = ({ navigation }) => {
   const userId = useSelector((state) => state.auth.user?.id);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
-  const [profileImage, setProfileImage] = useState(null);
   const isFocused = useIsFocused();
   const { isDarkMode } = useTheme(); 
   const styles = isDarkMode ? darkStyles : lightStyles; 
@@ -42,8 +41,7 @@ const ProfileScreen = ({ navigation }) => {
       const response = await API.get('/api/user/details',  { params: { user_id: userId }});
       
       if (response.status === 200) {
-        const { profileImage, username, email, password } = response.data;
-        setProfileImage(profileImage);
+        const { username, email, password } = response.data;
         setUsername(username);
         setEmail(email);
       } 
@@ -63,15 +61,26 @@ const ProfileScreen = ({ navigation }) => {
 
 
 
+  const setting = () => {
+    navigation.navigate('SettingScreen');
+  };
+
+
   const handleEditProfile = () => {
-    const userDetails = { username, email, profileImage };
-    navigation.navigate('EditProfile', { userDetails });
+    const userDetails = { username, email };
+    navigation.navigate('EditProfileScreen', { userDetails });
 
   };
 
 
   const changePassword = () => {
-    navigation.navigate('ChangePassword');
+    navigation.navigate('ChangePasswordScreen');
+  };
+
+
+  
+  const viewBadges = () => {
+    navigation.navigate('BadgeScreen');
   };
 
 
@@ -81,7 +90,7 @@ const ProfileScreen = ({ navigation }) => {
       <View style={styles.header}>
         <Text style={styles.title}>Profile</Text>
 
-        <TouchableHighlight style={styles.settingsIconContainer} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={() => navigation.navigate('Settings')}>
+        <TouchableHighlight style={styles.settingsIconContainer} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={setting}>
           <Ionicons name="settings-outline" size={32} style={styles.settingsIcon} />
         </TouchableHighlight>
 
@@ -94,7 +103,12 @@ const ProfileScreen = ({ navigation }) => {
         <Text style={styles.usernameInput}>{username}</Text>
         <Text style={styles.emailLabel}>Email</Text>
         <Text style={styles.emailInput}>{email}</Text>
+
       </View>
+
+        <TouchableHighlight underlayColor={isDarkMode ? '#999999' : '#999999'} style={styles.badgeButton} onPress={viewBadges}>
+          <Text style={styles.badgeText}>View Earned Badges</Text>
+        </TouchableHighlight>
 
       <TouchableHighlight underlayColor={isDarkMode ? '#999999' : '#999999'} style={styles.changePasswordButton} onPress={changePassword}>
         <Text style={styles.changePasswordButtonText}>Change Password</Text>
