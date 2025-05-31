@@ -147,7 +147,8 @@ model Badge {
   badge_id    Int         @id @default(autoincrement())
   badge_name  String
   description String
-  badge_image String
+  badge_image_filled  String
+  badge_image_outline String
   criteria    String
   earned_from String
   badge       UserBadge[] @relation("Badge")
