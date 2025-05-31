@@ -73,8 +73,8 @@ model UserChecklistStatus {
   template      ChecklistTemplate? @relation(fields: [template_id], references: [template_id])
   checklist     Checklist?         @relation(fields: [checklist_id], references: [checklist_id])
 
-@@unique([user_id, template_id], name: "user_id_template_id")
-@@unique([user_id, checklist_id], name: "user_id_checklist_id")
+  @@unique([user_id, template_id], name: "user_id_template_id")
+  @@unique([user_id, checklist_id], name: "user_id_checklist_id")
 
 }
 

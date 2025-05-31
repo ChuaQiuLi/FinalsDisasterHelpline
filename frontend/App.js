@@ -25,9 +25,9 @@ import ChecklistDetailScreen from './screens/ChecklistDetailScreen';
 import AddChecklistScreen from './screens/AddChecklistScreen';
 import QuizScreen from './screens/QuizScreen'
 import QuizQuestionScreen from './screens/QuizQuestionScreen'
+import ProfileScreen from './screens/ProfileScreen';
 import SettingScreen from './screens/SettingScreen';
 import EditProfileScreen from './screens/EditProfileScreen';
-import ProfileScreen from './screens/ProfileScreen';
 import ChangePasswordScreen from './screens/EditPasswordScreen';
 
 
