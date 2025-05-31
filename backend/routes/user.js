@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
   secure: false,
   auth: {
     user: 'final.disaster.helplinee@outlook.com',
-    pass: 'AgileSafeSpace91',
+    pass: 'FinalDisaster91',
   },
 });
 
