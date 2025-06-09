@@ -43,6 +43,10 @@ const quizRoutes = require('./routes/quiz');
 app.use('/api/quiz', quizRoutes);
 
 
+const badgeRoutes = require('./routes/badge');
+app.use('/api/badge', badgeRoutes);
+
+
 const PORT = process.env.PORT 
 
 app.listen(PORT, '192.168.50.181', () => {

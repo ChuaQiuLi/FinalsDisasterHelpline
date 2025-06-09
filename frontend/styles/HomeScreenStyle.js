@@ -39,7 +39,6 @@ const lightStyles = StyleSheet.create({
 
   countryText: {
     fontSize: 12,
-    color: '#0066cc',
     fontWeight: '500',
     marginTop: 4,
   },
@@ -197,7 +196,26 @@ const lightStyles = StyleSheet.create({
   adjustRadiusText: {
     color: '#fff',
     fontWeight: '500',
-  }
+  },
+
+  errorText: {
+    color: 'red',
+    fontSize: 16,
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+
+  retryButton: {
+    padding: 10,
+    backgroundColor: '#007bff',
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  
+  retryButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
 
 
 });
@@ -250,7 +268,7 @@ const darkStyles = StyleSheet.create({
 
   countryText: {
     fontSize: 12,
-    color: '#0066cc',
+    color: '#FFFFFF',
     fontWeight: '500',
     marginTop: 4,
   },
@@ -408,7 +426,26 @@ const darkStyles = StyleSheet.create({
   adjustRadiusText: {
     color: '#fff',
     fontWeight: '500',
-  }
+  },
+
+  errorText: {
+    color: 'red',
+    fontSize: 16,
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+
+  retryButton: {
+    padding: 10,
+    backgroundColor: '#007bff',
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  
+  retryButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
 
 
 });

@@ -65,6 +65,7 @@ async function main() {
           fire: "911",
           medical: "911",
           description: "General emergency numbers for United States",
+          safety_guidelines: "Follow local alerts (NOAA, FEMA); use FEMA app for real-time updates. Maintain go-bag (3 days worth of food/water, meds, docs, flashlight). Plan evacuation routes, practice drills, back-up contacts."
         },
       ],
     },
@@ -78,6 +79,7 @@ async function main() {
           fire: "999",
           medical: "999",
           description: "General emergency numbers for United Kingdom",
+          safety_guidelines: "Consult GOV.UK and prepare for tailored hazard advice. Emergency response guided by Civil Contingencies Act. Community plans: know roles, shelters, evacuation steps."
         },
       ],
     },
@@ -91,6 +93,7 @@ async function main() {
           fire: "911",
           medical: "911",
           description: "General emergency numbers for Canada",
+          safety_guidelines: "Create 72 hour emergency kit + family preparedness plan. Use Public Safety Canada resources and include medical/insurance info. Coordinate locally via provincial programs."
         },
       ],
     },
@@ -104,6 +107,7 @@ async function main() {
           fire: "000",
           medical: "000",
           description: "General emergency numbers for Australia",
+          safety_guidelines: "Follow Australian Disaster Preparedness Framework via NEMA. Prepare household plans with Red Cross and Services Australia. Understand state-level info (e.g. ACT bushfire preparedness)."
         },
       ],
     },
@@ -117,6 +121,7 @@ async function main() {
           fire: "112",
           medical: "112",
           description: "General emergency numbers for Germany",
+          safety_guidelines: "Prepare a basic emergency kit and practice communication methods that don't rely on radios (like hand signals, pre-arranged codes, or written messages). Stay tuned to local broadcast warnings."
         },
       ],
     },
@@ -130,6 +135,7 @@ async function main() {
           fire: "18",
           medical: "15",
           description: "General emergency numbers for France",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies. Know your evacuation routes and the locations of nearby emergency shelters. Monitor local alerts (radio, TV, mobile apps). Use civil protection websites for geo specific tips"
         },
       ],
     },
@@ -143,6 +149,7 @@ async function main() {
           fire: "115",
           medical: "118",
           description: "General emergency numbers for Italy",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies. Know your evacuation routes and the locations of nearby emergency shelters. Monitor local alerts (radio, TV, mobile apps). Use civil protection websites for geo specific tips"
         },
       ],
     },
@@ -156,6 +163,7 @@ async function main() {
           fire: "112",
           medical: "112",
           description: "General emergency numbers for Spain",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies. Know your evacuation routes and the locations of nearby emergency shelters. Monitor local alerts (radio, TV, mobile apps). Use civil protection websites for geo specific tips"
         },
       ],
     },
@@ -169,6 +177,7 @@ async function main() {
           fire: "119",
           medical: "119",
           description: "General emergency numbers for Japan",
+          safety_guidelines: "Practice and know how to “Drop, Cover, and Hold On” during an earthquake. Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies. Know your evacuation routes and the locations of nearby emergency shelters. Teach all family members how to respond in different scenarios (e.g., power outages, structural damage, flash floods). Use official alert systems that delivers real-time emergency broadcasts via TV, radio, mobile phones, and loudspeakers."
         },
       ],
     },
@@ -182,6 +191,7 @@ async function main() {
           fire: "119",
           medical: "119",
           description: "General emergency numbers for South Korea",
+          safety_guidelines: "Practice and know how to “Drop, Cover, and Hold On” during an earthquake. Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies. Know your evacuation routes and the locations of nearby emergency shelters. Teach all family members how to respond in different scenarios (e.g., power outages, structural damage, flash floods). Use official alert systems that delivers real-time emergency broadcasts via TV, radio, mobile phones, and loudspeakers."
         },
       ],
     },
@@ -195,6 +205,7 @@ async function main() {
           fire: "119",
           medical: "119",
           description: "General emergency numbers for Taiwan",
+          safety_guidelines: "Practice and know how to “Drop, Cover, and Hold On” during an earthquake. Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies. Know your evacuation routes and the locations of nearby emergency shelters. Teach all family members how to respond in different scenarios (e.g., power outages, structural damage, flash floods). Use official alert systems that delivers real-time emergency broadcasts via TV, radio, mobile phones, and loudspeakers."
         },
       ],
     },
@@ -208,6 +219,7 @@ async function main() {
           fire: "995",
           medical: "995",
           description: "General emergency numbers for Singapore",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and evacuate when instructed. Follow national agencies via mobile alerts. Keep digital copies of documents."
         },
       ],
     },
@@ -221,6 +233,7 @@ async function main() {
           fire: "113",
           medical: "118",
           description: "General emergency numbers for Indonesia",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and evacuate when instructed. Follow national agencies via mobile alerts. Keep digital copies of documents."
         },
       ],
     },
@@ -234,6 +247,7 @@ async function main() {
           fire: "999",
           medical: "999",
           description: "General emergency numbers for Malaysia",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and evacuate when instructed. Follow national agencies via mobile alerts. Keep digital copies of documents."
         },
       ],
     },
@@ -247,6 +261,22 @@ async function main() {
           fire: "119",
           medical: "120",
           description: "General emergency numbers for China",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and evacuate when instructed. Follow national agencies via mobile alerts. Keep digital copies of documents."
+        },
+      ],
+    },
+
+    {
+      country_name: "Hong Kong",
+      country_code: "HK",
+      emergencyContact: [
+        {
+          police: "999 or 112",
+          fire: "+852 2735 3355",
+          medical: "+852 2735 3355",
+          description: "General emergency numbers for China",
+          safety_guidelines: "Follow Hong Kong Observatory (HKO) for real-time warnings. Prepare an Emergency kit that include water, non-perishable food, torch, radio, power bank, important documents. Tape all the windows at home and avoid going outside during black rainstorm or typhoon signal 8+. Use MyObservatory app for push notifications and preparedness tips"
+
         },
       ],
     },
@@ -260,6 +290,7 @@ async function main() {
           fire: "911",
           medical: "911",
           description: "General emergency numbers for Philippines",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and evacuate when instructed. Follow national agencies via mobile alerts. Keep digital copies of documents."
         },
       ],
     },
@@ -273,6 +304,7 @@ async function main() {
           fire: "199",
           medical: "1669",
           description: "General emergency numbers for Thailand",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and evacuate when instructed. Follow national agencies via mobile alerts. Keep digital copies of documents."
         },
       ],
     },
@@ -286,6 +318,7 @@ async function main() {
           fire: "114",
           medical: "115",
           description: "General emergency numbers for Vietnam",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and evacuate when instructed. Follow national agencies via mobile alerts. Keep digital copies of documents."
         },
       ],
     },
@@ -299,6 +332,7 @@ async function main() {
           fire: "118",
           medical: "119",
           description: "General emergency numbers for Cambodia",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and evacuate when instructed. Follow national agencies via mobile alerts. Keep digital copies of documents."
         },
       ],
     },
@@ -312,6 +346,7 @@ async function main() {
           fire: "191",
           medical: "192",
           description: "General emergency numbers for Myanmar",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and evacuate when instructed. Follow national agencies via mobile alerts. Keep digital copies of documents."
         },
       ],
     },
@@ -325,6 +360,7 @@ async function main() {
           fire: "193",
           medical: "192",
           description: "General emergency numbers for Brazil",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and evacuate when instructed. Follow and use local alerts/mobile apps. Keep digital copies of documents and insurance."
         },
       ],
     },
@@ -338,6 +374,7 @@ async function main() {
           fire: "911",
           medical: "911",
           description: "General emergency numbers for Mexico",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and evacuate when instructed. Follow and use local alerts/mobile apps. Keep digital copies of documents and insurance."
         },
       ],
     },
@@ -351,6 +388,7 @@ async function main() {
           fire: "101",
           medical: "103",
           description: "General emergency numbers for Russia",
+          safety_guidelines: "Follow МЧС (EMERCOM) guidance. Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and know where is the nearest evacuation centers. Use official emergency SMS and media broadcasts."
         },
       ],
     },
@@ -364,6 +402,7 @@ async function main() {
           fire: "111",
           medical: "111",
           description: "General emergency numbers for New Zealand",
+          safety_guidelines: "Practice and know how to “Drop, Cover, and Hold On” during an earthquake. Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies. Know your evacuation routes and the locations of nearby emergency shelters. Teach all family members how to respond in different scenarios (e.g., power outages, structural damage, flash floods). Use official alert systems that delivers real-time emergency broadcasts via TV, radio, mobile phones, and loudspeakers."
         },
       ],
     },
@@ -377,6 +416,8 @@ async function main() {
           fire: "16",
           medical: "115",
           description: "General emergency numbers for Pakistan",
+          safety_guidelines: "Stay tuned to national advice channels and prepare for water and heat protection. Know what the evacuation and relocation contacts."
+
         },
       ],
     },
@@ -390,6 +431,7 @@ async function main() {
           fire: "100",
           medical: "107",
           description: "General emergency numbers for Argentina",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and evacuate when instructed. Follow and use local alerts/mobile apps. Keep digital copies of documents and insurance."
         },
       ],
     },
@@ -403,6 +445,7 @@ async function main() {
           fire: "132",
           medical: "131",
           description: "General emergency numbers for Chile",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and evacuate when instructed. Follow and use local alerts/mobile apps. Keep digital copies of documents and insurance."
         },
       ],
     },
@@ -416,6 +459,7 @@ async function main() {
           fire: "180",
           medical: "123",
           description: "General emergency numbers for Egypt",
+          safety_guidelines: "Stay tuned to national advice channels and prepare for water and heat protection. Know what the evacuation and relocation contacts."
         },
       ],
     },
@@ -429,6 +473,7 @@ async function main() {
           fire: "110",
           medical: "112",
           description: "General emergency numbers for Turkey",
+          safety_guidelines: "Stay tuned to national advice channels and prepare for water and heat protection. Know what the evacuation and relocation contacts."
         },
       ],
     },
@@ -442,6 +487,7 @@ async function main() {
           fire: "998",
           medical: "997",
           description: "General emergency numbers for Saudi Arabia",
+          safety_guidelines: "Stay tuned to national advice channels and prepare for water and heat protection. Know what the evacuation and relocation contacts."
         },
       ],
     },
@@ -455,6 +501,7 @@ async function main() {
           fire: "1800800",
           medical: "112",
           description: "General emergency numbers for Kuwait",
+          safety_guidelines: "Stay tuned to national advice channels and prepare for water and heat protection. Know what the evacuation and relocation contacts."
         },
       ],
     },
@@ -468,6 +515,7 @@ async function main() {
           fire: "997",
           medical: "999",
           description: "General emergency numbers for Qatar",
+          safety_guidelines: "Stay tuned to national advice channels and prepare for water and heat protection. Know what the evacuation and relocation contacts."
         },
       ],
     },
@@ -481,6 +529,7 @@ async function main() {
           fire: "997",
           medical: "998",
           description: "General emergency numbers for United Arab Emirates",
+          safety_guidelines: "Stay tuned to national advice channels and prepare for water and heat protection. Know what the evacuation and relocation contacts."
         },
       ],
     },
@@ -494,6 +543,7 @@ async function main() {
           fire: "102",
           medical: "101",
           description: "General emergency numbers for Israel",
+          safety_guidelines: "Stay tuned to national advice channels and prepare for water and heat protection. Know what the evacuation and relocation contacts."
         },
       ],
     },
@@ -507,6 +557,7 @@ async function main() {
           fire: "999",
           medical: "199",
           description: "General emergency numbers for Bangladesh",
+          safety_guidelines: "Stay tuned to national advice channels and prepare for water and heat protection. Know what the evacuation and relocation contacts."
         },
       ],
     },
@@ -520,6 +571,7 @@ async function main() {
           fire: "112",
           medical: "112",
           description: "General emergency numbers for Nigeria",
+          safety_guidelines: "Stay tuned to national advice channels and prepare for water and heat protection. Know what the evacuation and relocation contacts."
         },
       ],
     },
@@ -533,6 +585,7 @@ async function main() {
           fire: "110",
           medical: "110",
           description: "General emergency numbers for Sri Lanka",
+          safety_guidelines: "Stay tuned to national advice channels and prepare for water and heat protection. Know what the evacuation and relocation contacts."
         },
       ],
     },
@@ -547,6 +600,7 @@ async function main() {
           fire: "119",
           medical: "125",
           description: "General emergency numbers for Colombia",
+          safety_guidelines: "Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies and evacuate when instructed. Follow and use local alerts/mobile apps. Keep digital copies of documents and insurance."
         },
       ],
     },
@@ -560,6 +614,7 @@ async function main() {
           fire: "101",
           medical: "102",
           description: "Separate numbers for services",
+          safety_guidelines: "Practice and know how to “Drop, Cover, and Hold On” during an earthquake. Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies. Know your evacuation routes and the locations of nearby emergency shelters. Teach all family members how to respond in different scenarios (e.g., power outages, structural damage, flash floods). Use official alert systems that delivers real-time emergency broadcasts via TV, radio, mobile phones, and loudspeakers."
         },
       ],
     },

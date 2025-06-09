@@ -220,8 +220,8 @@ async function main() {
           answers: [
             {
               answer_text: `It's very cold`,
-              is_correct: true,
-              answer_explanation: 'Just 6 inches of fast-moving floodwater can knock an adult off their feet, and 12 inches can carry away a small car. Floodwater may also hide sharp objects, electrical hazards, or open manholes.'
+              is_correct: false,
+             
             },
             {
               answer_text: 'It might ruin your shoes',
@@ -229,7 +229,8 @@ async function main() {
             },
             {
               answer_text: 'Water might be deeper and faster than it looks',
-              is_correct: false,
+              is_correct: true,
+              answer_explanation: 'Just 6 inches of fast-moving floodwater can knock an adult off their feet, and 12 inches can carry away a small car. Floodwater may also hide sharp objects, electrical hazards, or open manholes.'
             },
             {
               answer_text: `It's boring`,

@@ -18,7 +18,7 @@ export default function LoginScreen({ navigation }) {
   const [showPassword, setShowPassword] = useState(false);
 
   const logoSource = isDarkMode
-    ? require('../assets/icon.png')
+    ? require('../assets/icon_dark_mode.png')
     : require('../assets/icon.png');
 
   const handleLogin = async () => {

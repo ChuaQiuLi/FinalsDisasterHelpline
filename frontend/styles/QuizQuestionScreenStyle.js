@@ -92,7 +92,7 @@ const lightStyles = StyleSheet.create({
         paddingHorizontal: 8,
         alignItems: 'center',
         justifyContent: 'center',
-        width: 100, 
+        width: 120, 
         marginTop: 30,
 
     },
@@ -231,7 +231,7 @@ const darkStyles = StyleSheet.create({
         paddingHorizontal: 8,
         alignItems: 'center',
         justifyContent: 'center',
-        width: 100, 
+        width: 120, 
         marginTop: 30,
 
     },

@@ -135,7 +135,7 @@ router.post('/save-score', async (req, res) => {
   }
 
   try {
-    const result = await prisma.quizResults.upsert({
+    await prisma.quizResults.upsert({
       where: {
         user_id_quiz_id: {
           user_id: parseInt(user_id),
@@ -159,14 +159,60 @@ router.post('/save-score', async (req, res) => {
 
 
     });
+    
+    
+    // Fetch the quiz based on quiz_id
+    const quiz = await prisma.quiz.findUnique({
+      where: { quiz_id: parseInt(quiz_id) },
+    });
 
-    res.status(200).json({ message: 'Score saved successfully' });
+
+    // Determine the badge based on quiz title 
+    if (score === 100 && quiz) {
+      const badge = await prisma.badge.findFirst({
+        where: {
+          badge_name: {
+            contains: quiz.title, 
+            // case-insensitive
+            mode: 'insensitive'   
+          }
+        }
+
+      });
+
+
+      if (badge) {
+        await prisma.userBadge.upsert({
+          where: {
+            user_id_badge_id: {
+              user_id: parseInt(user_id),
+              badge_id: badge.badge_id,
+            }
+
+          },
+
+          update: {}, 
+          create: {
+            user_id: parseInt(user_id),
+            badge_id: badge.badge_id,
+
+          }
+
+        });
+
+
+      }
+
+    }
+
+
+    res.status(200).json({ message: 'Score and badge saved successfully' });
 
   }
 
   catch (error) {
-    console.error('Error creating score:', error);
-    res.status(500).json({ error: 'Failed to create score' });
+    console.error('Error creating score and badge:', error);
+    res.status(500).json({ error: 'Failed to create score and badge' });
 
   }
 

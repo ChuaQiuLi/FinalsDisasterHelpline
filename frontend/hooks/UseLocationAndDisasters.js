@@ -11,21 +11,30 @@ const useLocationAndDisasters = (userId) => {
   const [disasterData, setDisasterData] = useState([]);
   const [filteredDisasters, setFilteredDisasters] = useState([]);
   const [selectedDisaster, setSelectedDisaster] = useState(null);
-  const [proximityRadius, setProximityRadius] = useState(2000);
+  const [proximityRadius, setProximityRadius] = useState(300);
   const [filterByProximity, setFilterByProximity] = useState(false);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [disasterFetchError, setDisasterFetchError] = useState(null);
+
+
 
   const fetchDisasterData = async () => {
     try {
+      // reset on new fetch
+      setDisasterFetchError(null);
       const response = await API.get('/api/disaster/disasterData');
       setDisasterData(response.data);
     } 
     
     catch (error) {
       console.error('Error fetching disaster data:', error);
+      setDisasterFetchError('Unable to fetch disaster data. Please try again.');
     }
+
   };
+
+
 
   const saveCountryToDatabase = async (userId, country) => {
     try {
@@ -35,7 +44,9 @@ const useLocationAndDisasters = (userId) => {
     catch (error) {
       console.error('Error saving country to database:', error);
     }
+
   };
+
 
   const getUserCountry = async () => {
     if (!location) return;
@@ -72,22 +83,31 @@ const useLocationAndDisasters = (userId) => {
   };
 
 
+
   const applyProximityFilter = () => {
     if (!location || !filterByProximity) {
       setFilteredDisasters(disasterData);
       return;
     }
 
-    const filtered = disasterData.filter(d => {
-      if (!d.latitude || !d.longitude) return false;
-      d.distance = calculateDistance(location.coords.latitude, location.coords.longitude, d.latitude, d.longitude);
-      return d.distance <= proximityRadius;
-    });
+    const filtered = disasterData
+      .map(d => ({
+        ...d,
+        distance: calculateDistance(
+          location.coords.latitude,
+          location.coords.longitude,
+          d.latitude,
+          d.longitude
+        ),
+      }))
+      .filter(d => d.distance <= proximityRadius);
 
-    filtered.sort((a, b) => a.distance - b.distance);
     setFilteredDisasters(filtered);
 
+
   };
+
+
 
   const getLocationAndFetchData = async () => {
     setLoading(true);
@@ -118,11 +138,14 @@ const useLocationAndDisasters = (userId) => {
     }
   };
 
+
+
   const onRefresh = async () => {
     setRefreshing(true);
     await fetchDisasterData();
     setRefreshing(false);
   };
+
 
 
   const toggleProximityFilter = () => {
@@ -151,6 +174,8 @@ const useLocationAndDisasters = (userId) => {
 
   }, [location, disasterData, proximityRadius, filterByProximity]);
 
+
+
   return {
     loading,
     location,
@@ -165,9 +190,12 @@ const useLocationAndDisasters = (userId) => {
     toggleProximityFilter,
     setSelectedDisaster,
     setProximityRadius,
-    proximityRadius
+    proximityRadius,
+    disasterFetchError
   };
 
 };
+
+
 
 export default useLocationAndDisasters;

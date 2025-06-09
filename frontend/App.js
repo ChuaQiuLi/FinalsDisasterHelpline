@@ -29,6 +29,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import SettingScreen from './screens/SettingScreen';
 import EditProfileScreen from './screens/EditProfileScreen';
 import ChangePasswordScreen from './screens/EditPasswordScreen';
+import BadgeScreen from './screens/BadgeScreen';
 
 
 
@@ -119,8 +120,8 @@ const MainTabNavigator = ({ navigation, theme }) => {
             iconName = focused ? 'home' : 'home-outline';
             break;
 
-          case 'Emergency Contact':
-            iconName = focused ? 'call' : 'call-outline';
+          case 'Emergency Guide':
+            iconName = focused ? 'book' : 'book-outline';
             break;
 
           case 'Checklist':
@@ -160,7 +161,7 @@ const MainTabNavigator = ({ navigation, theme }) => {
 
     <Tab.Screen name="Home" component={HomeScreen} />
 
-    <Tab.Screen name="Emergency Contact" component={EmergencyContactScreen} />
+    <Tab.Screen name="Emergency Guide" component={EmergencyContactScreen} />
 
 
     <Tab.Screen 
@@ -252,6 +253,7 @@ const ProfileScreenStack = () => (
     <Stack.Screen name="SettingScreen" component={SettingScreen} options={{ headerShown: false }} />
     <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} options={{ headerShown: false }} />
     <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="BadgeScreen" component={BadgeScreen} options={{ headerShown: false }} />
 
   </Stack.Navigator>
 );

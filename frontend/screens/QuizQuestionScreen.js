@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { useTheme } from '../context/ThemeContext';
+import Toast from 'react-native-toast-message';
 import { lightStyles, darkStyles } from '../styles/QuizQuestionScreenStyle.js';
 import API from '../api';
 
@@ -107,8 +108,22 @@ const QuizQuestionScreen = ({ route }) => {
                 const response = await API.post('/api/quiz/save-score', { user_id: userId, quiz_id: quizQuestion.quiz_id, score: score });
                 if (response.status === 200) {
                     Alert.alert('Quiz Completed', `Your score: ${score}/100`);
-                    navigation.goBack();
+                   
+                    if (score === 100) {
+                        Toast.show({ type: 'success', position: 'bottom', text1: 'You have earned a new badge', visibilityTime: 2000, autoHide: true, bottomOffset: 60, });
+                        
+                        setTimeout(() => {
+                            navigation.goBack();
+                        }, 2000);
+
+                    }
+                    
+                    else {
+                        navigation.goBack();
+                    }
+
                 }
+
             }
 
             catch (error) {

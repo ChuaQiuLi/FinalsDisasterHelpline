@@ -4,7 +4,6 @@ CREATE TABLE "User" (
     "email" TEXT NOT NULL,
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "profileImage" TEXT,
     "theme" TEXT NOT NULL DEFAULT 'system',
     "country" TEXT,
 
@@ -76,6 +75,7 @@ CREATE TABLE "EmergencyContact" (
     "fire" TEXT NOT NULL,
     "medical" TEXT NOT NULL,
     "description" TEXT NOT NULL,
+    "safety_guidelines" TEXT NOT NULL,
 
     CONSTRAINT "EmergencyContact_pkey" PRIMARY KEY ("contact_id")
 );
@@ -127,7 +127,8 @@ CREATE TABLE "Badge" (
     "badge_id" SERIAL NOT NULL,
     "badge_name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "badge_image" TEXT NOT NULL,
+    "badge_image_filled" TEXT NOT NULL,
+    "badge_image_outline" TEXT NOT NULL,
     "criteria" TEXT NOT NULL,
     "earned_from" TEXT NOT NULL,
 
@@ -170,6 +171,15 @@ CREATE UNIQUE INDEX "EmergencyContact_country_id_police_fire_medical_key" ON "Em
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Quiz_quiz_title_key" ON "Quiz"("quiz_title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "QuizResults_user_id_quiz_id_key" ON "QuizResults"("user_id", "quiz_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Badge_badge_name_key" ON "Badge"("badge_name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UserBadge_user_id_badge_id_key" ON "UserBadge"("user_id", "badge_id");
 
 -- AddForeignKey
 ALTER TABLE "ChecklistTitle" ADD CONSTRAINT "ChecklistTitle_disaster_id_fkey" FOREIGN KEY ("disaster_id") REFERENCES "Disaster"("disaster_id") ON DELETE RESTRICT ON UPDATE CASCADE;

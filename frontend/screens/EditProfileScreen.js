@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableHighlight, TouchableOpacity, Image, Alert, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableHighlight, Alert, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { lightStyles, darkStyles } from '../styles/EditProfileScreenStyle';
 import { useTheme } from '../context/ThemeContext'; 

@@ -24,8 +24,9 @@ const lightStyles = StyleSheet.create({
         marginTop: 20,
     },
     logo: {
-        width: 250,
-        height: 250,
+        width: 220,
+        height: 180,
+        marginBottom: 10,
     },
     inputContainer: {
         backgroundColor: '#FFFFFF',
@@ -119,8 +120,9 @@ const darkStyles = StyleSheet.create({
         marginTop: 20,
     },
     logo: {
-        width: 250,
-        height: 250,
+        width: 220,
+        height: 180,
+        marginBottom: 10,
     },
     inputContainer: {
         backgroundColor: '#FFFFFF',

@@ -39,7 +39,7 @@ router.get('/details', async (req, res) => {
 
     const { user_id } = req.query;
 
-    const profilePicture = await prisma.User.findUnique({
+    const userDetails = await prisma.User.findUnique({
       where: {
         user_id: parseInt(user_id),
       },
@@ -51,7 +51,7 @@ router.get('/details', async (req, res) => {
 
     });
 
-    res.json(profilePicture);
+    res.json(userDetails);
 
   }
 

@@ -7,11 +7,13 @@ import { lightStyles, darkStyles } from '../styles/HomeScreenStyle';
 import useLocationAndDisasters from '../hooks/UseLocationAndDisasters';
 import DisasterItem from '../components/DisasterItem';
 
-function HomeScreen() {
+
+
+const HomeScreen = () => {
   const { isDarkMode } = useTheme(); 
   const styles = isDarkMode ? darkStyles : lightStyles; 
   const userId = useSelector(state => state.auth.user.id);
-  const { loading, location, country, countryLoading, errorMsg, filteredDisasters, filterByProximity, refreshing, selectedDisaster, onRefresh, toggleProximityFilter, setSelectedDisaster, setProximityRadius, proximityRadius } = useLocationAndDisasters(userId);
+  const { loading, location, country, countryLoading, errorMsg, filteredDisasters, filterByProximity, refreshing, selectedDisaster, onRefresh, toggleProximityFilter, setSelectedDisaster, setProximityRadius, proximityRadius, disasterFetchError } = useLocationAndDisasters(userId);
 
   const renderDisasterItem = ({ item }) => (
     <DisasterItem
@@ -20,6 +22,7 @@ function HomeScreen() {
       setSelectedDisaster={setSelectedDisaster}
       styles={styles}
     />
+    
   );
 
   if (loading) {
@@ -72,7 +75,18 @@ function HomeScreen() {
 
         </View>
 
-        {filteredDisasters.length > 0 ? (
+        {disasterFetchError ? (
+
+          <View style={styles.noDataContainer}>
+            <Text style={styles.errorText}>{disasterFetchError}</Text>
+            <TouchableOpacity style={styles.retryButton} onPress={onRefresh}>
+              <Text style={styles.retryButtonText}>Retry</Text>
+            </TouchableOpacity>
+
+          </View>
+
+        ) : filteredDisasters.length > 0 ? (
+
           <FlatList
             data={filteredDisasters}
             renderItem={renderDisasterItem}
@@ -87,7 +101,7 @@ function HomeScreen() {
             </Text>
             
             {filterByProximity && (
-              <TouchableOpacity style={styles.adjustRadiusButton} onPress={() => setProximityRadius(proximityRadius + 1000)}>
+              <TouchableOpacity style={styles.adjustRadiusButton} onPress={() => setProximityRadius(proximityRadius + 300)}>
                 <Text style={styles.adjustRadiusText}>Increase search radius</Text>
               </TouchableOpacity>
             )}

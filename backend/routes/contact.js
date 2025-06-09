@@ -43,6 +43,7 @@ router.get('/user/country', async (req, res) => {
             fire: true,
             medical: true,
             description: true,
+            safety_guideliines: true
 
           },
 
@@ -123,6 +124,7 @@ router.get('/countries/:country_id/contacts', async (req, res) => {
             fire: true,
             medical: true,
             description: true,
+            safety_guideliines: true
 
           },
 
