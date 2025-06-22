@@ -6,6 +6,7 @@ CREATE TABLE "User" (
     "password" TEXT NOT NULL,
     "theme" TEXT NOT NULL DEFAULT 'system',
     "country" TEXT,
+    "expoPushToken" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("user_id")
 );

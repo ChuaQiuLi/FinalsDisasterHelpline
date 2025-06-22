@@ -7,9 +7,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 import Toast, {BaseToast} from 'react-native-toast-message'; 
 import { useDispatch, Provider, useSelector } from 'react-redux';
+import * as Notifications from 'expo-notifications';
 import store from './store';
 import { checkAuth } from './slices/AuthSlice';
 import { useTheme } from './context/ThemeContext'; 
+import registerForPushNotificationsAsync from './utils/RequestNotification';
+import API from './api';
+
 
 
 // Import HomeScreen component
@@ -59,6 +63,33 @@ const AppContent = () => {
     return () => clearTimeout(timer);
 
   }, [isDarkMode, useSystemTheme]);
+
+
+  React.useEffect(() => {
+    let subscription;
+
+    const registerPush = async () => {
+      if (isAuthenticated && userId) {
+        //  Register device for push notifications
+        await registerForPushNotificationsAsync(userId);
+
+        // Listen for push token changes and send new token to backend
+        subscription = Notifications.addPushTokenListener((tokenData) => { API.post('/api/disaster/save-expo-token', { user_id: userId, expoPushToken: tokenData.data }).catch(err => console.error('Failed to update token', err)); });
+      
+      }
+      
+    };
+
+    registerPush();
+
+    // Remove old push token listener if it exists
+    return () => {
+      if (subscription) subscription.remove();
+
+    };
+
+    
+  }, [isAuthenticated, userId]);
 
 
   if (loading || themeLoading) {

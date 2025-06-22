@@ -21,6 +21,20 @@ const lightStyles = StyleSheet.create({
 
     },
 
+    safetyGuidelineTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginLeft: 20,
+        marginTop: 25,
+    },
+
+    safetyGuidelineText: {
+        fontSize: 16,
+        marginLeft: 20,
+        marginTop: 5
+
+    },
+
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -29,7 +43,7 @@ const lightStyles = StyleSheet.create({
         paddingHorizontal: 15,
         backgroundColor: '#FFFFFF',
         marginLeft: 15,
-        marginTop: 30,
+        marginTop: 60,
 
     },
 
@@ -89,6 +103,22 @@ const darkStyles = StyleSheet.create({
 
     },
 
+    safetyGuidelineTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        marginLeft: 20,
+        marginTop: 20,
+    },
+
+    safetyGuidelineText: {
+        fontSize: 16,
+        marginLeft: 20,
+        marginTop: 5,
+        color: '#FFFFFF',
+
+    },
+
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -97,7 +127,7 @@ const darkStyles = StyleSheet.create({
         paddingHorizontal: 15,
         backgroundColor: '#FFFFFF',
         marginLeft: 15,
-        marginTop: 30,
+        marginTop: 60,
 
     },
 
@@ -130,7 +160,8 @@ const darkStyles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginLeft: 20,
-        marginTop: 20
+        marginTop: 20,
+        color: '#FFFFFF',
 
     }
 

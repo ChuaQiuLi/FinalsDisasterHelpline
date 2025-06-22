@@ -26,6 +26,7 @@
       "permissions": [
         "ACCESS_FINE_LOCATION",
         "ACCESS_COARSE_LOCATION",
+        "POST_NOTIFICATIONS",
         "android.permission.ACCESS_COARSE_LOCATION",
         "android.permission.ACCESS_FINE_LOCATION"
       ],
@@ -39,7 +40,7 @@
       [
         "expo-location",
         {
-          "locationAlwaysAndWhenInUsePermission": "Allow WeatherApp to use your location to show nearby disasters."
+          "locationAlwaysAndWhenInUsePermission": "Allow Disaster Helpline to use your location to show nearby disasters."
         }
       ]
     ],

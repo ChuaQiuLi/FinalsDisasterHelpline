@@ -15,6 +15,7 @@ model User {
   password         String
   theme            String             @default("system")
   country          String?
+  expoPushToken    String? 
   userChecklist    Checklist[]        @relation("UserChecklist")
   quizResults      QuizResults[]      @relation("UserResult")
   userBadge        UserBadge[]        @relation("UserBadge")

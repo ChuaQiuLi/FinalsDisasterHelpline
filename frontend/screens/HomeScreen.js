@@ -15,6 +15,8 @@ const HomeScreen = () => {
   const userId = useSelector(state => state.auth.user.id);
   const { loading, location, country, countryLoading, errorMsg, filteredDisasters, filterByProximity, refreshing, selectedDisaster, onRefresh, toggleProximityFilter, setSelectedDisaster, setProximityRadius, proximityRadius, disasterFetchError } = useLocationAndDisasters(userId);
 
+
+
   const renderDisasterItem = ({ item }) => (
     <DisasterItem
       item={item}
@@ -25,6 +27,8 @@ const HomeScreen = () => {
     
   );
 
+
+
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
@@ -33,6 +37,8 @@ const HomeScreen = () => {
       </View>
     );
   }
+
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -108,6 +114,7 @@ const HomeScreen = () => {
 
           </View>
         )}
+        
       </View>
 
     </SafeAreaView>

@@ -47,6 +47,9 @@ const badgeRoutes = require('./routes/badge');
 app.use('/api/badge', badgeRoutes);
 
 
+// Start cron job to scheduled notifications
+require('./cron/fetchNotificationData');
+
 const PORT = process.env.PORT 
 
 app.listen(PORT, '192.168.50.181', () => {

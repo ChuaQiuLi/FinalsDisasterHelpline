@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
 import API from '../api';
-import { calculateDistance } from '../utils/calculateDistance';
+import { calculateDistance } from '../utils/CalculateDistance';
+
 
 const useLocationAndDisasters = (userId) => {
   const [location, setLocation] = useState(null);

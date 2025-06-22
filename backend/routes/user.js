@@ -16,6 +16,7 @@ const transporter = nodemailer.createTransport({
     user: 'final.disaster.helplinee@outlook.com',
     pass: 'FinalDisaster91',
   },
+  
 });
 
 const sendResetCode = async (email, resetCode) => {
@@ -27,7 +28,9 @@ const sendResetCode = async (email, resetCode) => {
       text: `Your password reset code is ${resetCode}.`,
       html: `<p>Your password reset code is <b>${resetCode}</b></p>`,
     });
-  } catch (error) {
+  } 
+  
+  catch (error) {
     console.error('Error sending reset code:', error);
   }
 };
