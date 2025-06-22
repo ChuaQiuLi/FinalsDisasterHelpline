@@ -3,9 +3,11 @@ const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const dotenv = require('dotenv');
 
 const prisma = new PrismaClient();
 const router = express.Router();
+
 
 
 const transporter = nodemailer.createTransport({
@@ -13,8 +15,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: 'final.disaster.helplinee@outlook.com',
-    pass: 'FinalDisaster91',
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
   
 });
