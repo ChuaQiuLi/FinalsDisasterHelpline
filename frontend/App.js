@@ -64,6 +64,8 @@ const AppContent = () => {
   const theme = isDarkMode ? darkTheme : lightTheme;
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth.loading);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const userId = useSelector((state) => state.auth.user?.id);
   const [themeLoading, setThemeLoading] = useState(true);
  
 
