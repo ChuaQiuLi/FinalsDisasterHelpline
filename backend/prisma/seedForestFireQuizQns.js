@@ -382,7 +382,7 @@ async function main() {
             {
               answer_text: 'Long sleeves and a face covering',
               is_correct: true,
-              answer_explanation: `TProtective clothing and covering your mouth and nose help reduce smoke exposure and heat damage.`
+              answer_explanation: `Protective clothing and covering your mouth and nose help reduce smoke exposure and heat damage.`
             },
             {
               answer_text: 'A swimsuit',
