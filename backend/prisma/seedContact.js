@@ -613,7 +613,7 @@ async function main() {
           police: "100",
           fire: "101",
           medical: "102",
-          description: "Separate numbers for services",
+          description: "General emergency numbers for Colombias",
           safety_guidelines: "Practice and know how to “Drop, Cover, and Hold On” during an earthquake. Prepare an emergency kit with essentials like water, food, flashlight, and first-aid supplies. Know your evacuation routes and the locations of nearby emergency shelters. Teach all family members how to respond in different scenarios (e.g., power outages, structural damage, flash floods). Use official alert systems that delivers real-time emergency broadcasts via TV, radio, mobile phones, and loudspeakers."
         },
       ],

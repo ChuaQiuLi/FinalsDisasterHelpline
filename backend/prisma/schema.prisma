@@ -36,7 +36,7 @@ model ChecklistTitle {
   title_id      Int      @id @default(autoincrement())
   disaster_id   Int
   title         String   
-  disaster      Disaster @relation(fields: [disaster_id], references: [disaster_id])
+  disaster      Disaster     @relation(fields: [disaster_id], references: [disaster_id])
   templates     ChecklistTemplate[] 
   checklists    Checklist[]         
 }
@@ -48,9 +48,9 @@ model Checklist {
   user_id        Int
   title_id       Int 
   checklist_item String
-  disaster       Disaster @relation("DisasterChecklist", fields: [disaster_id], references: [disaster_id])
-  user           User     @relation("UserChecklist", fields: [user_id], references: [user_id])
-  checklistTitle ChecklistTitle @relation(fields: [title_id], references: [title_id])
+  disaster       Disaster         @relation("DisasterChecklist", fields: [disaster_id], references: [disaster_id])
+  user           User             @relation("UserChecklist", fields: [user_id], references: [user_id])
+  checklistTitle ChecklistTitle   @relation(fields: [title_id], references: [title_id])
   checklistStatus UserChecklistStatus[]
 }
 
@@ -70,9 +70,9 @@ model UserChecklistStatus {
   template_id   Int?      
   checklist_id  Int?      
   is_checked    Boolean   @default(false)
-  user          User      @relation(fields: [user_id], references: [user_id])
-  template      ChecklistTemplate? @relation(fields: [template_id], references: [template_id])
-  checklist     Checklist?         @relation(fields: [checklist_id], references: [checklist_id])
+  user          User                 @relation(fields: [user_id], references: [user_id])
+  template      ChecklistTemplate?   @relation(fields: [template_id], references: [template_id])
+  checklist     Checklist?           @relation(fields: [checklist_id], references: [checklist_id])
 
   @@unique([user_id, template_id], name: "user_id_template_id")
   @@unique([user_id, checklist_id], name: "user_id_checklist_id")
@@ -146,13 +146,13 @@ model QuizResults {
 
 
 model Badge {
-  badge_id    Int         @id @default(autoincrement())
-  badge_name  String      @unique
-  description String
-  badge_image_filled  String
-  badge_image_outline String
-  criteria    String
-  earned_from String
+  badge_id              Int         @id @default(autoincrement())
+  badge_name            String      @unique
+  description           String
+  badge_image_filled    String
+  badge_image_outline   String
+  criteria              String
+  earned_from           String
   userBadge       UserBadge[] @relation("Badge")
 }
 

@@ -37,10 +37,26 @@ import BadgeScreen from './screens/BadgeScreen';
 
 
 
-
 // Create a tab navigator
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
+
+
+// Setup foreground notification handler
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    // Show alert when in foreground
+    shouldShowAlert: true,      
+    // Play sound
+    shouldPlaySound: true,      
+    // iOS badge number
+    shouldSetBadge: false,      
+
+  }),
+  
+});
+
 
 
 const AppContent = () => {
