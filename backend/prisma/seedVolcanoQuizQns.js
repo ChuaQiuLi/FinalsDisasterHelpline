@@ -109,7 +109,7 @@ async function main() {
     {
       disaster_name: 'Volcano',
       quiz_title: 'Volcano Basics: Are You Prepared?',
-      quiz_description: 'Test your basic knowledge of volcano! This beginner-friendly quiz covers what flood are, how they happen, and what to do to stay safe.',
+      quiz_description: 'Test your basic knowledge of volcano! This beginner-friendly quiz covers what volcano are, how they happen, and what to do to stay safe.',
       difficulty_level: 'Easy',
       questions: [
         {
@@ -155,7 +155,7 @@ async function main() {
               is_correct: false,
             },
             {
-              answer_text: ' Rocky Mountains',
+              answer_text: 'Rocky Mountains',
               is_correct: false,
              
             },
@@ -209,7 +209,7 @@ async function main() {
               is_correct: false,
             },
             {
-              answer_text: 'Take a shower ',
+              answer_text: 'Take a shower',
               is_correct: false,
             
             },
