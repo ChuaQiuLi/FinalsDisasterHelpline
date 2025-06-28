@@ -109,7 +109,7 @@ async function main() {
     {
       disaster_name: 'Tropical Cyclone',
       quiz_title: 'Tropical Cyclone Basics: Are You Prepared?',
-      quiz_description: 'Test your basic knowledge of tropical cyclone! This beginner-friendly quiz covers what flood are, how they happen, and what to do to stay safe.',
+      quiz_description: 'Test your basic knowledge of tropical cyclone! This beginner-friendly quiz covers what tropical cyclone are, how they happen, and what to do to stay safe.',
       difficulty_level: 'Easy',
       questions: [
         {
