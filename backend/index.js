@@ -50,7 +50,7 @@ app.use('/api/badge', badgeRoutes);
 // Start cron job to scheduled notifications
 require('./cron/fetchNotificationData');
 
-const PORT = process.env.PORT || 3000 
+const PORT = process.env.PORT || 10000 
 
 app.listen(PORT, '192.168.50.181', () => {
   console.log(`Server running on port ${PORT}`);
