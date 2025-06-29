@@ -36,8 +36,14 @@ router.post('/save-expo-token', async (req, res) => {
 
     try {
         const updatedUser = await prisma.user.update({
-            where: { user_id: parseInt(user_id) },
-            data: { expoPushToken },
+            where: {
+                user_id: parseInt(user_id),
+            },
+
+            data: {
+                expoPushToken: expoPushToken,
+            },
+            
         });
 
 
