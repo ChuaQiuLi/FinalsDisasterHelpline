@@ -25,7 +25,7 @@ router.get('/disasterData', async (req, res) => {
 router.post('/save-expo-token', async (req, res) => {
     const { user_id, expoPushToken } = req.body;
 
-    console.log("user id", user_id);
+    console.log("Received user_id:", user_id, "expoPushToken:", expoPushToken);
 
     if (!user_id || !expoPushToken) {
         return res.status(400).json({ error: 'Invalid user or expoPushToken' });
