@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Disaster Helpline",
-    "slug": "disasterHelpline",
+    "slug": "frontend",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,12 +16,12 @@
       "bundleIdentifier": "com.qiuli.DisasterHelpline",
       "supportsTablet": true,
       "googleServicesFile": "./GoogleService-Info.plist",
-        "infoPlist": {
+      "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "This app needs access to your location to show nearby disasters."
       }
     },
     "android": {
-       "googleServicesFile": "./android/app/google-services.json",
+      "googleServicesFile": "./android/app/google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
@@ -41,7 +41,6 @@
     },
     "plugins": [
       "expo-notifications",
-
       [
         "expo-location",
         {
