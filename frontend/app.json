@@ -15,6 +15,10 @@
     "ios": {
       "bundleIdentifier": "com.qiuli.DisasterHelpline",
       "supportsTablet": true,
+      "splash": {
+        "image": "./assets/icon.png",
+        "resizeMode": "contain"
+      },
       "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "This app needs access to your location to show nearby disasters."
@@ -26,6 +30,10 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
+      "splash": {
+        "image": "./assets/icon.png",
+        "resizeMode": "contain"
+      },
       "permissions": [
         "ACCESS_FINE_LOCATION",
         "ACCESS_COARSE_LOCATION",
@@ -34,7 +42,8 @@
         "android.permission.ACCESS_FINE_LOCATION"
       ],
       "edgeToEdgeEnabled": true,
-      "package": "com.qiuli.DisasterHelpline"
+      "package": "com.qiuli.DisasterHelpline",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/icon.png"
