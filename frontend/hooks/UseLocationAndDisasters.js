@@ -137,20 +137,12 @@ const useLocationAndDisasters = (userId) => {
       // Always fetch disaster data
       await fetchDisasterData();
 
-
-      // Request notification permission and register push token 
+      // Register push notifications here
       if (userId) {
-        const { status: notificationStatus } = await Notifications.requestPermissionsAsync();
-        if (notificationStatus === 'granted') {
-          await registerForPushNotificationsAsync(userId);
-        } 
-        
-        else {
-          console.warn('Notification permission denied');
-        }
-
+        await registerForPushNotificationsAsync(userId);
       }
       
+
     }
 
  
