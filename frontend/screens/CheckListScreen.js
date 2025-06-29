@@ -14,6 +14,7 @@ const ChecklistScreen = () => {
   const userId = useSelector((state) => state.auth.user?.id);
   const navigation = useNavigation();
   const [disaster, setDisaster] = useState([]);
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
@@ -23,6 +24,8 @@ const ChecklistScreen = () => {
 
 
   const fetchDisasterChecklist = async () => {
+    setLoading(true);
+
     try {
       const response = await API.get('/api/checklist/details', { params: { user_id: userId } });
       setDisaster(response.data);
@@ -32,6 +35,10 @@ const ChecklistScreen = () => {
     catch (error) {
       console.error('Error fetching checklist:', error);
       Alert.alert('Failed to fetch checklist. Please try again later.');
+    }
+
+    finally {
+      setLoading(false);
     }
 
   };
@@ -52,6 +59,26 @@ const ChecklistScreen = () => {
     </TouchableHighlight>
 
   );
+
+
+  if (loading) {
+    return (
+
+      <SafeAreaView style={styles.list}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Disaster Checklist</Text>
+        </View>
+
+        <View style={{ padding: 20 }}>
+          <Text>Loading...</Text>
+        </View>
+
+      </SafeAreaView>
+      
+    );
+
+
+  }
 
 
 
