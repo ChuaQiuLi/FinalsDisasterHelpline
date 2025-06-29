@@ -1,7 +1,9 @@
 const express = require('express');
 const fetchGDACSData = require('../utils/fetchDisaster');
+const { PrismaClient } = require('@prisma/client');
 
 
+const prisma = new PrismaClient();
 const router = express.Router();
 
 
@@ -23,6 +25,7 @@ router.get('/disasterData', async (req, res) => {
 
 
 router.post('/save-expo-token', async (req, res) => {
+    console.log("Test route hit");
     const { user_id, expoPushToken } = req.body;
 
     console.log("Received user_id:", user_id, "expoPushToken:", expoPushToken);
