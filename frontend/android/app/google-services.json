@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1046431253458:android:c7440e7f0ae4e2c740fe0b",
+        "mobilesdk_app_id": "1:1046431253458:android:d7982ee85017c98c40fe0b",
         "android_client_info": {
-          "package_name": "com.qiuli.frontend"
+          "package_name": "com.qiuli.DisasterHelpline"
         }
       },
       "oauth_client": [],
