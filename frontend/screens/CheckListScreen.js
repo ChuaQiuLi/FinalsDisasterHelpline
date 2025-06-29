@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableHighlight } from 'react-native';
+import { View, Text, FlatList, TouchableHighlight, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
@@ -63,20 +63,11 @@ const ChecklistScreen = () => {
 
   if (loading) {
     return (
-
-      <SafeAreaView style={styles.list}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Disaster Checklist</Text>
-        </View>
-
-        <View style={{ padding: 20 }}>
-          <Text>Loading...</Text>
-        </View>
-
-      </SafeAreaView>
-      
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color={isDarkMode ? '#ffffff' : '#000000'} />
+        <Text style={styles.loadingText}>Loading Checklist...</Text>
+      </View>
     );
-
 
   }
 

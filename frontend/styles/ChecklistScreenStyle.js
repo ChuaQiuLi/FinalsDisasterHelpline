@@ -32,7 +32,19 @@ const lightStyles = StyleSheet.create({
 
     noDisasterText: {
         textAlign: 'center',
-    }
+    },
+
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    loadingText: {
+        marginTop: 10,
+        fontSize: 16,
+    },
+
 
 
 
@@ -73,7 +85,21 @@ const darkStyles = StyleSheet.create({
     noDisasterText: {
        textAlign: 'center',
        color: '#ffffff',
-    }
+    },
+
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#000000',
+    },
+
+    loadingText: {
+        marginTop: 10,
+        fontSize: 16,
+        color: '#FFFFFF',
+
+    },
   
 
 

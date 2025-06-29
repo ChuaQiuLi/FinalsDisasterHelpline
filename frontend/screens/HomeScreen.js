@@ -32,7 +32,7 @@ const HomeScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color={isDarkMode ? '#ffffff' : '#000000'} />
         <Text style={styles.loadingText}>Loading disaster data...</Text>
       </View>
     );
