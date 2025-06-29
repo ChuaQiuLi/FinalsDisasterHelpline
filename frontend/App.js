@@ -83,33 +83,6 @@ const AppContent = () => {
   }, [isDarkMode, useSystemTheme]);
 
 
-  React.useEffect(() => {
-    let subscription;
-
-    const registerPush = async () => {
-      if (isAuthenticated && userId) {
-        //  Register device for push notifications
-        await registerForPushNotificationsAsync(userId);
-
-        // Listen for push token changes and send new token to backend
-        subscription = Notifications.addPushTokenListener((tokenData) => { API.post('/api/disaster/save-expo-token', { user_id: userId, expoPushToken: tokenData.data }).catch(err => console.error('Failed to update token', err)); });
-      
-      }
-      
-    };
-
-    registerPush();
-
-    // Remove old push token listener if it exists
-    return () => {
-      if (subscription) subscription.remove();
-
-    };
-
-    
-  }, [isAuthenticated, userId]);
-
-
   if (loading || themeLoading) {
     return <SplashScreen />;
   }
