@@ -385,4 +385,45 @@ router.post('/reset-password', async (req, res) => {
 });
 
 
+
+router.post('/saveExpoToken', async (req, res) => {
+  console.log("Test route hit");
+  const { user_id, expoPushToken } = req.body;
+
+  console.log("Received user_id:", user_id, "expoPushToken:", expoPushToken);
+
+  if (!user_id || !expoPushToken) {
+    return res.status(400).json({ error: 'Invalid user or expoPushToken' });
+  }
+
+  try {
+    const updatedUser = await prisma.user.update({
+      where: {
+        user_id: parseInt(user_id),
+
+      },
+
+      data: {
+        expoPushToken: expoPushToken,
+
+      },
+        
+    });
+
+
+    console.log('Token saved for user:', updatedUser);
+    res.status(200).json({ message: 'Saved!' });
+
+  } 
+  
+  catch (error) {
+    console.error('Error saving Expo push token:', error);
+    res.status(500).json({ error: 'Failed to save Expo push token' });
+    
+  }
+
+
+});
+
+
 module.exports = router;

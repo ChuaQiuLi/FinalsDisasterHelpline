@@ -138,7 +138,6 @@ const useLocationAndDisasters = (userId) => {
       await fetchDisasterData();
 
 
-
       // Request notification permission and register push token 
       if (userId) {
         const { status: notificationStatus } = await Notifications.requestPermissionsAsync();
@@ -152,8 +151,6 @@ const useLocationAndDisasters = (userId) => {
 
       }
       
-     
-
     }
 
  
