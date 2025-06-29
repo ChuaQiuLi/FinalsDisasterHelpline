@@ -19,7 +19,6 @@
         "image": "./assets/icon.png",
         "resizeMode": "contain"
       },
-      "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "This app needs access to your location to show nearby disasters."
       }
