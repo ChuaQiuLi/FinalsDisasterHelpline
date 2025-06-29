@@ -30,14 +30,14 @@ router.post('/save-expo-token', async (req, res) => {
     }
 
     try {
-        // Update user record with new expoPushToken
-        await prisma.user.update({
-        where: { user_id: parseInt(user_id) },
-        data: { expoPushToken },
-
+        const updatedUser = await prisma.user.update({
+            where: { user_id: parseInt(user_id) },
+            data: { expoPushToken },
         });
 
-        res.status(200).json({ message: 'Expo push token saved successfully' });
+        
+        console.log('Token saved for user:', updatedUser);
+        res.status(200).json({ message: 'Saved!' });
 
     } 
     
