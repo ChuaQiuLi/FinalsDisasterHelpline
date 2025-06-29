@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1046431253458",
+    "project_id": "disaster-helpline-1855f",
+    "storage_bucket": "disaster-helpline-1855f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046431253458:android:c7440e7f0ae4e2c740fe0b",
+        "android_client_info": {
+          "package_name": "com.qiuli.frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSXkHosZGOO9EQeS0cB9I87LZsKip51Ws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
