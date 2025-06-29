@@ -119,19 +119,24 @@ const useLocationAndDisasters = (userId) => {
 
     try {
       // Request location permission
-      let { status } = await Location.requestForegroundPermissionsAsync();
+      let { status: locationStatus } = await Location.requestForegroundPermissionsAsync();
 
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        await fetchDisasterData();
-        setLoading(false);
-        return;
+      if (locationStatus === 'granted') {
+        const loc = await Location.getCurrentPositionAsync({});
+        setLocation(loc); 
+        setFilterByProximity(true);
 
-      }
+      } 
       
-      const loc = await Location.getCurrentPositionAsync({});
-      setLocation(loc);
-      setFilterByProximity(true);
+      else {
+        setErrorMsg('Location permission denied — showing all disasters');
+        setFilterByProximity(false); 
+     
+      }
+
+      // Always fetch disaster data
+      await fetchDisasterData();
+
 
 
       // Request notification permission and register push token 
@@ -147,7 +152,7 @@ const useLocationAndDisasters = (userId) => {
 
       }
       
-      await fetchDisasterData();
+     
 
     }
 
@@ -155,12 +160,15 @@ const useLocationAndDisasters = (userId) => {
     catch (err) {
       console.error('Error getting location:', err);
       setErrorMsg('Displaying all disaster as location is disabled.');
+      setFilterByProximity(false);
       await fetchDisasterData();
+
     } 
     
     finally {
       setLoading(false);
     }
+
   };
 
 
