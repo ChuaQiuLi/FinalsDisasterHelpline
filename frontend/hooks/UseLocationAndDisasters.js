@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
+import * as Notifications from 'expo-notifications';
 import API from '../api';
 import { calculateDistance } from '../utils/CalculateDistance';
+import registerForPushNotificationsAsync from '../utils/RequestNotification';
 
 
 const useLocationAndDisasters = (userId) => {
@@ -17,6 +19,7 @@ const useLocationAndDisasters = (userId) => {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [disasterFetchError, setDisasterFetchError] = useState(null);
+
 
 
 
@@ -110,24 +113,45 @@ const useLocationAndDisasters = (userId) => {
 
 
 
+  // Request permissions, get location and register push notifications
   const getLocationAndFetchData = async () => {
     setLoading(true);
-    let { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== 'granted') {
-      setErrorMsg('Permission to access location was denied');
-      await fetchDisasterData();
-      setLoading(false);
-      return;
-
-    }
 
     try {
+      // Request location permission
+      let { status } = await Location.requestForegroundPermissionsAsync();
+
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        await fetchDisasterData();
+        setLoading(false);
+        return;
+
+      }
+      
       const loc = await Location.getCurrentPositionAsync({});
       setLocation(loc);
       setFilterByProximity(true);
+
+
+      // Request notification permission and register push token 
+      if (userId) {
+        const { status: notificationStatus } = await Notifications.requestPermissionsAsync();
+        if (notificationStatus === 'granted') {
+          await registerForPushNotificationsAsync(userId);
+        } 
+        
+        else {
+          console.warn('Notification permission denied');
+        }
+
+      }
+      
       await fetchDisasterData();
-    } 
-    
+
+    }
+
+ 
     catch (err) {
       console.error('Error getting location:', err);
       setErrorMsg('Displaying all disaster as location is disabled.');

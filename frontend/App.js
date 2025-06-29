@@ -11,8 +11,8 @@ import * as Notifications from 'expo-notifications';
 import store from './store';
 import { checkAuth } from './slices/AuthSlice';
 import { useTheme } from './context/ThemeContext'; 
-import registerForPushNotificationsAsync from './utils/RequestNotification';
-import API from './api';
+
+
 
 
 
