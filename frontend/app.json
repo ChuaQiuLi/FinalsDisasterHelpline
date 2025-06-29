@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "frontend",
-    "slug": "frontend",
+    "name": "Disaster Helpline",
+    "slug": "disasterHelpline",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,7 +13,7 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "bundleIdentifier": "com.qiuli.frontend",
+      "bundleIdentifier": "com.qiuli.DisasterHelpline",
       "supportsTablet": true,
       "googleServicesFile": "./GoogleService-Info.plist",
         "infoPlist": {
@@ -34,7 +34,7 @@
         "android.permission.ACCESS_FINE_LOCATION"
       ],
       "edgeToEdgeEnabled": true,
-      "package": "com.qiuli.frontend"
+      "package": "com.qiuli.DisasterHelpline"
     },
     "web": {
       "favicon": "./assets/icon.png"

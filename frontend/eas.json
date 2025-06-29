@@ -3,9 +3,11 @@
     "version": ">= 10.2.3"
   },
   "build": {
-    "development": {
+    "production": {
+      "developmentClient": false,
+      "distribution": "store",
       "android": {
-        "buildType": "apk"
+        "buildType": "apk" // or "aab" if you prefer app-bundle
       }
     }
   }

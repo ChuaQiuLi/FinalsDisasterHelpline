@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.qiuli.frontend'
+    namespace 'com.qiuli.DisasterHelpline'
     defaultConfig {
-        applicationId 'com.qiuli.frontend'
+        applicationId 'com.qiuli.DisasterHelpline'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -97,10 +97,10 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('debug.keystore')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
+            storeFile file('../disasterhelpline.keystore')
+            storePassword 'disasterhelpline'
+            keyAlias 'DisasterHelpline01'
+            keyPassword 'DisasterHelpline01'
         }
     }
     buildTypes {

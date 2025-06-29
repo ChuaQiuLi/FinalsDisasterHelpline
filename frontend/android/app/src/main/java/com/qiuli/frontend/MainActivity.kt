@@ -1,4 +1,4 @@
-package com.qiuli.frontend
+package com.qiuli.DisasterHelpline
 
 import android.os.Build
 import android.os.Bundle

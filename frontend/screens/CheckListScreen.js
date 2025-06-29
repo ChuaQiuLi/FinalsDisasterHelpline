@@ -59,12 +59,12 @@ const ChecklistScreen = () => {
   if (disaster.length === 0) {
     return (
       <SafeAreaView>
-        <View>
-          <Text>Disaster Checklist</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Disaster Checklist</Text>
         </View>
 
         <View>
-          <Text>No disaster checklist found</Text>
+          <Text style={styles.noDisasterText}>No disaster checklist found</Text>
         </View>
 
       </SafeAreaView>

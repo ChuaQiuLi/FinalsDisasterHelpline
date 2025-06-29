@@ -30,6 +30,10 @@ const lightStyles = StyleSheet.create({
         fontSize: 16,
     },
 
+    noDisasterText: {
+        textAlign: 'center',
+    }
+
 
 
 });
@@ -64,6 +68,12 @@ const darkStyles = StyleSheet.create({
         fontSize: 16,
         color: '#ffffff',
     },
+
+
+    noDisasterText: {
+       textAlign: 'center',
+       color: '#ffffff',
+    }
   
 
 
