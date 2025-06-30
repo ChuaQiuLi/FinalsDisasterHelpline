@@ -7,12 +7,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 import Toast, {BaseToast} from 'react-native-toast-message'; 
 import { useDispatch, Provider, useSelector } from 'react-redux';
-import * as Notifications from 'expo-notifications';
 import store from './store';
 import { checkAuth } from './slices/AuthSlice';
 import { useTheme } from './context/ThemeContext'; 
-
-
 
 
 
@@ -40,9 +37,6 @@ import BadgeScreen from './screens/BadgeScreen';
 // Create a tab navigator
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
-
-
 
 
 
