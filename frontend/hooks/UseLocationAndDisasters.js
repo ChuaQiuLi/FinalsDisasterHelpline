@@ -137,6 +137,8 @@ const useLocationAndDisasters = (userId) => {
       // Always fetch disaster data
       await fetchDisasterData();
 
+      Toast.show({ type: 'success', position: 'bottom', text1: 'Get user id', text2: userId, visibilityTime: 4000, autoHide: true, bottomOffset: 60});
+      
       // Register push notifications here
       if (userId) {
         await registerForPushNotificationsAsync(userId);
