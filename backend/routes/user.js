@@ -24,7 +24,7 @@ const transporter = nodemailer.createTransport({
 const sendResetCode = async (email, resetCode) => {
   try {
     let info = await transporter.sendMail({
-      from: '"DisasterHelpline" <final.disaster.helplinee@outlook.com>',
+      from: '"DisasterHelpline" <final.disaster.helpline@outlook.com>',
       to: email,
       subject: 'Password Reset Code',
       text: `Your password reset code is ${resetCode}.`,
@@ -250,36 +250,10 @@ router.post('/delete-account', async (req, res) => {
 
     await prisma.$transaction(async (prisma) => {
       // Delete from dependent tables first
-      await prisma.reportCard.deleteMany({ 
-        where: { OR: [{ user_id: parsedUserId }, { reported_user_id: parsedUserId }] } 
-      });
-
-      await prisma.reportReply.deleteMany({ 
-        where: { OR: [{ user_id: parsedUserId }, { reported_user_id: parsedUserId }] } 
-      });
-
-      await prisma.ReportComment.deleteMany({ where: { user_id: parsedUserId } });
-      await prisma.ReportPost.deleteMany({ where: { user_id: parsedUserId } });
-      
-
-      // Delete records referencing CaringCards and ReceivedCaringCards
-      await prisma.replyCaringCards.deleteMany({
-        where: { OR: [{ sender_id: parsedUserId }, { receiver_id: parsedUserId }] }
-      });
-      await prisma.receivedCaringCards.deleteMany({
-        where: { OR: [{ sender_id: parsedUserId }, { receiver_id: parsedUserId }] }
-      });
-
-      await prisma.caringCards.deleteMany({ where: { user_id: parsedUserId } });
-
-      // Delete from other tables
-      await prisma.like.deleteMany({ where: { user_id: parsedUserId } });
-      await prisma.comment.deleteMany({ where: { user_id: parsedUserId } });
-      await prisma.post.deleteMany({ where: { author_id: parsedUserId } });
-      await prisma.moodTracker.deleteMany({ where: { user_id: parsedUserId } });
-      await prisma.setting.deleteMany({ where: { user_id: parsedUserId } });
-      await prisma.privateCards.deleteMany({ where: { user_id: parsedUserId } });
-      await prisma.subforum.deleteMany({ where: { creator_id: parsedUserId } });
+      await prisma.UserChecklistStatus.deleteMany({ where: { user_id: parsedUserId } });
+      await prisma.checklist.deleteMany({ where: { user_id: parsedUserId } });
+      await prisma.QuizResults.deleteMany({ where: { user_id: parsedUserId } });
+      await prisma.UserBadge.deleteMany({ where: { user_id: parsedUserId } });
 
       // Finally, delete the user
       await prisma.user.delete({
