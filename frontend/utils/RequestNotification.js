@@ -5,6 +5,7 @@ import Toast from 'react-native-toast-message';
 
 
 
+
 const registerForPushNotificationsAsync = async (userId) => {
   if (!Constants.isDevice) {
     console.log('Must use physical device for push notifications');
@@ -26,7 +27,28 @@ const registerForPushNotificationsAsync = async (userId) => {
   }
 
   try {
-    const tokenData = await Notifications.getExpoPushTokenAsync();
+
+    // Setup foreground notification handler
+    Notifications.setNotificationHandler({
+      handleNotification: async () => ({
+        // Show alert when in foreground
+        shouldShowAlert: true,      
+        // Play sound
+        shouldPlaySound: true,      
+        // iOS badge number
+        shouldSetBadge: false,      
+
+      }),
+      
+    });
+
+
+    // Explicitly pass projectId
+    const tokenData = await Notifications.getExpoPushTokenAsync({
+      projectId: Constants.expoConfig?.extra?.eas?.projectId || '23397003-7cc7-4733-a3eb-d5549ac58eb7'
+      
+    });
+
     const token = tokenData?.data;
 
     if (!token) {
