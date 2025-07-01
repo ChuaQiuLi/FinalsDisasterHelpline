@@ -12,6 +12,16 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
+CREATE TABLE "DisasterNotificationLog" (
+    "notification_id" SERIAL NOT NULL,
+    "user_id" INTEGER NOT NULL,
+    "notification_disaster_id" TEXT NOT NULL,
+    "sent_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "DisasterNotificationLog_pkey" PRIMARY KEY ("notification_id")
+);
+
+-- CreateTable
 CREATE TABLE "Disaster" (
     "disaster_id" SERIAL NOT NULL,
     "disaster_name" TEXT NOT NULL,
@@ -153,6 +163,9 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "DisasterNotificationLog_user_id_notification_disaster_id_key" ON "DisasterNotificationLog"("user_id", "notification_disaster_id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Disaster_disaster_name_key" ON "Disaster"("disaster_name");
 
 -- CreateIndex
@@ -181,6 +194,9 @@ CREATE UNIQUE INDEX "Badge_badge_name_key" ON "Badge"("badge_name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "UserBadge_user_id_badge_id_key" ON "UserBadge"("user_id", "badge_id");
+
+-- AddForeignKey
+ALTER TABLE "DisasterNotificationLog" ADD CONSTRAINT "DisasterNotificationLog_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "ChecklistTitle" ADD CONSTRAINT "ChecklistTitle_disaster_id_fkey" FOREIGN KEY ("disaster_id") REFERENCES "Disaster"("disaster_id") ON DELETE RESTRICT ON UPDATE CASCADE;

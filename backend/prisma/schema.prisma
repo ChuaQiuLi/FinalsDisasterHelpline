@@ -19,6 +19,7 @@ model User {
   userChecklist    Checklist[]        @relation("UserChecklist")
   quizResults      QuizResults[]      @relation("UserResult")
   userBadge        UserBadge[]        @relation("UserBadge")
+  userNotificationHistory        DisasterNotificationLog[]        @relation("UserNotificationHistory")
   userChecklistStatus  UserChecklistStatus[]
 
 }
@@ -31,7 +32,7 @@ model DisasterNotificationLog {
   user                             User             @relation("UserNotificationHistory", fields: [user_id], references: [user_id])
 
   @@unique([user_id, notification_disaster_id])
-  
+
 }
 
 
