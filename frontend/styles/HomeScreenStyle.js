@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 const lightStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#9990',
   },
 
   loadingContainer: {

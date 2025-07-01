@@ -21,7 +21,7 @@ export default function ForgetPasswordScreen({ navigation }) {
 
     // Determine the logo source based on the theme
     const logoSource = isDarkMode
-        ? require('../assets/icon.png')
+        ? require('../assets/icon_dark_mode.png')
         : require('../assets/icon.png');
 
 
