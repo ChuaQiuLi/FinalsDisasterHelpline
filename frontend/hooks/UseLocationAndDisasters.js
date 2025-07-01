@@ -114,7 +114,7 @@ const useLocationAndDisasters = (userId) => {
 
 
   // Request permissions, get location and register push notifications
-  const getLocationAndFetchData = async () => {
+  const getLocationAndFetchData = async (userId) => {
     setLoading(true);
 
     try {
@@ -178,9 +178,11 @@ const useLocationAndDisasters = (userId) => {
 
 
   useEffect(() => {
-    getLocationAndFetchData();
-  }, []);
-
+    if (userId) {
+      getLocationAndFetchData(userId);
+    }
+    
+  }, [userId]);
 
   useEffect(() => {
     if (location) getUserCountry();
