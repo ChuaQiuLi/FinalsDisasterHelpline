@@ -24,12 +24,14 @@ model User {
 }
 
 model DisasterNotificationLog {
-  notification_id                  Int      @id @default(autoincrement())
-  userId                           Int
+  notification_id                  Int             @id @default(autoincrement())
+  user_id                          Int
   notification_disaster_id         String
   sent_at                          DateTime @default(now())
+  user                             User             @relation("UserNotificationHistory", fields: [user_id], references: [user_id])
 
-  @@unique([userId, disaster_details])
+  @@unique([user_id, notification_disaster_id])
+  
 }
 
 

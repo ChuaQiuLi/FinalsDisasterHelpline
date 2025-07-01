@@ -47,7 +47,7 @@ cron.schedule('*/30 * * * *', async () => {
         // Check DB if notification was already sent
         const alreadySent = await prisma.disasterNotificationLog.findFirst({
           where: {
-            userId: user.user_id,
+            user_id : user.user_id,
             notification_disaster_id: disasterId
           }
 
@@ -68,7 +68,7 @@ cron.schedule('*/30 * * * *', async () => {
         // Save record to DB
         await prisma.disasterNotificationLog.create({
           data: {
-            userId: user.user_id,
+            user_id : user.user_id,
             notification_disaster_id: disasterId
 
           }
