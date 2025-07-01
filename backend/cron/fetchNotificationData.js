@@ -16,7 +16,7 @@ const CACHE_EXPIRY_MS = 1000 * 60 * 60;
 
 
 
-cron.schedule('*/5 * * * *', async () => {
+cron.schedule('*/30 * * * *', async () => {
   try {
     console.log('Running disaster notification cron job...');
 
