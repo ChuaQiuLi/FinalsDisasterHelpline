@@ -1,4 +1,3 @@
-// cron/sendPushOnMatch.js
 const cron = require('node-cron');
 const crypto = require('crypto');
 const fetchGDACSData = require('../utils/fetchDisaster');
@@ -8,14 +7,6 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 
-// In-memory cache to track sent notifications
-// Structure: { [userId]: { [disasterId]: timestampSent } }
-const sentNotificationsCache = {};
-// 1 hour
-const CACHE_EXPIRY_MS = 1000 * 60 * 60; 
-
-
-
 cron.schedule('*/30 * * * *', async () => {
   try {
     console.log('Running disaster notification cron job...');
@@ -23,8 +14,8 @@ cron.schedule('*/30 * * * *', async () => {
     const disasters = await fetchGDACSData();
 
     // Fetch users with country and expoPushToken set
-    const users = await prisma.user.findMany({ 
-      where: { 
+    const users = await prisma.user.findMany({
+      where: {
         country: { not: null },
         expoPushToken: { not: null }
       },
@@ -38,64 +29,53 @@ cron.schedule('*/30 * * * *', async () => {
     });
 
     for (const user of users) {
-      if (!user.country) continue;
-
       const userCountryLower = user.country.toLowerCase();
 
-      // Filter disasters by matching disaster description with user country 
-      const matchingDisasters = disasters.filter(dis => 
+      // Filter disasters that mention the user's country
+      const matchingDisasters = disasters.filter(dis =>
         dis.description && dis.description.toLowerCase().includes(userCountryLower)
       );
 
-
       for (const dis of matchingDisasters) {
-        // Generate unique disaster ID if none provided
-        const disasterId = dis.id || dis.eventId || crypto.createHash('md5')
-          .update(dis.description + dis.eventType)
-          .digest('hex');
+        console.log('dis.id:', dis.id, 'type:', typeof dis.id);
+        console.log('dis.eventId:', dis.eventId, 'type:', typeof dis.eventId);
 
-        // Initialize cache for user if missing
-        if (!sentNotificationsCache[user.user_id]) {
-          sentNotificationsCache[user.user_id] = {};
-        }
-
-        const lastSent = sentNotificationsCache[user.user_id][disasterId];
+        // Generate a unique ID for the disaster
+        const disasterId = dis.id || dis.eventId || crypto.createHash('md5').update(dis.description + dis.eventType).digest('hex');
 
 
-        // Skip if sent within cache expiry period
-        if (lastSent && (Date.now() - lastSent) < CACHE_EXPIRY_MS) {
+        // Check DB if notification was already sent
+        const alreadySent = await prisma.disasterNotificationLog.findFirst({
+          where: {
+            userId: user.user_id,
+            notification_disaster_id: disasterId
+          }
+
+        });
+
+        if (alreadySent) {
+          // Skip if already notified
           continue;
         }
 
         // Send push notification
-        if (user.expoPushToken) {
-          await sendPushNotification(user.expoPushToken, {
-            title: `Disaster Alert: ${dis.eventType}`,
-            body: dis.title,
+        await sendPushNotification(user.expoPushToken, {
+          title: `Disaster Alert: ${dis.eventType}`,
+          body: dis.title
 
-          });
+        });
 
-          // Mark notification as sent with timestamp
-          sentNotificationsCache[user.user_id][disasterId] = Date.now();
-          console.log(`Sent disaster notification to user ${user.user_id} for disaster ${disasterId}`);
-        }
+        // Save record to DB
+        await prisma.disasterNotificationLog.create({
+          data: {
+            userId: user.user_id,
+            notification_disaster_id: disasterId
 
-      }
+          }
 
-    }
+        });
 
-    // Clean up expired cache entries
-    for (const userId in sentNotificationsCache) {
-      for (const disasterId in sentNotificationsCache[userId]) {
-        if ((Date.now() - sentNotificationsCache[userId][disasterId]) > CACHE_EXPIRY_MS) {
-          delete sentNotificationsCache[userId][disasterId];
-        }
-
-      }
-
-      // Remove user if no disasters left
-      if (Object.keys(sentNotificationsCache[userId]).length === 0) {
-        delete sentNotificationsCache[userId];
+        console.log(`Sent disaster notification to user ${user.user_id} for disaster ${disasterId}`);
       }
 
     }
@@ -108,6 +88,3 @@ cron.schedule('*/30 * * * *', async () => {
 
 
 });
-
-
-

@@ -23,6 +23,15 @@ model User {
 
 }
 
+model DisasterNotificationLog {
+  notification_id                  Int      @id @default(autoincrement())
+  userId                           Int
+  notification_disaster_id         String
+  sent_at                          DateTime @default(now())
+
+  @@unique([userId, disaster_details])
+}
+
 
 model Disaster {
   disaster_id   Int         @id @default(autoincrement())
