@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
-import * as Notifications from 'expo-notifications';
 import API from '../api';
 import { calculateDistance } from '../utils/CalculateDistance';
-import registerForPushNotificationsAsync from '../utils/RequestNotification';
+
 
 
 const useLocationAndDisasters = (userId) => {
