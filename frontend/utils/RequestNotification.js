@@ -2,7 +2,7 @@ import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
 import API from '../api';
 import Toast from 'react-native-toast-message';
-
+import { Platform } from 'react-native';
 
 
 
@@ -19,7 +19,7 @@ const registerForPushNotificationsAsync = async (userId) => {
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
       lightColor: '#FF231F7C',
-      
+
     });
 
   }
@@ -71,7 +71,7 @@ const registerForPushNotificationsAsync = async (userId) => {
 
     await API.post('/api/user/saveExpoToken', { user_id: userId, expoPushToken: token });
     console.log('Token saved successfully');
-    Toast.show({ type: 'success', position: 'bottom', text1: 'Token saved successfully', text2: 'No token received', visibilityTime: 4000, autoHide: true, bottomOffset: 60});
+    Toast.show({ type: 'success', position: 'bottom', text1: 'Token saved successfully', visibilityTime: 4000, autoHide: true, bottomOffset: 60});
 
   } 
 
