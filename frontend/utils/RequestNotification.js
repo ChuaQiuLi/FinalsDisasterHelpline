@@ -12,6 +12,18 @@ const registerForPushNotificationsAsync = async (userId) => {
     return;
   }
 
+  // Create the notification channel on Android before requesting permissions or getting the token
+  if (Platform.OS === 'android') {
+    await Notifications.setNotificationChannelAsync('default', {
+      name: 'Default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+      
+    });
+
+  }
+
   const { status: existingStatus } = await Notifications.getPermissionsAsync();
   let finalStatus = existingStatus;
 
