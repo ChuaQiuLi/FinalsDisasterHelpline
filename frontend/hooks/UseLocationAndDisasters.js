@@ -113,8 +113,8 @@ const useLocationAndDisasters = (userId) => {
 
 
 
-  // Request permissions, get location and register push notifications
-  const getLocationAndFetchData = async (userId) => {
+  // Request permissions, get location 
+  const getLocationAndFetchData = async () => {
     setLoading(true);
 
     try {
@@ -136,14 +136,6 @@ const useLocationAndDisasters = (userId) => {
 
       // Always fetch disaster data
       await fetchDisasterData();
-
-      Toast.show({ type: 'success', position: 'bottom', text1: 'Get user id', text2: userId, visibilityTime: 4000, autoHide: true, bottomOffset: 60});
-      
-      // Register push notifications here
-      if (userId) {
-        await registerForPushNotificationsAsync(userId);
-      }
-      
 
     }
 
@@ -176,13 +168,9 @@ const useLocationAndDisasters = (userId) => {
     setFilterByProximity(prev => !prev);
   };
 
-
   useEffect(() => {
-    if (userId) {
-      getLocationAndFetchData(userId);
-    }
-    
-  }, [userId]);
+    getLocationAndFetchData();
+  }, []);
 
   useEffect(() => {
     if (location) getUserCountry();

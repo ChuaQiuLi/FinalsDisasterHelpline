@@ -10,6 +10,7 @@ import { useDispatch, Provider, useSelector } from 'react-redux';
 import store from './store';
 import { checkAuth } from './slices/AuthSlice';
 import { useTheme } from './context/ThemeContext'; 
+import usePushNotificationManager from './utils/usePushNotificationManager';
 
 
 
@@ -49,7 +50,7 @@ const AppContent = () => {
   const userId = useSelector((state) => state.auth.user?.id);
   const [themeLoading, setThemeLoading] = useState(true);
  
-
+  usePushNotificationManager(isAuthenticated ? userId : null);
 
   React.useEffect(() => {
     dispatch(checkAuth());

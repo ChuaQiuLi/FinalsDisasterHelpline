@@ -1,90 +1,122 @@
+import { useEffect, useRef, useState } from 'react';
+import { AppState, Platform } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
 import API from '../api';
 import Toast from 'react-native-toast-message';
-import { Platform } from 'react-native';
 
 
 
-const registerForPushNotificationsAsync = async (userId) => {
-  if (!Constants.isDevice) {
-    console.log('Must use physical device for push notifications');
-    return;
-  }
+const usePushNotificationManager = (userId) => {
+  const appState = useRef(AppState.currentState);
+  const [expoPushToken, setExpoPushToken] = useState(null);
 
-  // Create the notification channel on Android before requesting permissions or getting the token
-  if (Platform.OS === 'android') {
-    await Notifications.setNotificationChannelAsync('default', {
-      name: 'Default',
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
-
-    });
-
-  }
-
-  const { status: existingStatus } = await Notifications.getPermissionsAsync();
-  let finalStatus = existingStatus;
-
-  if (existingStatus !== 'granted') {
-    const { status } = await Notifications.requestPermissionsAsync();
-    finalStatus = status;
-
-  }
-
-  if (finalStatus !== 'granted') {
-    console.log('Notification permission denied');
-    return; 
-  }
-
-  try {
-
-    // Setup foreground notification handler
-    Notifications.setNotificationHandler({
-      handleNotification: async () => ({
-        // Show alert when in foreground
-        shouldShowAlert: true,      
-        // Play sound
-        shouldPlaySound: true,      
-        // iOS badge number
-        shouldSetBadge: false,      
-
-      }),
-      
-    });
-
-
-    // Explicitly pass projectId
-    const tokenData = await Notifications.getExpoPushTokenAsync({
-      projectId: Constants.expoConfig?.extra?.eas?.projectId || '23397003-7cc7-4733-a3eb-d5549ac58eb7'
-      
-    });
-
-    const token = tokenData?.data;
-
-    if (!token) {
-      console.log("No token received");
-      Toast.show({ type: 'error', position: 'bottom', text1: 'Push Token Error', text2: 'No token received', visibilityTime: 4000, autoHide: true, bottomOffset: 60});
-      return; 
+  const registerForPushNotificationsAsync = async () => {
+    if (!Constants.isDevice) {
+      console.log('Must use physical device for push notifications');
+      return null;
     }
 
-    await API.post('/api/user/saveExpoToken', { user_id: userId, expoPushToken: token });
-    console.log('Token saved successfully');
-    Toast.show({ type: 'success', position: 'bottom', text1: 'Token saved successfully', visibilityTime: 4000, autoHide: true, bottomOffset: 60});
+    // Create Android notification channel before requesting permission
+    if (Platform.OS === 'android') {
+      await Notifications.setNotificationChannelAsync('default', {
+        name: 'Default',
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: '#FF231F7C',
+      });
 
-  } 
+    }
 
+    // Request permission
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
 
-  catch (error) {
-    console.log('Failed to register push token:', error);
-    Toast.show({ type: 'error', position: 'bottom', text1: 'Push Token Error', text2: error.message, visibilityTime: 4000, autoHide: true, bottomOffset: 60});
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
 
-  }
+    if (finalStatus !== 'granted') {
+      console.log('Notification permission denied');
+      return null;
+    }
 
+    // Set foreground handler
+    Notifications.setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: false,
+      }),
+
+    });
+
+    try {
+      const tokenData = await Notifications.getExpoPushTokenAsync({
+        projectId: Constants.expoConfig?.extra?.eas?.projectId || '23397003-7cc7-4733-a3eb-d5549ac58eb7',
+      });
+
+      return tokenData?.data ?? null;
+    } 
+    
+    catch (error) {
+      console.error('Error getting Expo push token:', error);
+      return null;
+      
+    }
+
+  };
+
+  const checkAndUpdateToken = async () => {
+    if (!userId) return;
+
+    const { status } = await Notifications.getPermissionsAsync();
+    if (status !== 'granted') {
+      setExpoPushToken(null);
+      return;
+    }
+
+    const newToken = await registerForPushNotificationsAsync();
+    if (!newToken) return;
+
+    if (newToken !== expoPushToken) {
+      setExpoPushToken(newToken);
+      await API.post('/api/user/saveExpoToken', { user_id: userId, expoPushToken: newToken });
+
+      console.log('Expo push token saved:', newToken);
+      Toast.show({
+        type: 'success',
+        position: 'bottom',
+        text1: 'Push token updated',
+        visibilityTime: 3000,
+        bottomOffset: 60,
+      });
+
+    }
+
+  };
+
+  // Run on first load and when app comes back to foreground
+  useEffect(() => {
+    // Initial check
+    checkAndUpdateToken(); 
+
+    const subscription = AppState.addEventListener('change', (nextState) => {
+      if ( appState.current.match(/inactive|background/) && nextState === 'active' ) {
+        checkAndUpdateToken(); 
+      }
+
+      appState.current = nextState;
+
+    });
+
+    return () => subscription.remove();
+
+  }, [userId]);
+
+  return expoPushToken;
 
 };
 
-
-
-export default registerForPushNotificationsAsync;
+export default usePushNotificationManager;
