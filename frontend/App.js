@@ -10,7 +10,7 @@ import { useDispatch, Provider, useSelector } from 'react-redux';
 import store from './store';
 import { checkAuth } from './slices/AuthSlice';
 import { useTheme } from './context/ThemeContext'; 
-import usePushNotificationManager from './utils/usePushNotificationManager';
+import usePushNotificationManager from './utils/RequestNotification';
 
 
 
