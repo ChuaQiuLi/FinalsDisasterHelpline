@@ -13,8 +13,9 @@ cron.schedule('*/30 * * * *', async () => {
 
     const disasters = await fetchGDACSData();
 
-    // Fetch users with country and expoPushToken set
-    const users = await prisma.user.findMany({
+    
+    // Users with country
+    const usersWithCountry = await prisma.user.findMany({
       where: {
         country: { not: null },
         expoPushToken: { not: null }
@@ -28,7 +29,25 @@ cron.schedule('*/30 * * * *', async () => {
 
     });
 
-    for (const user of users) {
+
+    
+    // Users without country - global notification
+    const usersWithoutCountry = await prisma.user.findMany({
+      where: {
+        country: null,
+        expoPushToken: { not: null }
+      },
+
+      select: {
+        user_id: true,
+        expoPushToken: true,
+      }
+
+    });
+    
+    
+    // Handle users with country
+    for (const user of usersWithCountry) {
       const userCountryLower = user.country.toLowerCase();
 
       // Filter disasters that mention the user's country
@@ -36,55 +55,69 @@ cron.schedule('*/30 * * * *', async () => {
         dis.description && dis.description.toLowerCase().includes(userCountryLower)
       );
 
-      for (const dis of matchingDisasters) {
-        console.log('dis.id:', dis.id, 'type:', typeof dis.id);
-        console.log('dis.eventId:', dis.eventId, 'type:', typeof dis.eventId);
-
-        // Generate a unique ID for the disaster
-        const disasterId = dis.id || dis.eventId || crypto.createHash('md5').update(dis.description + dis.eventType).digest('hex');
-
-
-        // Check DB if notification was already sent
-        const alreadySent = await prisma.disasterNotificationLog.findFirst({
-          where: {
-            user_id : user.user_id,
-            notification_disaster_id: disasterId
-          }
-
-        });
-
-        if (alreadySent) {
-          // Skip if already notified
-          continue;
-        }
-
-        // Send push notification
-        await sendPushNotification(user.expoPushToken, {
-          title: `Disaster Alert: ${dis.eventType}`,
-          body: dis.title
-
-        });
-
-        // Save record to DB
-        await prisma.disasterNotificationLog.create({
-          data: {
-            user_id : user.user_id,
-            notification_disaster_id: disasterId
-
-          }
-
-        });
-
-        console.log(`Sent disaster notification to user ${user.user_id} for disaster ${disasterId}`);
-      }
+      await handleDisastersForUser(user, matchingDisasters);
 
     }
 
-  } 
-  
-  catch (error) {
-    console.error('Error in disaster push cron:', error);
+
+    // Handle users without country (receive all disasters)
+    for (const user of usersWithoutCountry) {
+      await handleDisastersForUser(user, disasters);
+    }
+
   }
 
 
+  catch (error) {
+    console.error('Error in disaster push cron:', error);
+  
+  }
+
 });
+
+
+async function handleDisastersForUser(user, disastersToCheck) {
+  for (const dis of disastersToCheck) {
+
+    // Generate a unique ID for the disaster
+    const disasterId = dis.id || dis.eventId || crypto.createHash('md5').update(dis.description + dis.eventType).digest('hex');
+
+    // Avoid duplicate notifications
+    const alreadySent = await prisma.disasterNotificationLog.findFirst({
+      where: {
+        user_id: user.user_id,
+        notification_disaster_id: disasterId
+
+      }
+
+    });
+
+    if (alreadySent) continue;
+
+    // Send push
+    await sendPushNotification(user.expoPushToken, {
+      title: `Disaster Alert: ${dis.eventType}`,
+      body: dis.title
+
+    });
+
+    // Log notification
+    await prisma.disasterNotificationLog.create({
+      data: {
+        user_id: user.user_id,
+        notification_disaster_id: disasterId
+      }
+
+    });
+
+    console.log(`Sent disaster notification to user ${user.user_id} for disaster ${disasterId}`);
+  }
+
+
+}
+
+
+
+
+
+
