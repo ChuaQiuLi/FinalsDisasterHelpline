@@ -401,31 +401,4 @@ router.post('/saveExpoToken', async (req, res) => {
 
 
 
-router.post('/saveFirebaseToken', async (req, res) => {
-  const { user_id, firebaseToken } = req.body;
-
-  if (!user_id || !firebaseToken) {
-    return res.status(400).json({ error: 'Invalid user or firebaseToken' });
-  }
-
-  try {
-    await prisma.user.update({
-      where: { user_id: parseInt(user_id) },
-      data: { firebaseToken },
-
-    });
-
-    console.log('Firebase token saved for user');
-    res.status(200).json({ message: 'Saved!' });
-
-  } 
-  
-  catch (error) {
-    console.error('Error saving Firebase token:', error);
-    res.status(500).json({ error: 'Failed to save Firebase token' });
-  }
-
-});
-
-
 module.exports = router;
