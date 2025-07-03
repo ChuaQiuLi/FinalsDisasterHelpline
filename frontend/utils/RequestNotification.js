@@ -19,9 +19,7 @@ const usePushNotificationManager = (userId) => {
 
     }
 
-
     const hasPermission = await requestNotificationPermissions();
-
 
     if (!hasPermission) {
 
@@ -34,7 +32,6 @@ const usePushNotificationManager = (userId) => {
 
     const newToken = await registerForPushNotificationsAsync();
 
-    
     if (!newToken) {
       console.log('Failed to generate Expo push token.');
       return;
