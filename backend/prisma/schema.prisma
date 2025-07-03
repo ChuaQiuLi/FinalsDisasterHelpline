@@ -16,7 +16,6 @@ model User {
   theme            String             @default("system")
   country          String?
   expoPushToken    String? 
-  firebaseToken    String?
   userChecklist    Checklist[]        @relation("UserChecklist")
   quizResults      QuizResults[]      @relation("UserResult")
   userBadge        UserBadge[]        @relation("UserBadge")
