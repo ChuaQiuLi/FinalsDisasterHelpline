@@ -2,7 +2,6 @@ package com.qiuli.DisasterHelpline
 
 import android.app.Application
 import android.content.res.Configuration
-import com.google.firebase.FirebaseApp
 
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
@@ -16,6 +15,8 @@ import com.facebook.soloader.SoLoader
 
 import expo.modules.ApplicationLifecycleDispatcher
 import expo.modules.ReactNativeHostWrapper
+
+import com.google.firebase.FirebaseApp
 
 class MainApplication : Application(), ReactApplication {
 
@@ -46,7 +47,6 @@ class MainApplication : Application(), ReactApplication {
 
     // Initialize Firebase
     FirebaseApp.initializeApp(this)
-
 
     SoLoader.init(this, OpenSourceMergedSoMapping)
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
