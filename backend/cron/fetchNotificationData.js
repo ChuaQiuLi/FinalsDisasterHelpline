@@ -1,8 +1,7 @@
 const cron = require('node-cron');
 const crypto = require('crypto');
 const fetchGDACSData = require('../utils/fetchDisaster');
-const { sendExpoPushNotification, sendFirebasePushNotification } = require('../utils/sendNotification');
-
+const { sendPushNotification } = require('../utils/sendNotification');
 
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
@@ -26,7 +25,6 @@ cron.schedule('*/30 * * * *', async () => {
         user_id: true,
         country: true,
         expoPushToken: true,
-        firebaseToken: true,
       }
 
     });
@@ -43,7 +41,6 @@ cron.schedule('*/30 * * * *', async () => {
       select: {
         user_id: true,
         expoPushToken: true,
-        firebaseToken: true,
       }
 
     });
@@ -97,24 +94,12 @@ async function handleDisastersForUser(user, disastersToCheck) {
 
     if (alreadySent) continue;
 
-    const message = {
+    // Send push
+    await sendPushNotification(user.expoPushToken, {
       title: `Disaster Alert: ${dis.eventType}`,
-      body: dis.title,
+      body: dis.title
 
-    };
-
-    if (user.expoPushToken) {
-      await sendExpoPushNotification(user.expoPushToken, message);
-    } 
-    
-    else if (user.firebaseToken) {
-      await sendFirebasePushNotification(user.firebaseToken, message);
-    } 
-    
-    else {
-      console.log(`No push token for user ${user.user_id}, skipping notification.`);
-    }
-
+    });
 
     // Log notification
     await prisma.disasterNotificationLog.create({
@@ -126,7 +111,6 @@ async function handleDisastersForUser(user, disastersToCheck) {
     });
 
     console.log(`Sent disaster notification to user ${user.user_id} for disaster ${disasterId}`);
-
   }
 
 
