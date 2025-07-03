@@ -361,10 +361,8 @@ router.post('/reset-password', async (req, res) => {
 
 
 router.post('/saveExpoToken', async (req, res) => {
-  console.log("Test route hit");
-  const { user_id, expoPushToken } = req.body;
 
-  console.log("Received user_id:", user_id, "expoPushToken:", expoPushToken);
+  const { user_id, expoPushToken } = req.body;
 
   if (!user_id || !expoPushToken) {
     return res.status(400).json({ error: 'Invalid user or expoPushToken' });
