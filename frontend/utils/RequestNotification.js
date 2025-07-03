@@ -55,6 +55,8 @@ const usePushNotificationManager = (userId) => {
 
       }
 
+    }
+
   };
 
 
@@ -76,14 +78,12 @@ const usePushNotificationManager = (userId) => {
   // Run on mount & when app returns to foreground
   useEffect(() => {
     // on initial load
-
     checkAndUpdateToken(); 
 
     const subscription = AppState.addEventListener('change', (nextAppState) => {
       if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
         console.log('App has returned to foreground — rechecking push token.');
-        checkAndUpdateToken();
-
+        checkAndUpdateToken().catch((err) => console.log('Token check failed:', err));
       }
 
       appState.current = nextAppState;
@@ -125,22 +125,32 @@ const usePushNotificationManager = (userId) => {
 
   // Request notification permission
   const requestNotificationPermissions = async () => {
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    console.log('Existing notification permission status:', existingStatus);
 
-    let finalStatus = existingStatus;
+    try {
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      console.log('Existing notification permission status:', existingStatus);
 
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
+      let finalStatus = existingStatus;
+
+      if (existingStatus !== 'granted') {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+
+      if (finalStatus !== 'granted') {
+        console.log('Failed to get push token for push notification!');
+        return false;
+      }
+
+      return true;
+
     }
 
-    if (finalStatus !== 'granted') {
-      console.log('Failed to get push token for push notification!');
+    catch (error) {
+      console.log('Permission request failed:', error);
       return false;
     }
 
-    return true;
     
   };
 
@@ -156,6 +166,11 @@ const usePushNotificationManager = (userId) => {
       }
 
       const tokenData = await Notifications.getExpoPushTokenAsync({ projectId });
+
+      if (!tokenData?.data) {
+        console.log('Push token not returned.');
+        return null;
+      }
 
       console.log('Generated push token:', tokenData?.data);
 
