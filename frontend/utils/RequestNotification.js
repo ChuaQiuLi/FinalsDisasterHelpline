@@ -50,12 +50,10 @@ const usePushNotificationManager = (userId) => {
         console.log('Expo push token saved to database:', newToken);
       }
 
-      catch {
+      catch (error) {
         console.log('Failed to save Expo push token:', error);
 
       }
-
-    }
 
   };
 
