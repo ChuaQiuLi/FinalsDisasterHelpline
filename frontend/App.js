@@ -11,7 +11,8 @@ import store from './store';
 import { checkAuth } from './slices/AuthSlice';
 import { useTheme } from './context/ThemeContext'; 
 import usePushNotificationManager from './utils/RequestNotification';
-
+import * as Notifications from 'expo-notifications';
+import { useNavigationContainerRef } from '@react-navigation/native';
 
 
 // Import HomeScreen component
@@ -49,12 +50,16 @@ const AppContent = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const userId = useSelector((state) => state.auth.user?.id);
   const [themeLoading, setThemeLoading] = useState(true);
- 
-  usePushNotificationManager(isAuthenticated ? userId : null);
+  const navigationRef = useNavigationContainerRef();
+
 
   React.useEffect(() => {
     dispatch(checkAuth());
   }, [dispatch]);
+
+
+  // Register for push notifications when user logs in
+  usePushNotificationManager(isAuthenticated ? userId : null);
 
 
   React.useEffect(() => {
@@ -64,13 +69,30 @@ const AppContent = () => {
 
   }, [isDarkMode, useSystemTheme]);
 
+  
+  // Handle notification tap
+  React.useEffect(() => {
+    const subscription = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log('User tapped notification:', response);
+      
+      // Navigate only if user is authenticated
+      if (isAuthenticated && navigationRef.isReady()) {
+        navigationRef.navigate('Main', { screen: 'Home' });
+      }
+
+    });
+
+    return () => subscription.remove();
+
+  }, [isAuthenticated]);
+
 
   if (loading || themeLoading) {
     return <SplashScreen />;
   }
   
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <StatusBar style={isDarkMode ? 'light' : 'dark'} translucent />
       <RootNavigator theme={theme} />
       <Toast config={toastConfig} />
@@ -271,6 +293,7 @@ const toastConfig = {
       style={{ borderLeftColor: '#4CAF50' }}
       contentContainerStyle={{ backgroundColor: '#4CAF50' }}
       text1Style={{ color: '#FFFFFF' }}
+      text2Style={{ color: '#FFFFFF' }}
     />
   ),
 
