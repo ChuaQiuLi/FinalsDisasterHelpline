@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableHighlight, SectionList, Alert } from 'react-native';
+import { View, Text, TouchableHighlight, SectionList, Alert, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
@@ -15,6 +15,7 @@ const QuizScreen= () => {
     const navigation = useNavigation();
     const isFocused = useIsFocused();
     const [sections, setSections] = useState([]);
+    const [loading, setLoading] = useState(true);
     
 
     useEffect(() => {
@@ -26,6 +27,8 @@ const QuizScreen= () => {
 
 
     const fetchQuizDetails = async () => {
+        setLoading(true);
+
         try {
             const response = await API.get('/api/quiz/details', { params: { user_id: userId } });
             // Transform backend data into SectionList format
@@ -44,6 +47,11 @@ const QuizScreen= () => {
             Alert.alert('Failed to fetch quiz. Please try again later.');
         }
 
+        
+        finally {
+            setLoading(false);
+        }
+
     };
 
 
@@ -51,6 +59,19 @@ const QuizScreen= () => {
         navigation.navigate('QuizQuestionScreen', { quizQuestion });
 
     };
+
+
+    
+    if (loading) {
+        return (
+            <View style={styles.loadingContainer}>
+            <ActivityIndicator size="large" color={isDarkMode ? '#ffffff' : '#000000'} />
+            <Text style={styles.loadingText}>Loading Checklist...</Text>
+            </View>
+        );
+
+    }
+    
 
 
     // show score text colour based on user score range

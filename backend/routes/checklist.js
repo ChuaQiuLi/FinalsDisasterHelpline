@@ -265,7 +265,48 @@ router.post('/add-checklist-item', async (req, res) => {
 
     });
 
-    res.json(checklistTitle);
+    const badge = await prisma.badge.findFirst({
+      where: {
+        badge_name: {
+          contains: 'checklist', 
+          // case-insensitive
+          mode: 'insensitive'   
+        }
+      }
+
+    });
+
+
+    // Handle badge not found
+    if (!badge) {
+      console.warn('Checklist badge not found.');
+      return res.json({ checklistTitle, message: 'Checklist item added, but badge not found.' });
+
+    }
+
+
+    // Assign badge only if user doesn't already have it
+    await prisma.userBadge.upsert({
+      where: {
+        user_id_badge_id: {
+          user_id: parseInt(user_id),
+          badge_id: badge.badge_id,
+        }
+
+      },
+
+      update: {}, 
+      create: {
+        user_id: parseInt(user_id),
+        badge_id: badge.badge_id,
+
+      }
+
+    });
+    
+    
+    res.json({ checklistTitle, message: 'Checklist item added and badge awarded.' });
+
 
   }
 

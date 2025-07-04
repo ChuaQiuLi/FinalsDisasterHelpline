@@ -43,7 +43,7 @@ const lightStyles = StyleSheet.create({
         paddingHorizontal: 15,
         backgroundColor: '#FFFFFF',
         marginLeft: 15,
-        marginTop: 60,
+        marginTop: 40,
 
     },
 
@@ -127,7 +127,7 @@ const darkStyles = StyleSheet.create({
         paddingHorizontal: 15,
         backgroundColor: '#FFFFFF',
         marginLeft: 15,
-        marginTop: 60,
+        marginTop: 40,
 
     },
 

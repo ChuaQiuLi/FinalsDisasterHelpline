@@ -3,6 +3,12 @@ const prisma = new PrismaClient();
 
 
 async function main() {
+  
+  // Delete all badges first
+  await prisma.badge.deleteMany();
+  console.log('All existing badges deleted.');
+
+
   const badges = [
     {
       badge_name: 'Earthquake Quiz Badge',
@@ -67,19 +73,22 @@ async function main() {
       earned_from: 'quiz'
     },
 
+    {
+      badge_name: 'Checklist Badge',
+      description: 'Awarded for completing adding checklist items in checklist.',
+      badge_image_filled: 'volcano_quiz',
+      badge_image_outline: 'volcano_quiz_outline',
+      criteria: 'Get full marks for volcano quiz',
+      earned_from: 'checklist'
+    },
+
 
   ];
 
 
 
   for (const badge of badges) {
-    await prisma.badge.upsert({
-      where: { badge_name: badge.badge_name },
-      update: {}, 
-      create: badge
-
-    });
-
+    await prisma.badge.create({ data: badge });
     console.log(`Seeded badge: ${badge.badge_name}`);
 
   }
