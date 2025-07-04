@@ -75,7 +75,7 @@ async function main() {
 
     {
       badge_name: 'Checklist Badge',
-      description: 'Awarded for completing adding checklist items in checklist.',
+      description: 'Awarded for adding checklist items in checklist.',
       badge_image_filled: 'checklist',
       badge_image_outline: 'checklist_outline',
       criteria: 'Add an item in checklist',
