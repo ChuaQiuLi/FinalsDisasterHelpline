@@ -20,6 +20,19 @@ const lightStyles = StyleSheet.create({
     },
 
 
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    loadingText: {
+        marginTop: 10,
+        fontSize: 16,
+    },
+
+
+
 
 
 
@@ -70,6 +83,21 @@ const darkStyles = StyleSheet.create({
     badgeCriteria: {
         color: '#ffffff',
         marginBottom: 12
+
+    },
+
+    
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#000000',
+    },
+
+    loadingText: {
+        marginTop: 10,
+        fontSize: 16,
+        color: '#FFFFFF',
 
     },
 

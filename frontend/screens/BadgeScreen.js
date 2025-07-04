@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Image } from 'react-native';
+import { View, Text, FlatList, Image, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
@@ -18,6 +18,8 @@ const BadgeScreen = () => {
     const navigation = useNavigation();
     const userId = useSelector((state) => state.auth.user?.id);
     const [badges, setBadge] = useState([]);
+    const [loading, setLoading] = useState(true);
+    
 
 
     const badgeImages = {
@@ -48,6 +50,8 @@ const BadgeScreen = () => {
 
 
     const fetchUserBadge = async () => {
+        setLoading(true);
+
         try {
             const response = await API.get('/api/badge/user-badge', { params: { user_id: userId } });
             setBadge(response.data);
@@ -58,6 +62,11 @@ const BadgeScreen = () => {
             console.error('Error fetching badge:', error);
             Alert.alert('Failed to fetch badge. Please try again later.');
         }
+
+        finally {
+            setLoading(false);
+        }
+
 
     };
 
@@ -82,6 +91,19 @@ const BadgeScreen = () => {
         );
 
     };
+
+
+      if (loading) {
+        return (
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator size="large" color={isDarkMode ? '#ffffff' : '#000000'} />
+            <Text style={styles.loadingText}>Loading Checklist...</Text>
+          </View>
+        );
+    
+      }
+    
+      
 
 
     const previousPage = () => {
