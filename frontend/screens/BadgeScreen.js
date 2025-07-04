@@ -35,6 +35,8 @@ const BadgeScreen = () => {
         'tsunami_quiz_outline': require('../assets/tsunami_badge_outline.png'),
         'volcano_quiz': require('../assets/volcano_badge.png'),
         'volcano_quiz_outline': require('../assets/volcano_badge_outline.png'),
+        'checklist': require('../assets/checklist.png'),
+        'checklist_outline': require('../assets/checklist_outline.png')
 
     };
 
