@@ -24,22 +24,20 @@ const usePushNotificationManager = (userId) => {
 
     if (!hasPermission) {
       console.log('Notification permission not granted — skipping token generation.');
-      
-      
-      if (expoPushToken !== null) {
-        setExpoPushToken(null);
 
-        // Tell backend to remove or clear this user's token
-        try {
-          await API.post('/api/user/saveExpoToken', { user_id: userId, expoPushToken: null });
-          console.log('Cleared Expo push token on backend due to permission denied.');
-        } 
-        
-        catch (err) {
-          console.log('Failed to clear Expo token:', err);
-        }
+      setExpoPushToken(null);
 
+      // Tell backend to remove or clear this user's token
+      try {
+        await API.post('/api/user/saveExpoToken', { user_id: userId, expoPushToken: null });
+        console.log('Cleared Expo push token on backend due to permission denied.');
+      } 
+      
+      catch (err) {
+        console.log('Failed to clear Expo token:', err);
       }
+
+    
 
       return;
 
