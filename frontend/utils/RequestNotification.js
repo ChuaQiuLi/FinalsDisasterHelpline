@@ -37,10 +37,7 @@ const usePushNotificationManager = (userId) => {
         console.log('Failed to clear Expo token:', err);
       }
 
-    
-
       return;
-
 
     }
 
