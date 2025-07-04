@@ -366,10 +366,6 @@ router.post('/saveExpoToken', async (req, res) => {
 
   const { user_id, expoPushToken } = req.body;
 
-  if (!user_id || !expoPushToken) {
-    return res.status(400).json({ error: 'Invalid user or expoPushToken' });
-  }
-
   try {
     const updatedUser = await prisma.user.update({
       where: {

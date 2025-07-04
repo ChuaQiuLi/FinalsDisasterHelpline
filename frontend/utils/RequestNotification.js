@@ -9,6 +9,7 @@ import API from '../api';
 
 const usePushNotificationManager = (userId) => {
   const appState = useRef(AppState.currentState);
+  const lastCheck = useRef(0);
   const [expoPushToken, setExpoPushToken] = useState(null);
 
 
@@ -22,14 +23,30 @@ const usePushNotificationManager = (userId) => {
     const hasPermission = await requestNotificationPermissions();
 
     if (!hasPermission) {
-
       console.log('Notification permission not granted — skipping token generation.');
-      setExpoPushToken(null);
+      
+      
+      if (expoPushToken !== null) {
+        setExpoPushToken(null);
+
+        // Tell backend to remove or clear this user's token
+        try {
+          await API.post('/api/user/saveExpoToken', { user_id: userId, expoPushToken: null });
+          console.log('Cleared Expo push token on backend due to permission denied.');
+        } 
+        
+        catch (err) {
+          console.log('Failed to clear Expo token:', err);
+        }
+
+      }
+
       return;
+
 
     }
 
-
+  
     const newToken = await registerForPushNotificationsAsync();
 
     if (!newToken) {
@@ -77,10 +94,20 @@ const usePushNotificationManager = (userId) => {
     // on initial load
     checkAndUpdateToken(); 
 
+    // 5 seconds cooldown
+    const MIN_INTERVAL = 5000; 
+
+
     const subscription = AppState.addEventListener('change', (nextAppState) => {
       if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
-        console.log('App has returned to foreground — rechecking push token.');
-        checkAndUpdateToken().catch((err) => console.log('Token check failed:', err));
+        const now = Date.now();
+        if (now - lastCheck.current > MIN_INTERVAL) {
+          lastCheck.current = now;
+          console.log('App returned to foreground — checking token.');
+          checkAndUpdateToken().catch((err) => console.log('Token check failed:', err));
+
+        }
+
       }
 
       appState.current = nextAppState;
