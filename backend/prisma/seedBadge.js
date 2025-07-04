@@ -76,8 +76,8 @@ async function main() {
     {
       badge_name: 'Checklist Badge',
       description: 'Awarded for completing adding checklist items in checklist.',
-      badge_image_filled: 'volcano_quiz',
-      badge_image_outline: 'volcano_quiz_outline',
+      badge_image_filled: 'checklist_quiz',
+      badge_image_outline: 'checklist_outline',
       criteria: 'Get full marks for volcano quiz',
       earned_from: 'checklist'
     },

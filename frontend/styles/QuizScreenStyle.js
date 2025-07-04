@@ -81,7 +81,21 @@ const lightStyles = StyleSheet.create({
         width: 80, 
         marginTop: 6,
         
-    }
+    },
+
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+
+    
+    loadingText: {
+        marginTop: 10,
+        fontSize: 16,
+    },
+
 
 
 
@@ -183,7 +197,23 @@ const darkStyles = StyleSheet.create({
         width: 80, 
         marginTop: 10,
         
-    }
+    },
+
+
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#000000',
+    },
+    
+
+    loadingText: {
+        marginTop: 10,
+        fontSize: 16,
+        color: '#FFFFFF',
+
+    },
 
 
 });
