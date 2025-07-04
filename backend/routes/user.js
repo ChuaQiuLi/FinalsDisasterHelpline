@@ -383,6 +383,8 @@ router.post('/saveExpoToken', async (req, res) => {
         
     });
 
+    console.log('DB update success. New token:', updatedUser.expoPushToken);
+
     console.log('Token saved for user');
     res.status(200).json({ message: 'Saved!' });
 
