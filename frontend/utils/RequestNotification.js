@@ -50,6 +50,12 @@ const usePushNotificationManager = (userId) => {
 
     }
 
+    
+    if (expoPushToken && newToken === expoPushToken) {
+      console.log('Token already up-to-date — skipping backend update.');
+      return;
+    }
+
 
     if (newToken !== expoPushToken) {
       setExpoPushToken(newToken);
