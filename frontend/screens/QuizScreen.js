@@ -65,8 +65,8 @@ const QuizScreen= () => {
     if (loading) {
         return (
             <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" color={isDarkMode ? '#ffffff' : '#000000'} />
-            <Text style={styles.loadingText}>Loading Checklist...</Text>
+                <ActivityIndicator size="large" color={isDarkMode ? '#ffffff' : '#000000'} />
+                <Text style={styles.loadingText}>Loading Checklist...</Text>
             </View>
         );
 
