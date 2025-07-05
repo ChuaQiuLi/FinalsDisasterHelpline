@@ -2,6 +2,7 @@
 
 buildscript {
   repositories {
+
     ext {
       compileSdkVersion = 35
       targetSdkVersion = 35
