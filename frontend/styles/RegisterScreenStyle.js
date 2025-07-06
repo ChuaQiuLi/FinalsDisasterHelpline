@@ -24,7 +24,7 @@ const lightStyles = StyleSheet.create({
         marginTop: 20,
     },
     logo: {
-        width: 220,
+        width: 320,
         height: 180,
         marginBottom: 10,
     },
@@ -120,7 +120,7 @@ const darkStyles = StyleSheet.create({
         marginTop: 20,
     },
     logo: {
-        width: 220,
+        width: 320,
         height: 180,
         marginBottom: 10,
     },
