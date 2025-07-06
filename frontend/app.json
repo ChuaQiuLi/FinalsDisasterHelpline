@@ -8,7 +8,7 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/icon_dark.png",
+      "image": "./assets/icon_light.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,7 +16,7 @@
       "bundleIdentifier": "com.qiuli.DisasterHelpline",
       "supportsTablet": true,
       "splash": {
-        "image": "./assets/icon.png",
+        "image": "./assets/app_icon.png",
         "resizeMode": "contain"
       },
       "infoPlist": {
@@ -30,7 +30,7 @@
         "backgroundColor": "#ffffff"
       },
       "splash": {
-        "image": "./assets/icon_dark.png",
+        "image": "./assets/icon_light.png",
         "resizeMode": "contain"
       },
       "permissions": [

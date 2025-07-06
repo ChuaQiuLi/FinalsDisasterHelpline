@@ -1,4 +1,3 @@
-// SplashScreen.js
 import React from 'react';
 import { View, Image } from 'react-native';
 import { lightStyles, darkStyles } from '../styles/SplashScreenStyle'
