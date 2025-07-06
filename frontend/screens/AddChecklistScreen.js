@@ -130,7 +130,7 @@ const AddChecklistScreen = ({ route }) => {
                 dropDownContainerStyle={styles.dropdownContainer}
             />
 
-            <TextInput multiline value={checklistText} onChangeText={setChecklistText} style={styles.textInput} placeholder="write checklist item..." placeholderTextColor={isDarkMode ? '#FFFFFF' : '#888888'} />
+            <TextInput multiline value={checklistText} onChangeText={setChecklistText} style={styles.textInput} placeholder="Write checklist item..." placeholderTextColor={isDarkMode ? '#888888' : '#888888'} />
 
             <TouchableHighlight style={styles.addButton} onPress={handleSave} underlayColor={isDarkMode ? '#999999' : '#999999'} disabled={loading}>
                 <Text style={styles.addButtonText}>{loading ? 'Saving...' : 'Save'}</Text>

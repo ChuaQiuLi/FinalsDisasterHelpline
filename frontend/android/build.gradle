@@ -2,7 +2,6 @@
 
 buildscript {
   repositories {
-
     ext {
       compileSdkVersion = 35
       targetSdkVersion = 35
@@ -18,6 +17,7 @@ buildscript {
     classpath('com.facebook.react:react-native-gradle-plugin')
     classpath('org.jetbrains.kotlin:kotlin-gradle-plugin')
     classpath ('com.google.gms:google-services:4.3.15')
+    
   }
 }
 

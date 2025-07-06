@@ -9,8 +9,8 @@ const SplashScreen = () => {
   const styles = isDarkMode ? darkStyles : lightStyles; 
 
   const logoSource = isDarkMode
-  ? require('../assets/icon_dark_mode.png')
-  : require('../assets/icon.png');
+  ? require('../assets/icon_dark.png')
+  : require('../assets/icon_light.png');
 
 
 
