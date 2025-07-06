@@ -9,9 +9,9 @@ const lightStyles = StyleSheet.create({
         backgroundColor: '#FFFFFF', 
     },
     
-    logo: {
-        width: 220,
-        height: 180,
+    icon: {
+        width: 420,
+        height: 280,
         marginBottom: 10,
     },
 
@@ -26,9 +26,9 @@ const darkStyles = StyleSheet.create({
         backgroundColor: '#000000',
     },
     
-    logo: {
-        width: 220,
-        height: 180,
+    icon: {
+        width: 420,
+        height: 280,
         marginBottom: 10,
     },
 
