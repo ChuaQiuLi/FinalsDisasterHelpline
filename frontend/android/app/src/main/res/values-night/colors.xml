@@ -2,7 +2,5 @@
   <color name="colorStatusBar">#000000</color> 
   <color name="splashscreen_background">#000000</color> 
   <color name="notification_icon_color">#FFFFFF</color>
-  <color name="iconBackground">#000000</color>
 
-  
 </resources>
