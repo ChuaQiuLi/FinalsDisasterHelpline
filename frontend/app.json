@@ -7,17 +7,9 @@
     "icon": "./assets/app_icon.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splashscreen_logo.png",
-      "resizeMode": "contain"
-    },
     "ios": {
       "bundleIdentifier": "com.qiuli.DisasterHelpline",
       "supportsTablet": true,
-      "splash": {
-        "image": "./assets/splashscreen_logo.png",
-        "resizeMode": "contain"
-      },
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "This app needs access to your location to show nearby disasters."
       }
@@ -27,10 +19,6 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/app_icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "splash": {
-        "image": "./assets/splashscreen_logo.png",
-        "resizeMode": "contain"
       },
       "permissions": [
         "ACCESS_FINE_LOCATION",
@@ -50,6 +38,18 @@
         "expo-location",
         {
           "locationAlwaysAndWhenInUsePermission": "Allow Disaster Helpline to use your location to show nearby disasters."
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splashscreen_logo.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "image": "./assets/splashscreen_logo_dark.png",
+            "backgroundColor": "#000000"
+          }
         }
       ]
     ],
