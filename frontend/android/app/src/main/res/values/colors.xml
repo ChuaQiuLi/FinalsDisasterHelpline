@@ -2,5 +2,7 @@
   <!-- Status bar color  -->
   <color name="colorStatusBar">#FFFFFF</color> 
   <color name="splashscreen_background">#FFFFFF</color>
+  <color name="notification_icon_color">#000000</color>
+  <color name="iconBackground">#FFFFFF</color>
 
 </resources>
