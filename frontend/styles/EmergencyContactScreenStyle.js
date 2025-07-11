@@ -74,6 +74,11 @@ const lightStyles = StyleSheet.create({
         marginLeft: 20,
         marginTop: 20
 
+    },
+
+
+    noContact: {
+        marginBottom: 20,
     }
 
 
@@ -163,6 +168,12 @@ const darkStyles = StyleSheet.create({
         marginTop: 20,
         color: '#FFFFFF',
 
+    },
+
+    
+    noContact: {
+        marginBottom: 20,
+        color: '#FFFFFF',
     }
 
     

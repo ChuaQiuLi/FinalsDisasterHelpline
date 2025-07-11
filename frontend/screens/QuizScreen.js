@@ -73,6 +73,27 @@ const QuizScreen= () => {
     }
     
 
+    
+    if (sections.length === 0) {
+        return (
+            <SafeAreaView style={styles.container}>
+            <View style={styles.headerContainer}>
+                <Text style={styles.header}>Disaster Quiz</Text>
+            </View>
+
+            <View>
+                <Text style={styles.noQuizText}>No disaster checklist found</Text>
+            </View>
+
+            </SafeAreaView>
+
+
+        );
+
+    }
+    
+
+
 
     // show score text colour based on user score range
     const getScoreColor = (score) => {

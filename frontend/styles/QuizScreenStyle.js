@@ -96,6 +96,11 @@ const lightStyles = StyleSheet.create({
         fontSize: 16,
     },
 
+    
+    noQuizText: {
+        textAlign: 'center',
+    },
+
 
 
 
@@ -213,6 +218,12 @@ const darkStyles = StyleSheet.create({
         fontSize: 16,
         color: '#FFFFFF',
 
+    },
+
+
+    noQuizText: {
+        textAlign: 'center',
+        color: '#FFFFFF',
     },
 
 

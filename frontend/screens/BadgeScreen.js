@@ -110,6 +110,28 @@ const BadgeScreen = () => {
         navigation.goBack();
 
     }
+
+
+    if (!badges || badges.length === 0) {
+        return (
+            <SafeAreaView style={styles.container}>
+            <View style={styles.header}>
+                <BackButton onPress={previousPage} />
+                <Text style={styles.title}>Badges</Text>
+            </View>
+
+            <View>
+                <Text style={styles.noBadgeText}>No badge found</Text>
+            </View>
+
+            </SafeAreaView>
+
+
+        );
+
+    }
+
+
       
 
 

@@ -31,6 +31,11 @@ const lightStyles = StyleSheet.create({
         fontSize: 16,
     },
 
+    noBadgeText: {
+        textAlign: 'center',
+    },
+
+
 
 
 
@@ -100,6 +105,13 @@ const darkStyles = StyleSheet.create({
         color: '#FFFFFF',
 
     },
+
+    
+    noBadgeText: {
+       textAlign: 'center',
+       color: '#ffffff',
+    },
+
 
 
 

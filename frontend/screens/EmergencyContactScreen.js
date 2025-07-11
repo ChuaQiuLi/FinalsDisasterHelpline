@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, FlatList, TouchableHighlight, Alert, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
-import { lightStyles, darkStyles } from '../styles/EmergencyContactStyle';
+import { lightStyles, darkStyles } from '../styles/EmergencyContactScreenStyle';
 import { useTheme } from '../context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
 import API from '../api';
@@ -112,6 +112,25 @@ function EmergencyContactScreen() {
 
 
     );
+
+
+    if (userCountryEmergContact.length === 0) {
+        return (
+            <SafeAreaView style={styles.container}>
+            <View>
+                <Text style={styles.title}>Disaster Checklist</Text>
+            </View>
+
+            <View>
+                <Text style={styles.noContact}>No emergency contact found</Text>
+            </View>
+
+            </SafeAreaView>
+
+
+        );
+
+    }
 
 
 
