@@ -38,7 +38,8 @@ export default function EditProfileScreen({ route, navigation }) {
     }
 
     try {
-      const response = await API.post('/api/user/update-details', { username: trimmedUsername, email: trimmedEmail, user_id: userId, profileImage });
+      
+      const response = await API.post('/api/user/update-details', { username: trimmedUsername, email: trimmedEmail, user_id: userId });
 
       if (response.status === 200) {
         Toast.show({ type: 'success', position: 'bottom', text1: 'Details updated successfully', visibilityTime: 2000, autoHide: true, bottomOffset: 60 });
@@ -69,12 +70,6 @@ export default function EditProfileScreen({ route, navigation }) {
 
   };
 
-
-  const handleSelectImage = (imageId) => {
-    setProfileImage(imageId);
-    setModalVisible(false);
-
-  };
 
 
   return (
