@@ -128,7 +128,7 @@ router.get('/template-checklist-status', async (req, res) => {
 
   catch (error) {
     console.error('Error fetching checklist status:', error);
-    res.status(500).json({ error: 'Failed to fetch checklist status' });
+    res.status(500).json({ error: 'Failed to fetch template checklist status' });
 
   }
 
