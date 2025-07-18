@@ -94,7 +94,7 @@ router.get('/user-checklist-status', async (req, res) => {
 
   catch (error) {
     console.error('Error fetching checklist:', error);
-    res.status(500).json({ error: 'Failed to fetch checklist' });
+    res.status(500).json({ error: 'Failed to fetch checklist status' });
 
   }
 
