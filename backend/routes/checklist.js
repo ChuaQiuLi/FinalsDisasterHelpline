@@ -334,6 +334,7 @@ router.delete('/delete-user-checklist-item', async (req, res) => {
 
     });
     
+    
     if (!checklistExists) {
       return res.status(404).json({ error: 'Checklist not found' });
     }
