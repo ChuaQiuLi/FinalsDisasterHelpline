@@ -117,7 +117,7 @@ router.get('/check-answer', async (req, res) => {
 
   catch (error) {
     console.error('Error fetching quiz:', error);
-    res.status(500).json({ error: 'Failed to fetch quiz' });
+    res.status(500).json({ error: 'Failed to fetch quiz answer' });
 
   }
 
