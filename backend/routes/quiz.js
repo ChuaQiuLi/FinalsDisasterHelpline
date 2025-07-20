@@ -211,8 +211,8 @@ router.post('/save-score', async (req, res) => {
   }
 
   catch (error) {
-    console.error('Error creating score and badge:', error);
-    res.status(500).json({ error: 'Failed to create score and badge' });
+    console.error('Error saving score and badge:', error);
+    res.status(500).json({ error: 'Failed to save score and badge' });
 
   }
 
