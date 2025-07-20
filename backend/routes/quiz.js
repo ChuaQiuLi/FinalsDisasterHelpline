@@ -130,7 +130,7 @@ router.post('/save-score', async (req, res) => {
 
 
   if (!user_id || !quiz_id || !score) {
-    return res.status(400).json({ error: 'Missing quiz_id, question_id, or answer_id' });
+    return res.status(400).json({ error: 'Missing user_id, quiz_id, or score' });
 
   }
 
