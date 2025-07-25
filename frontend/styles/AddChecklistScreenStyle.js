@@ -53,8 +53,10 @@ const lightStyles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 16,
         alignItems: 'center',
+        alignSelf: 'center',
         justifyContent: 'center',
         margin: 20, 
+        width: 380,
     },
 
     
@@ -126,8 +128,10 @@ const darkStyles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 16,
         alignItems: 'center',
+        alignSelf: 'center',
         justifyContent: 'center',
         margin: 20, 
+        width: 380,
     },
 
     

@@ -16,6 +16,9 @@ export default function ForgetPasswordScreen({ navigation }) {
     const { isDarkMode } = useTheme();
     const [showNewPassword, setShowNewPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [isSendingCode, setIsSendingCode] = useState(false);
+    const [isVerifyingCode, setIsVerifyingCode] = useState(false);
+    const [isResettingPassword, setIsResettingPassword] = useState(false);
     const styles = isDarkMode ? darkStyles : lightStyles;
 
 
@@ -39,6 +42,9 @@ export default function ForgetPasswordScreen({ navigation }) {
     };
 
     const handleEmailVerification = async () => {
+
+        setIsSendingCode(true);
+
         const trimmedEmail = email.trim();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -75,9 +81,15 @@ export default function ForgetPasswordScreen({ navigation }) {
             console.error('Error sending reset code:', error);
         }
 
+        setIsSendingCode(false);
+
     };
 
+
     const handleCodeVerification = async () => {
+
+        setIsVerifyingCode(true);
+
         const trimmedEmail = email.trim();
         const trimmedResetCode = resetCode.trim();
 
@@ -109,19 +121,27 @@ export default function ForgetPasswordScreen({ navigation }) {
             Alert.alert('Error', 'Failed to verify reset code. Please try again.');
         }
 
+        setIsVerifyingCode(false);
+
     };
 
+
     const handlePasswordReset = async () => {
+
+        setIsResettingPassword(true);
+
         const trimmedNewPassword = newPassword.trim();
         const trimmedConfirmNewPassword = confirmNewPassword.trim();
 
         if (trimmedNewPassword !== trimmedConfirmNewPassword) {
             Alert.alert('Error', 'Passwords do not match!');
+            setIsResettingPassword(false);
             return;
         }
 
         if (!validatePassword(trimmedNewPassword) || !validatePassword(trimmedConfirmNewPassword)) {
             Alert.alert('Error', 'Password must be at least 8 characters long, and must contain 1 of upper and lower case letters, numbers, and special characters (e.g., @, #, $, %)');
+            setIsResettingPassword(false);
             return;
         }
 
@@ -129,8 +149,16 @@ export default function ForgetPasswordScreen({ navigation }) {
             const response = await API.post('api/user/reset-password', { email: email.trim(), newPassword: trimmedNewPassword });
             if (response.status === 200) {
                 Alert.alert('Success', 'Your password has been reset successfully!');
+                
+                // Clear form state
+                setEmail('');
+                setResetCode('');
+                setNewPassword('');
+                setConfirmNewPassword('');
                 setStep(1);
+                
                 navigation.navigate('Login');
+
             } 
             
             else {
@@ -143,6 +171,9 @@ export default function ForgetPasswordScreen({ navigation }) {
             console.error('Error resetting password:', error);
             Alert.alert('Error', 'Failed to reset password');
         }
+
+
+        setIsResettingPassword(false);
 
     };
 
@@ -157,31 +188,26 @@ export default function ForgetPasswordScreen({ navigation }) {
                         style={styles.logo}
                     />
                 </View>
+
                 {step === 1 ? (
                     <>
                         <View style={styles.inputContainer}>
                             <View style={styles.header}>
                                 <Text style={styles.title}>Forget Password</Text>
                             </View>
+                            
                             <Text>Enter the email address associated with your account and we'll send you a code to reset your password.</Text>
                             <Text style={styles.label}>Email</Text>
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Email"
-                                value={email}
-                                onChangeText={setEmail}
-                                keyboardType="email-address"
-                                autoCapitalize="none"
-                            />
+                            <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none"/>
+                        
                         </View>
-                        <TouchableHighlight
-                            style={styles.button}
-                            underlayColor={isDarkMode ? '#999999' : '#999999'}
-                            onPress={handleEmailVerification}
-                        >
-                            <Text style={styles.buttonText}>Continue</Text>
+                        
+                        <TouchableHighlight style={styles.button} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleEmailVerification} disabled={isSendingCode}>
+                            <Text style={styles.buttonText}>{isSendingCode ? 'Sending code...' : 'Send Code'}</Text>
                         </TouchableHighlight>
+
                     </>
+                    
                 ) : step === 2 ? (
                     <>
                         <View style={styles.inputContainer}>
@@ -189,77 +215,48 @@ export default function ForgetPasswordScreen({ navigation }) {
                                 We sent a code to <Text style={styles.boldText}>{email}</Text>.
                             </Text>
                             <Text style={styles.label}>Reset Code</Text>
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Enter reset code"
-                                value={resetCode}
-                                onChangeText={setResetCode}
-                                maxLength={6}
-                            />
+                            <TextInput style={styles.input} placeholder="Enter reset code" value={resetCode} onChangeText={setResetCode} maxLength={6} />
                         </View>
-                        <TouchableHighlight
-                            style={styles.button}
-                            underlayColor={isDarkMode ? '#999999' : '#999999'}
-                            onPress={handleCodeVerification}
-                        >
-                            <Text style={styles.buttonText}>Continue</Text>
+
+                        <TouchableHighlight style={styles.button} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleCodeVerification} disabled={isVerifyingCode}>
+                            <Text style={styles.buttonText}>{isVerifyingCode ? 'Verifying...' : 'Continue'}</Text>
                         </TouchableHighlight>
-                        </>
-                    ) : (
-                        <>
-                            <View style={styles.inputContainer}>
-                                <Text style={styles.label}>New Password</Text>
-                                <View style={styles.passwordContainer}>
-                                    <TextInput
-                                        style={styles.input}
-                                        placeholder="New Password"
-                                        value={newPassword}
-                                        onChangeText={setNewPassword}
-                                        secureTextEntry={!showNewPassword}
-                                    />
-                                    <TouchableHighlight
-                                        style={styles.icon}
-                                        onPress={() => setShowNewPassword(!showNewPassword)}
-                                        underlayColor={isDarkMode ? '#999999' : '#999999'}
-                                    >
-                                        <Ionicons
-                                            name={showNewPassword ? 'eye-off' : 'eye'}
-                                            size={24}
-                                        />
-                                    </TouchableHighlight>
-                                </View>
+
+                    </>
+                    
+                ) : (
+
+                    <>
+                        <View style={styles.inputContainer}>
+                            <Text style={styles.label}>New Password</Text>
+                            <View style={styles.passwordContainer}>
+                                <TextInput style={styles.input} placeholder="New Password" value={newPassword} onChangeText={setNewPassword} secureTextEntry={!showNewPassword}/>
+                                
+                                <TouchableHighlight style={styles.icon} onPress={() => setShowNewPassword(!showNewPassword)} underlayColor={isDarkMode ? '#999999' : '#999999'} >
+                                    <Ionicons name={showNewPassword ? 'eye-off' : 'eye'} size={24} />
+                                </TouchableHighlight>
+
+                            </View>
 
                             <Text style={styles.label}>Confirm New Password</Text>
                             <View style={styles.passwordContainer}>
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder="Confirm New Password"
-                                    value={confirmNewPassword}
-                                    onChangeText={setConfirmNewPassword}
-                                    secureTextEntry={!showConfirmPassword}
-                                />
-                                <TouchableHighlight
-                                    style={styles.icon}
-                                    onPress={() => setShowConfirmPassword(!showConfirmPassword)}
-                                    underlayColor={isDarkMode ? '#999999' : '#999999'}
-                                >
-                                    <Ionicons
-                                        name={showConfirmPassword ? 'eye-off' : 'eye'}
-                                        size={24}
-                                    />
-                                </TouchableHighlight>
-                            </View>
+                            
+                            <TextInput style={styles.input} placeholder="Confirm New Password" value={confirmNewPassword} onChangeText={setConfirmNewPassword} secureTextEntry={!showConfirmPassword} />
+                            
+                            <TouchableHighlight style={styles.icon} onPress={() => setShowConfirmPassword(!showConfirmPassword)} underlayColor={isDarkMode ? '#999999' : '#999999'} >
+                                <Ionicons name={showConfirmPassword ? 'eye-off' : 'eye'} size={24}/>
+                            </TouchableHighlight>
 
                         </View>
-                        <TouchableHighlight
-                            style={styles.button}
-                            underlayColor={isDarkMode ? '#999999' : '#999999'}
-                            onPress={handlePasswordReset}
-                        >
-                            <Text style={styles.buttonText}>Reset Password</Text>
-                        </TouchableHighlight>
-                    </>
-                )}
+
+                    </View>
+
+                    <TouchableHighlight style={styles.button} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handlePasswordReset} disabled={isResettingPassword}>
+                        <Text style={styles.buttonText}>{isResettingPassword ? 'Resetting...' : 'Reset Password'}</Text>
+                    </TouchableHighlight>
+                </>
+                
+            )}
 
             </ScrollView>
 

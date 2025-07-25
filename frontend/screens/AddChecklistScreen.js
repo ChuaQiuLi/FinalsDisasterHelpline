@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableHighlight, TextInput } from 'react-native';
+import { View, Text, TouchableHighlight, TextInput, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
@@ -74,7 +74,7 @@ const AddChecklistScreen = ({ route }) => {
 
         // Check if drop down is selected and whether there is checklist item
         if (!select || !checklistText.trim()) {
-            Alert.alert('Error', 'Please select a checklist title and write a checklist item.');
+            Alert.alert('Checklist Not Saved', 'Both title and item are required.');
             return;
         }
 

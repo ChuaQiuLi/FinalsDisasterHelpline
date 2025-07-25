@@ -66,7 +66,7 @@ const QuizScreen= () => {
         return (
             <View style={styles.loadingContainer}>
                 <ActivityIndicator size="large" color={isDarkMode ? '#ffffff' : '#000000'} />
-                <Text style={styles.loadingText}>Loading Checklist...</Text>
+                <Text style={styles.loadingText}>Loading Quiz...</Text>
             </View>
         );
 
@@ -82,7 +82,7 @@ const QuizScreen= () => {
             </View>
 
             <View>
-                <Text style={styles.noQuizText}>No disaster checklist found</Text>
+                <Text style={styles.noQuizText}>No quiz found</Text>
             </View>
 
             </SafeAreaView>

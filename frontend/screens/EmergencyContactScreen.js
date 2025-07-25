@@ -118,7 +118,7 @@ function EmergencyContactScreen() {
         return (
             <SafeAreaView style={styles.container}>
             <View>
-                <Text style={styles.title}>Disaster Checklist</Text>
+                <Text style={styles.title}>{userCountryEmergContact.country_name} Emergency Contact</Text>
             </View>
 
             <View>
