@@ -60,18 +60,15 @@ export default function ForgetPasswordScreen({ navigation }) {
         
 
         try {
-            const response = await fetch('http://192.168.50.181:3000/api/user/request-reset', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email: trimmedEmail }),
-            });
 
-            if (response.ok) {
+            const response = await API.post('/api/user/request-reset', { email: trimmedEmail });
+
+            if (response.status === 200) {
                 Alert.alert('Success', 'A reset code has been sent to your email.');
                 setStep(2);
-            } else {
+            } 
+            
+            else {
                 Alert.alert('Error', 'Failed to send reset code. Please try again.');
             }
         } 
@@ -94,19 +91,13 @@ export default function ForgetPasswordScreen({ navigation }) {
         const trimmedResetCode = resetCode.trim();
 
         try {
-            const response = await fetch('http://192.168.50.181:3000/api/user/verify-code', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+            
+            const response = await API.post('/api/user/verify-code', { email: trimmedEmail, resetCode: trimmedResetCode });
 
-                body: JSON.stringify({ email: trimmedEmail, resetCode: trimmedResetCode }),
+            const data = response.data;
+            
 
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
+            if (response.status === 200) {
                 setStep(3); // Move to the next step
             } 
             
