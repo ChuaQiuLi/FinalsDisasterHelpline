@@ -158,8 +158,8 @@ router.post('/update-details', async (req, res) => {
   }
 
   catch (error) {
-    console.error('Error updating details:', error);
-    res.status(500).json({ error: 'Failed to update details' });
+    console.error('Error updating profile:', error);
+    res.status(500).json({ error: 'Failed to update profile' });
   }
 
 });
