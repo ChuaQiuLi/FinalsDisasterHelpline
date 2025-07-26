@@ -137,7 +137,7 @@ function EmergencyContactScreen() {
     return (
         <SafeAreaView style={styles.container}>
             {/* User country emergency contact and safety guidelines */}
-            <View>
+            <View style={styles.innerContainer}>
                 <Text style={styles.title}>{userCountryEmergContact.country_name} Emergency Contact</Text>
 
                 {userCountryEmergContact.emergencyContact?.length > 0 && (
@@ -146,7 +146,7 @@ function EmergencyContactScreen() {
                         <Text style={styles.contactText}>Police: {userCountryEmergContact.emergencyContact[0].police} </Text>
                         <Text style={styles.contactText}>Fire: {userCountryEmergContact.emergencyContact[0].fire}</Text>
                         <Text style={styles.contactText}>Medical: {userCountryEmergContact.emergencyContact[0].medical}</Text>
-                        <Text style={styles.safetyGuidelineTitle}>Safety Guidlines</Text>
+                        <Text style={styles.safetyGuidelineTitle}>{userCountryEmergContact.country_name} Safety Guidlines</Text>
                         <Text style={styles.safetyGuidelineText}>{userCountryEmergContact.emergencyContact[0].safety_guidelines}</Text>
 
                     </>
@@ -187,7 +187,7 @@ function EmergencyContactScreen() {
                                 <Text style={styles.contactText}>Police: {selectedCountry.emergencyContact[0].police} </Text>
                                 <Text style={styles.contactText}>Fire: {selectedCountry.emergencyContact[0].fire}</Text>
                                 <Text style={styles.contactText}>Medical: {selectedCountry.emergencyContact[0].medical}</Text>
-                                <Text style={styles.safetyGuidelineTitle}>Safety Guidlines</Text>
+                                <Text style={styles.safetyGuidelineTitle}>{selectedCountry.country_name} Safety Guidlines</Text>
                                 <Text style={styles.safetyGuidelineText}>{selectedCountry.emergencyContact[0].safety_guidelines}</Text>
 
                             </>

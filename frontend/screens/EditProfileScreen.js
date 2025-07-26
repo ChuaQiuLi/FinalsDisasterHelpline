@@ -42,7 +42,7 @@ export default function EditProfileScreen({ route, navigation }) {
       const response = await API.post('/api/user/update-details', { username: trimmedUsername, email: trimmedEmail, user_id: userId });
 
       if (response.status === 200) {
-        Toast.show({ type: 'success', position: 'bottom', text1: 'Details updated successfully', visibilityTime: 2000, autoHide: true, bottomOffset: 60 });
+        Toast.show({ type: 'success', position: 'bottom', text1: 'Profile updated successfully', visibilityTime: 2000, autoHide: true, bottomOffset: 60 });
         navigation.goBack();
 
       }
@@ -56,7 +56,7 @@ export default function EditProfileScreen({ route, navigation }) {
     } 
     
     catch (error) {
-      const errorMessage = error.response?.data?.error || 'Failed to update details. Please try again later.';
+      const errorMessage = error.response?.data?.error || 'Failed to update profile. Please try again later.';
       Alert.alert('Error', errorMessage);
 
     } 

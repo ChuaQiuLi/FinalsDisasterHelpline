@@ -6,17 +6,19 @@ const lightStyles = StyleSheet.create({
         flex: 1
     },
 
+    innerContainer: {
+        paddingHorizontal: 15,
+    },
+
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginLeft: 20,
         marginTop: 40
 
     },
 
     contactText: {
         fontSize: 16,
-        marginLeft: 20,
         marginTop: 10
 
     },
@@ -24,13 +26,11 @@ const lightStyles = StyleSheet.create({
     safetyGuidelineTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginLeft: 20,
         marginTop: 25,
     },
 
     safetyGuidelineText: {
         fontSize: 16,
-        marginLeft: 20,
         marginTop: 5
 
     },
@@ -42,7 +42,6 @@ const lightStyles = StyleSheet.create({
         borderRadius: 14,
         paddingHorizontal: 15,
         backgroundColor: '#FFFFFF',
-        marginLeft: 15,
         marginTop: 40,
 
     },
@@ -61,7 +60,6 @@ const lightStyles = StyleSheet.create({
     },
 
     noCountryText: {
-        marginLeft: 20,
         fontSize: 14,
         marginTop: 10
 
@@ -71,7 +69,6 @@ const lightStyles = StyleSheet.create({
     searchTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginLeft: 20,
         marginTop: 20
 
     },
@@ -90,13 +87,18 @@ const darkStyles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#000000',
+
     },
+
+    innerContainer: {
+        paddingHorizontal: 15,
+    },
+
 
     title: {
         fontSize: 20,
         fontWeight: 'bold',
         color: '#FFFFFF',
-        marginLeft: 20,
         marginTop: 40
 
     },
@@ -104,7 +106,6 @@ const darkStyles = StyleSheet.create({
     contactText: {
         fontSize: 16,
         color: '#FFFFFF',
-        marginLeft: 20,
         marginTop: 10
 
     },
@@ -113,13 +114,12 @@ const darkStyles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: '#FFFFFF',
-        marginLeft: 20,
+       
         marginTop: 20,
     },
 
     safetyGuidelineText: {
         fontSize: 16,
-        marginLeft: 20,
         marginTop: 5,
         color: '#FFFFFF',
 
@@ -131,8 +131,7 @@ const darkStyles = StyleSheet.create({
         height: 50,
         borderRadius: 14,
         paddingHorizontal: 15,
-        backgroundColor: '#FFFFFF',
-        marginLeft: 15,
+        backgroundColor: '#FFFFFF',     
         marginTop: 40,
 
     },
@@ -156,7 +155,6 @@ const darkStyles = StyleSheet.create({
     },
 
     noCountryText: {
-        marginLeft: 20,
         fontSize: 14,
         marginTop: 10,
         color: '#FFFFFF',
@@ -165,7 +163,6 @@ const darkStyles = StyleSheet.create({
     searchTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginLeft: 20,
         marginTop: 20,
         color: '#FFFFFF',
 
