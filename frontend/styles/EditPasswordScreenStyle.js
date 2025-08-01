@@ -104,7 +104,6 @@ const darkStyles = StyleSheet.create({
   label: {
     marginBottom: 10,
     fontSize: 18,
-    color: 'black',
     color: '#ffffff',
 
   },
