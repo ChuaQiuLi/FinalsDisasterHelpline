@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import API from '../api';
 import * as SecureStore from 'expo-secure-store';
 
+
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async ({ username, password }, thunkAPI) => {
@@ -11,18 +12,30 @@ export const loginUser = createAsyncThunk(
       if (response.status === 200 && response.data?.token) {
         try {
           await SecureStore.setItemAsync('token', response.data.token);
-        } catch (e) {
+        } 
+        
+        catch (e) {
           console.error('Error saving token securely:', e);
         }
+
         return response.data;
-      } else {
+        
+      } 
+      
+      else {
         return thunkAPI.rejectWithValue(response.data);
       }
-    } catch (error) {
+    } 
+    
+    catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
     }
+
   }
+
 );
+
+
 
 export const checkAuth = createAsyncThunk(
   'auth/checkAuth',
@@ -33,21 +46,29 @@ export const checkAuth = createAsyncThunk(
         return thunkAPI.rejectWithValue({ error: 'No token found' });
       }
 
-      const response = await API.get('/api/auth/me', {
+      const response = await API.get('/api/auth/session/user', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+
       });
 
       if (response.status === 200) {
         return response.data;
-      } else {
+      } 
+      
+      else {
         return thunkAPI.rejectWithValue(response.data);
       }
-    } catch (error) {
+    } 
+    
+    catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
     }
+
   }
+
+
 );
 
 const authSlice = createSlice({
@@ -58,13 +79,16 @@ const authSlice = createSlice({
     loading: false,
     error: null,
   },
+
   reducers: {
     logout: (state) => {
       state.isAuthenticated = false;
       state.user = null;
       SecureStore.deleteItemAsync('token');
     },
+
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state) => {
@@ -94,7 +118,9 @@ const authSlice = createSlice({
         state.error = action.payload.error || action.error.message;
       });
   },
+
 });
+
 
 export const { logout, updateUserDetails } = authSlice.actions;
 export default authSlice.reducer;

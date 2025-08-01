@@ -23,6 +23,8 @@ const EditPasswordScreen = ({ navigation }) => {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+
+
   const validatePassword = (password) => {
     const minLength = 8;
     const hasUpperCase = /[A-Z]/.test(password);
@@ -40,7 +42,10 @@ const EditPasswordScreen = ({ navigation }) => {
     if (isCommon) return 'Password is too common';
 
     return '';
+    
   };
+
+
 
   const handleUpdatePassword = async () => {
     // Prevent multiple requests if already loading
@@ -92,11 +97,14 @@ const EditPasswordScreen = ({ navigation }) => {
 
       }
 
-    } finally {
+    } 
+    
+    finally {
       // Add a delay before resetting loading state
       setTimeout(() => {
         setLoading(false);
       }, 500);
+
     }
 
   };

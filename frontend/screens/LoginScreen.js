@@ -17,11 +17,10 @@ export default function LoginScreen({ navigation }) {
   const styles = isDarkMode ? darkStyles : lightStyles;
   const [showPassword, setShowPassword] = useState(false);
 
-  const logoSource = isDarkMode
-    ? require('../assets/icon_dark.png')
-    : require('../assets/icon_light.png');
+  const logoSource = isDarkMode ? require('../assets/icon_dark.png') : require('../assets/icon_light.png');
 
-  const handleLogin = async () => {
+
+  const handleLogin = async () => { 
     const trimmedUsername = username.trim();
     const trimmedPassword = password.trim();
 
@@ -36,9 +35,13 @@ export default function LoginScreen({ navigation }) {
     const result = await dispatch(loginUser({ username: trimmedUsername, password: trimmedPassword }));
     if (loginUser.fulfilled.match(result)) {
       const token = await SecureStore.getItemAsync('token');
-    } else {
+    } 
+    
+    else {
       Alert.alert('Login failed', 'Invalid username or password');
     }
+
+
   };
 
   
@@ -55,59 +58,47 @@ export default function LoginScreen({ navigation }) {
           <View style={styles.header}>
             <Text style={styles.title}>Login</Text>
           </View>
+
           <View style={styles.usernameContainer}>
-          <Text style={styles.label}>Username</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Username"
-            value={username}
-            onChangeText={setUsername}
-          />
+            <Text style={styles.label}>Username</Text>
+
+            <TextInput style={styles.input} placeholder="Username" value={username} onChangeText={setUsername}/>
+
           </View>
+
           <Text style={styles.label}>Password</Text>
+
           <View style={styles.passwordContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={!showPassword}
-          />
-            <TouchableHighlight 
-              onPress={() => setShowPassword(!showPassword)}
-              style={styles.icon}
-              underlayColor={isDarkMode ? '#999999' : '#999999'}
-            >
-              <Ionicons
-                name={showPassword ? 'eye-off' : 'eye'}
-                size={24}
-              />
+            <TextInput style={styles.input} placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry={!showPassword} />
+            
+            <TouchableHighlight onPress={() => setShowPassword(!showPassword)} style={styles.icon} underlayColor={isDarkMode ? '#999999' : '#999999'}>
+              <Ionicons name={showPassword ? 'eye-off' : 'eye'} size={24}/>
             </TouchableHighlight>
+
           </View>
+
         </View>
+
         <View style={styles.linkContainer}>
-          <TouchableHighlight
-            underlayColor={isDarkMode ? '#999999' : '#999999'}
-            onPress={() => navigation.navigate('ForgetPassword')}
-          >
+          <TouchableHighlight underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={() => navigation.navigate('ForgetPassword')}>
             <Text style={styles.linkText}>Forgot Password?</Text>
           </TouchableHighlight>
 
-          <Text style={styles.registerText}>
-            New to Don't Stress Now?{' '}
-            <Text style={styles.linkText} onPress={() => navigation.navigate('Register')}>
-              Register Here
-            </Text>
+          <Text style={styles.registerText}> New to Disaster Helpline?{' '}
+            <Text style={styles.linkText} onPress={() => navigation.navigate('Register')}> Register Here </Text>
           </Text>
+
         </View>
-        <TouchableHighlight
-          style={styles.loginButton}
-          underlayColor={isDarkMode ? '#999999' : '#999999'}
-          onPress={handleLogin}
-        >
+
+        <TouchableHighlight style={styles.loginButton} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableHighlight>
+
       </ScrollView>
+
     </SafeAreaView>
+
   );
+
+  
 }

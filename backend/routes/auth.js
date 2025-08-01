@@ -6,6 +6,8 @@ const prisma = new PrismaClient();
 
 const router = express.Router();
 
+
+
 // Middleware to verify JWT
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
@@ -20,9 +22,14 @@ const verifyToken = (req, res, next) => {
       return res.status(403).json({ message: 'Failed to authenticate token' });
     }
     req.userId = decoded.userId;
+
     next();
+
   });
+
+
 };
+
 
 
 router.post('/register', async (req, res) => {
@@ -35,22 +42,26 @@ router.post('/register', async (req, res) => {
       where: {
         OR: [
           { username: username },
-          { email: email },
+          { email: email }
         ],
+
       },
+
     });
+
 
     if (existingUser) {
       if (existingUser.username === username) {
-        return res.status(400).json({ error: 'Username already exists' });
+        return res.status(400).json({ error: 'Username already exists. Please choose another username.' });
       } 
       
+
       if (existingUser.email === email) {
-        return res.status(400).json({ error: 'Email already exists' });
+        return res.status(400).json({ error: 'Email already exists. Please choose another email address.' });
       }
 
-    }
 
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await prisma.User.create({
@@ -75,7 +86,10 @@ router.post('/register', async (req, res) => {
 
 });
 
-const login = async (req, res) => {
+
+
+
+router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
@@ -116,11 +130,12 @@ const login = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 
-};
+});
 
 
 
-const getAuthenticatedUser = async (req, res) => {
+
+router.get('/session/user', verifyToken, async (req, res) => {
   try {
     const user = await prisma.User.findUnique({
       where: { user_id: req.userId },
@@ -135,18 +150,18 @@ const getAuthenticatedUser = async (req, res) => {
       user: {
         id: user.user_id,
         username: user.username,
-        email: user.email,
+        email: user.email
       },
+
     });
+
   } 
   
   catch (error) {
     res.status(500).json({ error: error.message });
   }
 
-};
+});
 
-router.post('/login', login);
-router.get('/me', verifyToken, getAuthenticatedUser);
 
 module.exports = router;
