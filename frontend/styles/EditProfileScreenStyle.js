@@ -34,6 +34,7 @@ const lightStyles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: '#FFFFFF',
     borderBottomWidth: 1, 
+    color: '#000000',
   },
 
   saveButton: {
@@ -107,6 +108,7 @@ const darkStyles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderBottomWidth: 1,
     borderRadius: 4, 
+    color: '#000000',
   },
 
   saveButton: {

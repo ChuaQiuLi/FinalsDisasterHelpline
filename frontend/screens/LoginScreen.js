@@ -61,15 +61,14 @@ export default function LoginScreen({ navigation }) {
 
           <View style={styles.usernameContainer}>
             <Text style={styles.label}>Username</Text>
-
-            <TextInput style={styles.input} placeholder="Username" value={username} onChangeText={setUsername}/>
+            <TextInput style={styles.input} placeholder="Username" value={username} onChangeText={setUsername} autoCapitalize="none" cursorColor="#000000" />
 
           </View>
 
           <Text style={styles.label}>Password</Text>
 
           <View style={styles.passwordContainer}>
-            <TextInput style={styles.input} placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry={!showPassword} />
+            <TextInput style={styles.input} placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry={!showPassword} cursorColor="#000000" />
             
             <TouchableHighlight onPress={() => setShowPassword(!showPassword)} style={styles.icon} underlayColor={isDarkMode ? '#999999' : '#999999'}>
               <Ionicons name={showPassword ? 'eye-off' : 'eye'} size={24}/>

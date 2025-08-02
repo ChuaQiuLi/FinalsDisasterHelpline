@@ -90,10 +90,10 @@ export default function EditProfileScreen({ route, navigation }) {
 
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Username</Text>
-          <TextInput style={styles.input} value={username} onChangeText={setUsername} />
+          <TextInput style={styles.input} value={username} onChangeText={setUsername} autoCapitalize="none" cursorColor="#000000" />
 
           <Text style={styles.label}>Email</Text>
-          <TextInput style={styles.input} value={email} onChangeText={setEmail} />
+          <TextInput style={styles.input} value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" cursorColor="#000000" />
 
         </View>
 

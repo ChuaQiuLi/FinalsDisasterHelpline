@@ -43,6 +43,7 @@ const lightStyles = StyleSheet.create({
         marginBottom: 20,
         paddingHorizontal: 10,
         backgroundColor: '#FFFFFF',
+        color: '#000000',
     },
     button: {
         backgroundColor: '#5eafa1',
@@ -118,6 +119,7 @@ const darkStyles = StyleSheet.create({
         marginBottom: 20,
         paddingHorizontal: 10,
         backgroundColor: '#FFFFFF',
+        color: '#000000',
     },
     button: {
         backgroundColor: '#5eafa1',

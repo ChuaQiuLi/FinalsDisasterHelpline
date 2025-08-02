@@ -132,63 +132,37 @@ const EditPasswordScreen = ({ navigation }) => {
 
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Current Password</Text>
-          <View style={styles.passwordContainer}>
-            <TextInput style={styles.input} value={currentPassword} placeholder='Current Password' onChangeText={setCurrentPassword}
-              secureTextEntry={!showCurrentPassword} />
 
-            <TouchableHighlight
-              style={styles.icon}
-              onPress={() => setShowCurrentPassword(!showCurrentPassword)}
-              underlayColor={isDarkMode ? '#999999' : '#999999'}
-            >
-              <Ionicons
-                name={showCurrentPassword ? 'eye-off' : 'eye'}
-                size={24}
-              />
+          <View style={styles.passwordContainer}>
+            <TextInput style={styles.input} value={currentPassword} placeholder='Current Password' onChangeText={setCurrentPassword} secureTextEntry={!showCurrentPassword} cursorColor="#000000" />
+            <TouchableHighlight style={styles.icon} onPress={() => setShowCurrentPassword(!showCurrentPassword)} underlayColor={isDarkMode ? '#999999' : '#999999'}>
+              <Ionicons name={showCurrentPassword ? 'eye-off' : 'eye'} size={24}/>
             </TouchableHighlight>
+
           </View>
+
 
           <Text style={styles.label}>New Password</Text>
           <View style={styles.passwordContainer}>
-            <TextInput style={styles.input} value={newPassword} placeholder='New Password' onChangeText={setNewPassword}
-              secureTextEntry={!showNewPassword} />
-
-            <TouchableHighlight
-              style={styles.icon}
-              onPress={() => setShowNewPassword(!showNewPassword)}
-              underlayColor={isDarkMode ? '#999999' : '#999999'}
-            >
-              <Ionicons
-                name={showNewPassword ? 'eye-off' : 'eye'}
-                size={24}
-              />
+            <TextInput style={styles.input} value={newPassword} placeholder='New Password' onChangeText={setNewPassword} secureTextEntry={!showNewPassword} cursorColor="#000000" />
+            <TouchableHighlight style={styles.icon} onPress={() => setShowNewPassword(!showNewPassword)} underlayColor={isDarkMode ? '#999999' : '#999999'} >
+              <Ionicons name={showNewPassword ? 'eye-off' : 'eye'} size={24}/>
             </TouchableHighlight>
           </View>
+
 
           <Text style={styles.label}>Confirm Password</Text>
           <View style={styles.passwordContainer}>
-            <TextInput style={styles.input} value={repeatPassword} placeholder='Confirm Password' onChangeText={setRepeatPassword}
-              secureTextEntry={!showConfirmPassword} />
-
-            <TouchableHighlight
-              style={styles.icon}
-              onPress={() => setShowConfirmPassword(!showConfirmPassword)}
-              underlayColor={isDarkMode ? '#999999' : '#999999'}
-            >
-              <Ionicons
-                name={showConfirmPassword ? 'eye-off' : 'eye'}
-                size={24}
-              />
+            <TextInput style={styles.input} value={repeatPassword} placeholder='Confirm Password' onChangeText={setRepeatPassword} secureTextEntry={!showConfirmPassword} cursorColor="#000000" />
+            <TouchableHighlight style={styles.icon} onPress={() => setShowConfirmPassword(!showConfirmPassword)} underlayColor={isDarkMode ? '#999999' : '#999999'} >
+              <Ionicons name={showConfirmPassword ? 'eye-off' : 'eye'} size={24} />
             </TouchableHighlight>
+
           </View>
+
         </View>
 
-        <TouchableHighlight
-          style={styles.saveButton}
-          underlayColor={isDarkMode ? '#999999' : '#999999'}
-          onPress={handleUpdatePassword}
-          disabled={loading}
-        >
+        <TouchableHighlight style={styles.saveButton} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleUpdatePassword} disabled={loading}>
           <Text style={styles.saveButtonText}>Update Password</Text>
         </TouchableHighlight>
 

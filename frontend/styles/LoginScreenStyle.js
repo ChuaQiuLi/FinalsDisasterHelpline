@@ -51,6 +51,7 @@ const lightStyles = StyleSheet.create({
         marginBottom: 20,
         paddingHorizontal: 10,
         backgroundColor: '#FFFFFF',
+        color: '#000000',
     },
     linkContainer: {
         marginTop: 10,
@@ -143,6 +144,7 @@ const darkStyles = StyleSheet.create({
         marginBottom: 20,
         paddingHorizontal: 10,
         backgroundColor: '#FFFFFF',
+        color: '#000000',
     },
     linkContainer: {
         marginTop: 10,
