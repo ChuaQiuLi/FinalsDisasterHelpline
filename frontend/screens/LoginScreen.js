@@ -3,12 +3,14 @@ import { View, Text, TextInput, TouchableHighlight, Image, ScrollView, Alert } f
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch} from 'react-redux';
+import * as SecureStore from 'expo-secure-store';
 import { loginUser } from '../slices/AuthSlice';
 import { lightStyles, darkStyles } from '../styles/LoginScreenStyle';
 import { useTheme } from '../context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
 
-import * as SecureStore from 'expo-secure-store';
+
+
 
 const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
@@ -101,7 +103,7 @@ const LoginScreen = ({ navigation }) => {
   );
 
   
-}
+};
 
 
 export default LoginScreen;

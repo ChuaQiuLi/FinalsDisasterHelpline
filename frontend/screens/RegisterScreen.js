@@ -162,7 +162,7 @@ const RegisterScreen = ({ navigation }) => {
   );
 
 
-}
+};
 
 
 
