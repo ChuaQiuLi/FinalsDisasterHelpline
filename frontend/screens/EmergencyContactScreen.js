@@ -206,7 +206,7 @@ function EmergencyContactScreen() {
     )
 
 
-}
+};
 
 
 export default EmergencyContactScreen;

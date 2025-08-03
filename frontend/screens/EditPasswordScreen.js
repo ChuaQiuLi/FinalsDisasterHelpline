@@ -8,7 +8,10 @@ import { useSelector } from 'react-redux';
 import API from '../api';
 import { Ionicons } from '@expo/vector-icons';
 
+
 import BackButton from '../components/BackButton';
+
+
 
 const EditPasswordScreen = ({ navigation }) => {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -118,7 +121,7 @@ const EditPasswordScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.header}>
           <BackButton onPress={previousPage} />
           <Text style={styles.title}>Edit Password</Text>
@@ -169,7 +172,11 @@ const EditPasswordScreen = ({ navigation }) => {
       </ScrollView>
 
     </SafeAreaView>
+
+
   );
-}
+
+
+};
 
 export default EditPasswordScreen;

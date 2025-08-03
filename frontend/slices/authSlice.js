@@ -3,9 +3,7 @@ import API from '../api';
 import * as SecureStore from 'expo-secure-store';
 
 
-export const loginUser = createAsyncThunk(
-  'auth/loginUser',
-  async ({ username, password }, thunkAPI) => {
+export const loginUser = createAsyncThunk( 'auth/loginUser', async ({ username, password }, thunkAPI) => {
     try {
       const response = await API.post('/api/auth/login', { username, password });
 
@@ -37,21 +35,14 @@ export const loginUser = createAsyncThunk(
 
 
 
-export const checkAuth = createAsyncThunk(
-  'auth/checkAuth',
-  async (_, thunkAPI) => {
+export const checkAuth = createAsyncThunk( 'auth/checkAuth',  async (_, thunkAPI) => {
     try {
       const token = await SecureStore.getItemAsync('token');
       if (!token) {
         return thunkAPI.rejectWithValue({ error: 'No token found' });
       }
 
-      const response = await API.get('/api/auth/session/user', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-
-      });
+      const response = await API.get('/api/auth/session/user', { headers: { Authorization: `Bearer ${token}`, }, });
 
       if (response.status === 200) {
         return response.data;
@@ -60,6 +51,7 @@ export const checkAuth = createAsyncThunk(
       else {
         return thunkAPI.rejectWithValue(response.data);
       }
+
     } 
     
     catch (error) {
@@ -70,6 +62,8 @@ export const checkAuth = createAsyncThunk(
 
 
 );
+
+
 
 const authSlice = createSlice({
   name: 'auth',

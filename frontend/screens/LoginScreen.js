@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableHighlight, Image, ScrollView, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch} from 'react-redux';
 import { loginUser } from '../slices/AuthSlice';
 import { lightStyles, darkStyles } from '../styles/LoginScreenStyle';
@@ -9,7 +10,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import * as SecureStore from 'expo-secure-store';
 
-export default function LoginScreen({ navigation }) {
+const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <KeyboardAwareScrollView contentContainerStyle={styles.scrollViewContent} enableOnAndroid={true} keyboardShouldPersistTaps="handled">
         <View style={styles.logoContainer}>
           <Image source={logoSource} style={styles.logo} />
         </View>
@@ -93,7 +94,7 @@ export default function LoginScreen({ navigation }) {
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableHighlight>
 
-      </ScrollView>
+      </KeyboardAwareScrollView>
 
     </SafeAreaView>
 
@@ -101,3 +102,6 @@ export default function LoginScreen({ navigation }) {
 
   
 }
+
+
+export default LoginScreen;

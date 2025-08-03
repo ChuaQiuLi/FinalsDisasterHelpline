@@ -7,7 +7,8 @@ import { Ionicons } from '@expo/vector-icons';
 import API from '../api';
 
 
-export default function ForgetPasswordScreen({ navigation }) {
+
+const ForgetPasswordScreen = ({ navigation }) => {
     const [step, setStep] = useState(1);
     const [email, setEmail] = useState('');
     const [resetCode, setResetCode] = useState('');
@@ -251,4 +252,9 @@ export default function ForgetPasswordScreen({ navigation }) {
 
         </SafeAreaView>
     );
-}
+    
+};
+
+
+
+export default ForgetPasswordScreen;

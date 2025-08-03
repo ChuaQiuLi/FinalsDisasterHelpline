@@ -15,12 +15,11 @@ const SplashScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={logoSource} 
-        style={styles.icon}
-      />
+      <Image source={logoSource}  style={styles.icon} />
     </View>
+    
   );
+
 };
 
 

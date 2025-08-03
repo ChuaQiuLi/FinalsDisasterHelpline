@@ -8,11 +8,13 @@ import { logout } from '../slices/AuthSlice';
 import API from '../api';
 import { useTheme } from '../context/ThemeContext'; 
 
+
 // Import components
 import BackButton from '../components/BackButton';
 
 
-export default function SettingScreen({ navigation }) {
+
+const SettingScreen = ({ navigation }) => {
   const { isDarkMode, toggleTheme, useSystemTheme, setUseSystemTheme } = useTheme();
   const dispatch = useDispatch();
   const styles = isDarkMode ? darkStyles : lightStyles;
@@ -141,4 +143,8 @@ export default function SettingScreen({ navigation }) {
 
   );
 
-}
+};
+
+
+
+export default SettingScreen;

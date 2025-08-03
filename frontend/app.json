@@ -2,7 +2,7 @@
   "expo": {
     "name": "Disaster Helpline",
     "slug": "frontend",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/app_icon.png",
     "userInterfaceStyle": "automatic",
@@ -50,7 +50,7 @@
             "image": "./assets/splashscreen_logo_dark.png",
             "backgroundColor": "#000000"
           },
-          "imageWidth": 200
+          "imageWidth": 400
         }
       ]
     ],

@@ -9,8 +9,8 @@ const router = express.Router();
 
 
 // Middleware to verify JWT
-const verifyToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
+const verifyJWTToken = (req, res, next) => {
+  const authHeader = req.headers['Authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
 
@@ -135,7 +135,7 @@ router.post('/login', async (req, res) => {
 
 
 
-router.get('/session/user', verifyToken, async (req, res) => {
+router.get('/session/user', verifyJWTToken, async (req, res) => {
   try {
     const user = await prisma.User.findUnique({
       where: { user_id: req.userId },

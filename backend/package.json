@@ -1,6 +1,6 @@
 {
   "name": "backend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "seed:Contact": "node prisma/seedContact.js",
     "seed:Checklist": "node prisma/seedChecklist.js",

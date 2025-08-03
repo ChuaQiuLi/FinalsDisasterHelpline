@@ -7,7 +7,7 @@
       "developmentClient": false,
       "distribution": "store",
       "android": {
-        "buildType": "apk" // or "aab" if you prefer app-bundle
+        "buildType": "app-bundle" 
       }
     }
   }

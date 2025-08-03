@@ -9,8 +9,7 @@ import API from '../api';
 import BackButton from '../components/BackButton';
 
 
-
-export default function EditProfileScreen({ route, navigation }) {
+const EditProfileScreen = ({ route, navigation }) => {
   const { userDetails } = route.params;
   const [username, setUsername] = useState(userDetails.username);
   const [email, setEmail] = useState(userDetails.email);
@@ -31,7 +30,7 @@ export default function EditProfileScreen({ route, navigation }) {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(trimmedEmail)) {
       Alert.alert('Error', 'Invalid email format!');
       return;
 
@@ -48,7 +47,7 @@ export default function EditProfileScreen({ route, navigation }) {
       }
 
       else if (response.status === 400) {
-        const { error } = await response.json();
+        const { error } = response.data;
         setErrorMessage(error);
 
       }
@@ -74,7 +73,7 @@ export default function EditProfileScreen({ route, navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.header}>
           <BackButton onPress={() => navigation.goBack()} />
           <Text style={styles.title}>Edit Profile</Text>
@@ -107,4 +106,7 @@ export default function EditProfileScreen({ route, navigation }) {
 
   );
 
-}
+};
+
+
+export default EditProfileScreen;

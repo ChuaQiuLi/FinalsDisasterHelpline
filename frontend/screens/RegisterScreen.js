@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableHighlight, Image, ScrollView, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { lightStyles, darkStyles } from '../styles/RegisterScreenStyle';
 import { useTheme } from '../context/ThemeContext';
 import API from '../api';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function RegisterScreen({ navigation }) {
+
+
+
+const RegisterScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
@@ -100,7 +104,7 @@ export default function RegisterScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <KeyboardAwareScrollView contentContainerStyle={styles.scrollViewContent} enableOnAndroid={true} keyboardShouldPersistTaps="handled">
         <View style={styles.logoContainer}>
           <Image source={logoSource} style={styles.logo} />
         </View>
@@ -151,7 +155,7 @@ export default function RegisterScreen({ navigation }) {
           <Text style={styles.registerButtonText}> {loading ? 'Registering...' : 'Register'} </Text>
         </TouchableHighlight>
 
-      </ScrollView>
+      </KeyboardAwareScrollView>
 
     </SafeAreaView>
 
@@ -159,3 +163,10 @@ export default function RegisterScreen({ navigation }) {
 
 
 }
+
+
+
+export default RegisterScreen;
+
+
+
