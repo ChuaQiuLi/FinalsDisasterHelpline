@@ -10,7 +10,7 @@ const router = express.Router();
 
 // Middleware to verify JWT
 const verifyJWTToken = (req, res, next) => {
-  const authHeader = req.headers['Authorization'];
+  const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
 

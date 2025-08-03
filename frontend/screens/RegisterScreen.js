@@ -115,7 +115,7 @@ const RegisterScreen = ({ navigation }) => {
           </View>
 
           <Text style={styles.label}>Username</Text>
-          <TextInput style={styles.input} placeholder="Username" value={username} onChangeText={setUsername} autoCapitalize="none" cursorColor="#000000" />
+          <TextInput style={styles.input} placeholder="Username" value={username} onChangeText={setUsername} autoCorrect={false} autoCapitalize="none" cursorColor="#000000" />
           
           <Text style={styles.label}>Email</Text>
           <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setemail} keyboardType="email-address" autoCapitalize="none" cursorColor="#000000" />

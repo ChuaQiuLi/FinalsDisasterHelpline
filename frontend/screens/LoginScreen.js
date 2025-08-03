@@ -64,7 +64,7 @@ const LoginScreen = ({ navigation }) => {
 
           <View style={styles.usernameContainer}>
             <Text style={styles.label}>Username</Text>
-            <TextInput style={styles.input} placeholder="Username" value={username} onChangeText={setUsername} autoCapitalize="none" cursorColor="#000000" />
+            <TextInput style={styles.input} placeholder="Username" value={username} onChangeText={setUsername} autoCorrect={false} autoCapitalize="none" cursorColor="#000000" />
 
           </View>
 
