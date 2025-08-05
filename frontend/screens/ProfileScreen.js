@@ -73,11 +73,6 @@ const ProfileScreen = ({ navigation }) => {
   };
 
 
-  const changePassword = () => {
-    navigation.navigate('ChangePasswordScreen');
-  };
-
-
   
   const viewBadges = () => {
     navigation.navigate('BadgeScreen');
@@ -106,12 +101,8 @@ const ProfileScreen = ({ navigation }) => {
 
       </View>
 
-        <TouchableHighlight underlayColor={isDarkMode ? '#999999' : '#999999'} style={styles.badgeButton} onPress={viewBadges}>
-          <Text style={styles.badgeText}>View Earned Badges</Text>
-        </TouchableHighlight>
-
-      <TouchableHighlight underlayColor={isDarkMode ? '#999999' : '#999999'} style={styles.changePasswordButton} onPress={changePassword}>
-        <Text style={styles.changePasswordButtonText}>Change Password</Text>
+      <TouchableHighlight underlayColor={isDarkMode ? '#999999' : '#999999'} style={styles.badgeButton} onPress={viewBadges}>
+        <Text style={styles.badgeText}>View Earned Badges</Text>
       </TouchableHighlight>
 
       <TouchableHighlight underlayColor={isDarkMode ? '#999999' : '#999999'} style={styles.editProfileButton} onPress={handleEditProfile}>

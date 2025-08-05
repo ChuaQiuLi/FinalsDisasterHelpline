@@ -95,6 +95,12 @@ const SettingScreen = ({ navigation }) => {
   }
 
 
+  const changePassword = () => {
+    navigation.navigate('ChangePasswordScreen');
+  };
+
+
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -126,13 +132,18 @@ const SettingScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.buttonContainer}>
+
+          <TouchableHighlight underlayColor={isDarkMode ? '#999999' : '#999999'} style={styles.changePasswordButton} onPress={changePassword}>
+            <Text style={styles.changePasswordButtonText}>Change Password</Text>
+          </TouchableHighlight>
+
           <TouchableHighlight style={styles.logoutButton} onPress={handleLogout} underlayColor={isDarkMode ? '#999999' : '#999999'}>
             <Text style={styles.logoutButtonText}>Log Out</Text>
           </TouchableHighlight>
 
 
-          <TouchableHighlight style={styles.acctDeleteButton} onPress={handleDeleteAccount} underlayColor={isDarkMode ? '#999999' : '#999999'}>
-            <Text style={styles.acctDeleteButtonText}>Delete Account</Text>
+          <TouchableHighlight style={styles.accountDeleteButton} onPress={handleDeleteAccount} underlayColor={isDarkMode ? '#999999' : '#999999'}>
+            <Text style={styles.accountDeleteButtonText}>Delete Account</Text>
           </TouchableHighlight>
 
         </View>

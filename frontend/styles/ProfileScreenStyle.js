@@ -68,10 +68,10 @@ const lightStyles = StyleSheet.create({
 
     editProfileButton: {
         width: '80%',
-        backgroundColor: '#5eafa1',
+        backgroundColor: '#20C997',
         padding: 10,
         alignItems: 'center',
-        borderRadius: 12,
+        borderRadius: 10,
         marginTop: 20,
     },
 
@@ -80,19 +80,6 @@ const lightStyles = StyleSheet.create({
         fontSize: 16,
     },
 
-    changePasswordButton: {
-        width: '80%',
-        backgroundColor: '#C41E3A',
-        padding: 10,
-        alignItems: 'center',
-        borderRadius: 12,
-        marginTop: 20,
-    },
-
-    changePasswordButtonText: {
-        color: '#FFFFFF',
-        fontSize: 16,
-    },
 
     settingsIcon: {
         color: 'black'
@@ -100,10 +87,10 @@ const lightStyles = StyleSheet.create({
 
     badgeButton: {
         width: '80%',
-        backgroundColor: '#1976D2',
+        backgroundColor: '#6F42C1',
         padding: 10,
         alignItems: 'center',
-        borderRadius: 12,
+        borderRadius: 10,
         marginTop: 25,
     },
 
@@ -196,10 +183,10 @@ const darkStyles = StyleSheet.create({
 
     editProfileButton: {
         width: '80%',
-        backgroundColor: '#5eafa1',
+        backgroundColor: '#20C997',
         padding: 10,
         alignItems: 'center',
-        borderRadius: 12,
+        borderRadius: 10,
         marginTop: 20,
     },
 
@@ -208,19 +195,6 @@ const darkStyles = StyleSheet.create({
         fontSize: 16,
     },
 
-    changePasswordButton: {
-        width: '80%',
-        backgroundColor: '#C41E3A',
-        padding: 10,
-        alignItems: 'center',
-        borderRadius: 12,
-        marginTop: 20,
-    },
-    
-    changePasswordButtonText: {
-        color: '#FFFFFF',
-        fontSize: 16,
-    },
 
     settingsIcon: {
         color: '#FFFFFF'
@@ -228,10 +202,10 @@ const darkStyles = StyleSheet.create({
 
     badgeButton: {
         width: '80%',
-        backgroundColor: '#4C9AFF',
+        backgroundColor: '#6F42C1',
         padding: 10,
         alignItems: 'center',
-        borderRadius: 12,
+        borderRadius: 10,
         marginTop: 25,
     },
 

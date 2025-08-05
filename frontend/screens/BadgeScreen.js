@@ -97,7 +97,7 @@ const BadgeScreen = () => {
         return (
           <View style={styles.loadingContainer}>
             <ActivityIndicator size="large" color={isDarkMode ? '#ffffff' : '#000000'} />
-            <Text style={styles.loadingText}>Loading Checklist...</Text>
+            <Text style={styles.loadingText}>Loading Badges...</Text>
           </View>
         );
     
