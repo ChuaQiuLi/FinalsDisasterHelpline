@@ -44,7 +44,7 @@ const resetRequests = {};
 
 
 
-router.get('/details', async (req, res) => {
+router.get('/account-details', async (req, res) => {
   try {
 
     const { user_id } = req.query;
@@ -73,7 +73,7 @@ router.get('/details', async (req, res) => {
 });
 
 
-router.post('/change-password', async (req, res) => {
+router.post('/update-password', async (req, res) => {
 
   const { user_id, currentPassword, newPassword } = req.body;
 
@@ -117,7 +117,7 @@ router.post('/change-password', async (req, res) => {
 
 
 
-router.post('/update-details', async (req, res) => {
+router.post('/update-account', async (req, res) => {
 
   const { user_id, username, email } = req.body;
 

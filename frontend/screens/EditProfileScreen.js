@@ -38,7 +38,7 @@ const EditProfileScreen = ({ route, navigation }) => {
 
     try {
       
-      const response = await API.post('/api/user/update-details', { username: trimmedUsername, email: trimmedEmail, user_id: userId });
+      const response = await API.post('/api/user/update-account', { username: trimmedUsername, email: trimmedEmail, user_id: userId });
 
       if (response.status === 200) {
         Toast.show({ type: 'success', position: 'bottom', text1: 'Profile updated successfully', visibilityTime: 2000, autoHide: true, bottomOffset: 60 });

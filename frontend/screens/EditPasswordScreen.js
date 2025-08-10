@@ -71,7 +71,7 @@ const EditPasswordScreen = ({ navigation }) => {
     }
 
     try {
-      const response = await API.post('/api/user/change-password', { user_id: userId, currentPassword: trimmedCurrentPassword, newPassword: newPassword });
+      const response = await API.post('/api/user/update-password', { user_id: userId, currentPassword: trimmedCurrentPassword, newPassword: newPassword });
 
       if (response.status === 200) {
         Toast.show({ type: 'success', position: 'bottom', text1: 'Password updated successfully', visibilityTime: 2000, autoHide: true, bottomOffset: 60, });
@@ -124,7 +124,7 @@ const EditPasswordScreen = ({ navigation }) => {
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.header}>
           <BackButton onPress={previousPage} />
-          <Text style={styles.title}>Edit Password</Text>
+          <Text style={styles.title}>Change Password</Text>
         </View>
 
         {errorMessage ? (
@@ -166,7 +166,7 @@ const EditPasswordScreen = ({ navigation }) => {
         </View>
 
         <TouchableHighlight style={styles.saveButton} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleUpdatePassword} disabled={loading}>
-          <Text style={styles.saveButtonText}>Update Password</Text>
+          <Text style={styles.saveButtonText}>Change Password</Text>
         </TouchableHighlight>
 
       </ScrollView>

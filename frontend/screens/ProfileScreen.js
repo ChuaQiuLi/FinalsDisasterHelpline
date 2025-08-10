@@ -38,7 +38,7 @@ const ProfileScreen = ({ navigation }) => {
     }
 
     try {
-      const response = await API.get('/api/user/details',  { params: { user_id: userId }});
+      const response = await API.get('/api/user/account-details',  { params: { user_id: userId }});
       
       if (response.status === 200) {
         const { username, email } = response.data;
