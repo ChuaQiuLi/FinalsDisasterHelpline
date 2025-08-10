@@ -75,8 +75,9 @@ const lightStyles = StyleSheet.create({
 
 
     noContact: {
-        marginBottom: 20,
+        marginTop: 60,
         textAlign: 'center',
+      
     }
 
 
@@ -170,9 +171,10 @@ const darkStyles = StyleSheet.create({
 
     
     noContact: {
-        marginBottom: 20,
+        marginTop: 60,
         color: '#FFFFFF',
         textAlign: 'center',
+    
     }
 
     

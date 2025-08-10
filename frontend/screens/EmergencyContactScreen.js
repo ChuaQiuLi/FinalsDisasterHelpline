@@ -29,13 +29,7 @@ function EmergencyContactScreen() {
 
 
     const fetchUserCountryEmergContact = async () => {
-
-        // Check whether user_id is null
-        if (!userId) {
-            Alert.alert('Error', 'User ID is not available');
-            return;
-        }
-
+        
         try {
             const response = await API.get('/api/contact/user/country', { params: { user_id: userId } });
             setuserCountryEmergContact(response.data);

@@ -71,7 +71,7 @@ const lightStyles = StyleSheet.create({
         backgroundColor: '#20C997',
         padding: 10,
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: 8,
         marginTop: 20,
     },
 
@@ -90,8 +90,8 @@ const lightStyles = StyleSheet.create({
         backgroundColor: '#6F42C1',
         padding: 10,
         alignItems: 'center',
-        borderRadius: 10,
-        marginTop: 25,
+        borderRadius: 8,
+        marginTop: 22,
     },
 
     
@@ -186,7 +186,7 @@ const darkStyles = StyleSheet.create({
         backgroundColor: '#20C997',
         padding: 10,
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: 8,
         marginTop: 20,
     },
 
@@ -205,8 +205,8 @@ const darkStyles = StyleSheet.create({
         backgroundColor: '#6F42C1',
         padding: 10,
         alignItems: 'center',
-        borderRadius: 10,
-        marginTop: 25,
+        borderRadius: 8,
+        marginTop: 22,
     },
 
     badgeText: {

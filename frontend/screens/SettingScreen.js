@@ -68,9 +68,8 @@ const SettingScreen = ({ navigation }) => {
           text: "Delete",
           onPress: async () => {
             try {
-              await API.post('/api/user/delete-account', {
-                user_id: userId
-              });
+              
+              await API.delete('/api/user/delete-account', { params: { user_id: userId }});
 
               dispatch(logout());
               navigation.navigate('Login');

@@ -51,7 +51,7 @@ const lightStyles = StyleSheet.create({
     },
 
     logoutButtonText: {
-        color: '#fff',
+        color: '#000000',
         fontSize: 16,
     },
 
@@ -65,19 +65,20 @@ const lightStyles = StyleSheet.create({
     },
 
     accountDeleteButtonText: {
-        color: '#fff',
+        color: '#ffffff',
         fontSize: 16,
     },
 
+    
     changePasswordButton: {
         width: '100%',
         backgroundColor: '#007BFF',
-        padding: 10,
+        padding: 16,
         alignItems: 'center',
-        borderRadius: 12,
-        marginTop: 20,
+        borderRadius: 8,
+        marginVertical: 10,
     },
-
+    
     changePasswordButtonText: {
         color: '#FFFFFF',
         fontSize: 16,
@@ -142,7 +143,7 @@ const darkStyles = StyleSheet.create({
     },
 
     logoutButtonText: {
-        color: '#ffffff',
+        color: '#000000',
         fontSize: 16,
     },
 

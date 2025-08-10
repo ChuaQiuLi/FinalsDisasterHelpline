@@ -243,13 +243,11 @@ router.post('/updateCountry', async (req, res) => {
 
 
 
-router.post('/delete-account', async (req, res) => {
-  const { user_id } = req.body;
+router.delete('/delete-account', async (req, res) => {
+  
+  const { user_id } = req.query;
 
   try {
-    if (!user_id) {
-      return res.status(400).json({ error: 'User ID is required' });
-    }
 
     const parsedUserId = parseInt(user_id);
 

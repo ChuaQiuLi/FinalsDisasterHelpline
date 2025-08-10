@@ -39,7 +39,7 @@ const lightStyles = StyleSheet.create({
   },
 
   saveButton: {
-    backgroundColor: '#5eafa1',
+    backgroundColor: '#4CAF50',
     paddingVertical: 12,
     borderRadius: 5,
     alignItems: 'center',
@@ -120,7 +120,7 @@ const darkStyles = StyleSheet.create({
   },
 
   saveButton: {
-    backgroundColor: '#5eafa1',
+    backgroundColor: '#4CAF50',
     paddingVertical: 12,
     borderRadius: 5,
     alignItems: 'center',
