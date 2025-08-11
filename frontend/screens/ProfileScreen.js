@@ -5,7 +5,6 @@ import { useIsFocused  } from '@react-navigation/native';
 import { lightStyles, darkStyles }  from '../styles/ProfileScreenStyle';
 import { useTheme } from '../context/ThemeContext';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
 import API from '../api';
 
@@ -91,7 +90,9 @@ const ProfileScreen = ({ navigation }) => {
 
       </View>
 
-      <MaterialCommunityIcons name="account-circle-outline" size={150} color={isDarkMode ? '#ffffff' : '#000000'} />
+
+      <Ionicons name="person-circle-outline" size={150} color={isDarkMode ? '#ffffff' : '#000000'} />
+
 
       <View style={styles.inputContainer}>
         <Text style={styles.usernameLabel}>Username</Text>
