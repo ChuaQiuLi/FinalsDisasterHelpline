@@ -24,7 +24,7 @@ async function sendPushNotification(expoPushToken, message) {
 
   try {
     for (const chunk of chunks) {
-      const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
+      const ticketChunk = await expo.sendPushNotificationsAsync(chunk, { useFcmV1: true });
       console.log('Push notification ticket:', ticketChunk);
     }
 
