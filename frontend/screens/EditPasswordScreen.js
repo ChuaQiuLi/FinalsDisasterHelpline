@@ -25,6 +25,7 @@ const EditPasswordScreen = ({ navigation }) => {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const editPasswordButtonDisabled = !currentPassword.trim() || !newPassword.trim() || repeatPassword.trim();
 
 
 
@@ -165,8 +166,8 @@ const EditPasswordScreen = ({ navigation }) => {
 
         </View>
 
-        <TouchableHighlight style={styles.saveButton} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleUpdatePassword} disabled={loading}>
-          <Text style={styles.saveButtonText}>Change Password</Text>
+        <TouchableHighlight style={[styles.editPasswordButton, (editPasswordButtonDisabled || loading) && styles.editPasswordButtonDisabled ]} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleUpdatePassword} >
+          <Text style={styles.editPasswordButtonText}>Change Password</Text>
         </TouchableHighlight>
 
       </ScrollView>

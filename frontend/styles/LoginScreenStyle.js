@@ -104,6 +104,11 @@ const lightStyles = StyleSheet.create({
         color: '#000000'
     },
 
+    loginButtonDisabled: {
+        backgroundColor: '#A9A9A9'
+    },
+
+
 
 });
 
@@ -213,6 +218,10 @@ const darkStyles = StyleSheet.create({
         right: 15,
         top: 9,
         color: '#000000'
+    },
+
+    loginButtonDisabled: {
+        backgroundColor: '#A9A9A9'
     },
 
 

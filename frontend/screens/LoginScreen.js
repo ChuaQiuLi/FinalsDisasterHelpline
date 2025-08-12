@@ -19,6 +19,8 @@ const LoginScreen = ({ navigation }) => {
   const { isDarkMode } = useTheme();
   const styles = isDarkMode ? darkStyles : lightStyles;
   const [showPassword, setShowPassword] = useState(false);
+  const loginButtonDisabled = !username.trim() || password.trim();
+
 
   const logoSource = isDarkMode ? require('../assets/icon_dark.png') : require('../assets/icon_light.png');
 
@@ -27,14 +29,8 @@ const LoginScreen = ({ navigation }) => {
     const trimmedUsername = username.trim();
     const trimmedPassword = password.trim();
 
-    // Validate inputs
-    if (!trimmedUsername || !trimmedPassword) {
-      Alert.alert('Error', 'Username and password are required.');
-      return;
-    }
 
     // Must use await to make sure login is successful before proceeding.
-    // Don't delete as highlighted by code editor.
     const result = await dispatch(loginUser({ username: trimmedUsername, password: trimmedPassword }));
     if (loginUser.fulfilled.match(result)) {
       const token = await SecureStore.getItemAsync('token');
@@ -92,7 +88,7 @@ const LoginScreen = ({ navigation }) => {
 
         </View>
 
-        <TouchableHighlight style={styles.loginButton} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleLogin}>
+        <TouchableHighlight style={[styles.loginButton, (loginButtonDisabled || loading) && styles.loginButtonDisabled ]} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableHighlight>
 

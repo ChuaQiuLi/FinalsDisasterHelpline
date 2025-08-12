@@ -38,17 +38,21 @@ const lightStyles = StyleSheet.create({
     color: '#000000',
   },
 
-  saveButton: {
+  editPasswordButton: {
     backgroundColor: '#4CAF50',
     paddingVertical: 12,
     borderRadius: 5,
     alignItems: 'center',
   },
 
-  saveButtonText: {
+  editPasswordButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+
+  editPasswordButtonDisabled: {
+    backgroundColor: '#A9A9A9'
   },
 
   errorContainer: {
@@ -76,6 +80,7 @@ const lightStyles = StyleSheet.create({
   },
 
 });
+
 
 
 const darkStyles = StyleSheet.create({
@@ -119,17 +124,22 @@ const darkStyles = StyleSheet.create({
     color: '#000000',
   },
 
-  saveButton: {
+  editPasswordButton: {
     backgroundColor: '#4CAF50',
     paddingVertical: 12,
     borderRadius: 5,
     alignItems: 'center',
   },
 
-  saveButtonText: {
+  editPasswordButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+
+  
+  editPasswordButtonDisabled: {
+    backgroundColor: '#A9A9A9'
   },
 
   errorContainer: {
@@ -155,6 +165,9 @@ const darkStyles = StyleSheet.create({
     top: 9,
     color: '#000000'
   },
+
+
+
 
 });
 

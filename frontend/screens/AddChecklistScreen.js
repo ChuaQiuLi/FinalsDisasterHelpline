@@ -28,6 +28,7 @@ const AddChecklistScreen = ({ route }) => {
     const [items, setItems] = useState([]);
     const [checklistText, setChecklistText] = useState('');
     const [loading, setLoading] = useState(false);
+    const addChecklistButtonDisabled = !select || !checklistText.trim();
 
 
     const previousPage = () => {
@@ -71,12 +72,7 @@ const AddChecklistScreen = ({ route }) => {
 
         // Prevent multiple requests if already loading
         if (loading) return;
-
-        // Check if drop down is selected and whether there is checklist item
-        if (!select || !checklistText.trim()) {
-            Alert.alert('Checklist Not Saved', 'Both title and item are required.');
-            return;
-        }
+        
 
         // Set loading to true before starting the request
         setLoading(true);
@@ -132,7 +128,7 @@ const AddChecklistScreen = ({ route }) => {
 
             <TextInput multiline value={checklistText} onChangeText={setChecklistText} style={styles.textInput} placeholder="Write checklist item..." placeholderTextColor={isDarkMode ? '#888888' : '#888888'} />
 
-            <TouchableHighlight style={styles.addButton} onPress={handleSave} underlayColor={isDarkMode ? '#999999' : '#999999'} disabled={loading}>
+            <TouchableHighlight style={[styles.addButton, (addChecklistButtonDisabled|| loading) && styles.addChecklistButtonDisabled ]} onPress={handleSave} underlayColor={isDarkMode ? '#999999' : '#999999'}>
                 <Text style={styles.addButtonText}>{loading ? 'Saving...' : 'Save'}</Text>
             </TouchableHighlight>
 

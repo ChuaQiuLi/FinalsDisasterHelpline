@@ -21,12 +21,14 @@ const ForgetPasswordScreen = ({ navigation }) => {
     const [isVerifyingCode, setIsVerifyingCode] = useState(false);
     const [isResettingPassword, setIsResettingPassword] = useState(false);
     const styles = isDarkMode ? darkStyles : lightStyles;
+    const verifyEmailButtonDisabled = !email.trim();
+    const verifyCodeButtonDisabled = !resetCode.trim();
+    const passwordButtonDisabled = !newPassword.trim() || !confirmNewPassword.trim();
+
 
 
     // Determine the logo source based on the theme
-    const logoSource = isDarkMode
-        ? require('../assets/icon_dark.png')
-        : require('../assets/icon_light.png');
+    const logoSource = isDarkMode ? require('../assets/icon_dark.png') : require('../assets/icon_light.png');
 
 
     const validatePassword = (password) => {
@@ -194,7 +196,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
                         
                         </View>
                         
-                        <TouchableHighlight style={styles.button} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleEmailVerification} disabled={isSendingCode}>
+                        <TouchableHighlight style={[styles.button, (verifyEmailButtonDisabled || isSendingCode) && styles.verifyEmailButtonDisabled ]} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleEmailVerification} >
                             <Text style={styles.buttonText}>{isSendingCode ? 'Sending code...' : 'Send Code'}</Text>
                         </TouchableHighlight>
 
@@ -208,7 +210,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
                             <TextInput style={styles.input} placeholder="Enter reset code" value={resetCode} onChangeText={setResetCode} maxLength={6} cursorColor="#000000" />
                         </View>
 
-                        <TouchableHighlight style={styles.button} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleCodeVerification} disabled={isVerifyingCode}>
+                        <TouchableHighlight style={[styles.button, (verifyCodeButtonDisabled || isVerifyingCode) && styles.verifyCodeButtonDisabled ]} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleCodeVerification} >
                             <Text style={styles.buttonText}>{isVerifyingCode ? 'Verifying...' : 'Continue'}</Text>
                         </TouchableHighlight>
 
@@ -241,7 +243,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
 
                     </View>
 
-                    <TouchableHighlight style={styles.button} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handlePasswordReset} disabled={isResettingPassword}>
+                    <TouchableHighlight style={[styles.button, (passwordButtonDisabled || isResettingPassword) && styles.passwordButtonDisabled ]} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handlePasswordReset} >
                         <Text style={styles.buttonText}>{isResettingPassword ? 'Resetting...' : 'Reset Password'}</Text>
                     </TouchableHighlight>
                 </>

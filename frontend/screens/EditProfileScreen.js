@@ -18,6 +18,7 @@ const EditProfileScreen = ({ route, navigation }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const { isDarkMode } = useTheme(); 
   const styles = isDarkMode ? darkStyles : lightStyles; 
+  const editProfileButtonDisabled = !username.trim() || !email.trim();
 
 
   const handleProfileUpdate = async () => {
@@ -96,8 +97,8 @@ const EditProfileScreen = ({ route, navigation }) => {
 
         </View>
 
-        <TouchableHighlight style={styles.saveButton} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleProfileUpdate} disabled={loading} >
-          <Text style={styles.saveButtonText}>Save Changes</Text>
+        <TouchableHighlight style={[styles.editProfileButton, (editProfileButtonDisabled || loading) && styles.editProfileButtonDisabled ]} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleProfileUpdate} >
+          <Text style={styles.editProfileButtonText}>Save Changes</Text>
         </TouchableHighlight>
 
       </ScrollView>

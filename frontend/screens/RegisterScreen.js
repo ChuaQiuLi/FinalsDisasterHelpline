@@ -20,6 +20,7 @@ const RegisterScreen = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const isRegisterButtonDisabled = !username.trim() || !email.trim() || !password.trim() || !confirmPassword.trim();
 
   // Determine the logo source based on the theme
   const logoSource = isDarkMode ? require('../assets/icon_dark.png') : require('../assets/icon_light.png');
@@ -98,7 +99,7 @@ const RegisterScreen = ({ navigation }) => {
   };
 
 
-  const isRegisterDisabled = !username.trim() || !email.trim() || !password.trim() || !confirmPassword.trim();
+  
 
 
 
@@ -151,7 +152,7 @@ const RegisterScreen = ({ navigation }) => {
           </Text>
         </View>
 
-        <TouchableHighlight style={[ styles.registerButton, (isRegisterDisabled || loading) && styles.registerButtonDisabled]} onPress={handleSubmit} disabled={isRegisterDisabled || loading} underlayColor={isDarkMode ? '#999999' : '#999999'} >
+        <TouchableHighlight style={[ styles.registerButton, (isRegisterButtonDisabled || loading) && styles.registerButtonDisabled]} onPress={handleSubmit} disabled={isRegisterDisabled || loading} underlayColor={isDarkMode ? '#999999' : '#999999'} >
           <Text style={styles.registerButtonText}> {loading ? 'Registering...' : 'Register'} </Text>
         </TouchableHighlight>
 

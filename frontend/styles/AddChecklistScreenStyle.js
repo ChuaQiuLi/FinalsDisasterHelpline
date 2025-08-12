@@ -65,6 +65,11 @@ const lightStyles = StyleSheet.create({
         color: '#FFFFFF',
     },
 
+    
+    addChecklistButtonDisabled: {
+        backgroundColor: '#A9A9A9'
+    },
+
 
 
 
@@ -139,6 +144,12 @@ const darkStyles = StyleSheet.create({
         fontSize: 18,
         color: '#FFFFFF',
     },
+
+
+    addChecklistButtonDisabled: {
+        backgroundColor: '#A9A9A9'
+    },
+
 
 
 

@@ -37,17 +37,21 @@ const lightStyles = StyleSheet.create({
     color: '#000000',
   },
 
-  saveButton: {
+  editProfileButton: {
     backgroundColor: '#5eafa1',
     paddingVertical: 12,
     borderRadius: 5,
     alignItems: 'center',
   },
-
-  saveButtonText: {
+  
+  editProfileButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+
+  editProfileButtonDisabled: {
+    backgroundColor: '#A9A9A9'
   },
 
   errorContainer: {
@@ -111,17 +115,21 @@ const darkStyles = StyleSheet.create({
     color: '#000000',
   },
 
-  saveButton: {
+  editProfileButton: {
     backgroundColor: '#5eafa1',
     paddingVertical: 12,
     borderRadius: 5,
     alignItems: 'center',
   },
   
-  saveButtonText: {
+  editProfileButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+
+  editProfileButtonDisabled: {
+    backgroundColor: '#A9A9A9'
   },
 
   errorContainer: {
@@ -135,6 +143,7 @@ const darkStyles = StyleSheet.create({
     color: '#721c24',
     fontSize: 16,
   },
+
 
 });
 

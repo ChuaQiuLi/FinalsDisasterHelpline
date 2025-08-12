@@ -6,23 +6,28 @@ const lightStyles = StyleSheet.create({
         height: '100%',
         flex: 1,
     },
+
     header: {
         alignItems: 'center',
         marginBottom: 20
     },
+
     title: {
         fontSize: 24,
         fontWeight: 'bold',
     },
+
     logoContainer: {
         alignItems: 'center',
         marginTop: 80,
     },
+
     logo: {
         width: 320,
         height: 180,
         marginBottom: 10
     },
+
     inputContainer: {
         backgroundColor: '#FFFFFF',
         width: '100%',
@@ -30,11 +35,13 @@ const lightStyles = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 12
     },
+
     label: {
         marginTop: 10,
         marginBottom: 5,
         fontWeight: 'bold',
     },
+
     input: {
         height: 40,
         borderColor: '#A0AEC0',
@@ -45,6 +52,7 @@ const lightStyles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         color: '#000000',
     },
+    
     button: {
         backgroundColor: '#5eafa1',
         padding: 10,
@@ -53,23 +61,46 @@ const lightStyles = StyleSheet.create({
         marginTop: 20,
         width: '100%',
     },
+
     buttonText: {
         color: '#FFFFFF',
         fontSize: 16,
     },
+
     boldText: {
         fontWeight: 'bold',
     },
+
     passwordContainer: {
         position: 'relative',
-      },
+    },
+
+
     icon: {
         position: 'absolute',
         borderRadius: 12,
         right: 15,
         top: 9,
         color: '#000000'
-      },
+    },
+
+    
+    verifyEmailButtonDisabled: {
+        backgroundColor: '#A9A9A9'
+    },
+
+
+    verifyCodeButtonDisabled: {
+        backgroundColor: '#A9A9A9'
+
+    },
+
+    passwordButtonDisabled: {
+        backgroundColor: '#A9A9A9'
+    }
+
+
+
 });
 
 
@@ -82,35 +113,42 @@ const darkStyles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#000000',
     },
+
     header: {
         alignItems: 'center',
         marginBottom: 20
         
     },
+
     title: {
         fontSize: 24,
         fontWeight: 'bold',
     },
+
     logoContainer: {
         alignItems: 'center',
         marginTop: 80,
     },
+
     logo: {
         width: 320,
         height: 180,
         marginBottom: 10
     },
+
     inputContainer: {
         backgroundColor: '#FFFFFF',
         padding: 25,
         paddingBottom: 10,
         borderRadius: 12
     },
+
     label: {
         marginTop: 10,
         marginBottom: 5,
         fontWeight: 'bold',
     },
+
     input: {
         height: 40,
         borderColor: '#A0AEC0',
@@ -121,6 +159,7 @@ const darkStyles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         color: '#000000',
     },
+
     button: {
         backgroundColor: '#5eafa1',
         padding: 10,
@@ -128,23 +167,42 @@ const darkStyles = StyleSheet.create({
         borderRadius: 12,
         marginTop: 20,
     },
+
     buttonText: {
         color: '#FFFFFF',
         fontSize: 16,
     },
+
     boldText: {
         fontWeight: 'bold',
     },
+
     passwordContainer: {
         position: 'relative',
-      },
+    },
+    
     icon: {
         position: 'absolute',
         borderRadius: 12,
         right: 15,
         top: 9,
         color: '#000000'
-      },
+    },
+
+    verifyEmailButtonDisabled: {
+        backgroundColor: '#A9A9A9'
+    },
+
+    verifyCodeButtonDisabled: {
+        backgroundColor: '#A9A9A9'
+
+    },
+
+    passwordButtonDisabled: {
+        backgroundColor: '#A9A9A9'
+    }
+
+    
 });
 
 
