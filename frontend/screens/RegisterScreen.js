@@ -119,12 +119,12 @@ const RegisterScreen = ({ navigation }) => {
           <TextInput style={styles.input} placeholder="Username" value={username} onChangeText={setUsername} autoCorrect={false} autoCapitalize="none" cursorColor="#000000" />
           
           <Text style={styles.label}>Email</Text>
-          <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setemail} keyboardType="email-address" autoCapitalize="none" cursorColor="#000000" />
+          <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setemail} keyboardType="email-address" autoCorrect={false} autoCapitalize="none" cursorColor="#000000" />
 
           <Text style={styles.label}>Password</Text>
            
           <View style={styles.passwordContainer}>
-            <TextInput style={styles.input} placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry={!showPassword} cursorColor="#000000" />
+            <TextInput style={styles.input} placeholder="Password" value={password} onChangeText={setPassword} autoCorrect={false} autoCapitalize="none" secureTextEntry={!showPassword} cursorColor="#000000" />
             <TouchableHighlight onPress={() => setShowPassword(!showPassword)} style={styles.icon} underlayColor={isDarkMode ? '#999999' : '#999999'} >
               <Ionicons name={showPassword ? 'eye-off' : 'eye'} size={24} />
             </TouchableHighlight>
@@ -134,7 +134,7 @@ const RegisterScreen = ({ navigation }) => {
           <Text style={styles.label}>Confirm Password</Text>
 
           <View style={styles.passwordContainer}>
-            <TextInput style={styles.input} placeholder="Confirm Password" value={confirmPassword} onChangeText={setconfirmPassword} secureTextEntry={!showConfirmPassword} cursorColor="#000000" />
+            <TextInput style={styles.input} placeholder="Confirm Password" value={confirmPassword} onChangeText={setconfirmPassword} autoCorrect={false} autoCapitalize="none" secureTextEntry={!showConfirmPassword} cursorColor="#000000" />
             <TouchableHighlight onPress={() => setShowConfirmPassword(!showConfirmPassword)} style={styles.icon} underlayColor={isDarkMode ? '#999999' : '#999999'} >
               <Ionicons name={showConfirmPassword ? 'eye-off' : 'eye'} size={24} />
             </TouchableHighlight>

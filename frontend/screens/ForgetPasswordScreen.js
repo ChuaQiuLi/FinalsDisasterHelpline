@@ -192,7 +192,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
                             
                             <Text>Enter the email address associated with your account and we'll send you a code to reset your password.</Text>
                             <Text style={styles.label}>Email</Text>
-                            <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" cursorColor="#000000" />
+                            <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} keyboardType="email-address" autoCorrect={false} autoCapitalize="none" cursorColor="#000000" />
                         
                         </View>
                         
@@ -207,7 +207,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
                         <View style={styles.inputContainer}>
                             <Text style={styles.infoText}> We sent a code to <Text style={styles.boldText}>{email}</Text>. </Text>
                             <Text style={styles.label}>Reset Code</Text>
-                            <TextInput style={styles.input} placeholder="Enter reset code" value={resetCode} onChangeText={setResetCode} maxLength={6} cursorColor="#000000" />
+                            <TextInput style={styles.input} placeholder="Enter reset code" value={resetCode} autoCorrect={false} autoCapitalize="none" onChangeText={setResetCode} maxLength={6} cursorColor="#000000" />
                         </View>
 
                         <TouchableHighlight style={[styles.button, (verifyCodeButtonDisabled || isVerifyingCode) && styles.verifyCodeButtonDisabled ]} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleCodeVerification} >
@@ -222,7 +222,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
                         <View style={styles.inputContainer}>
                             <Text style={styles.label}>New Password</Text>
                             <View style={styles.passwordContainer}>
-                                <TextInput style={styles.input} placeholder="New Password" value={newPassword} onChangeText={setNewPassword} secureTextEntry={!showNewPassword} cursorColor="#000000" />
+                                <TextInput style={styles.input} placeholder="New Password" value={newPassword} onChangeText={setNewPassword} autoCorrect={false} autoCapitalize="none" secureTextEntry={!showNewPassword} cursorColor="#000000" />
                                 
                                 <TouchableHighlight style={styles.icon} onPress={() => setShowNewPassword(!showNewPassword)} underlayColor={isDarkMode ? '#999999' : '#999999'} >
                                     <Ionicons name={showNewPassword ? 'eye-off' : 'eye'} size={24} />
@@ -233,7 +233,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
                             <Text style={styles.label}>Confirm New Password</Text>
                             <View style={styles.passwordContainer}>
                             
-                            <TextInput style={styles.input} placeholder="Confirm New Password" value={confirmNewPassword} onChangeText={setConfirmNewPassword} secureTextEntry={!showConfirmPassword} cursorColor="#000000" />
+                            <TextInput style={styles.input} placeholder="Confirm New Password" value={confirmNewPassword} onChangeText={setConfirmNewPassword} autoCorrect={false} autoCapitalize="none" secureTextEntry={!showConfirmPassword} cursorColor="#000000" />
                             
                             <TouchableHighlight style={styles.icon} onPress={() => setShowConfirmPassword(!showConfirmPassword)} underlayColor={isDarkMode ? '#999999' : '#999999'} >
                                 <Ionicons name={showConfirmPassword ? 'eye-off' : 'eye'} size={24}/>

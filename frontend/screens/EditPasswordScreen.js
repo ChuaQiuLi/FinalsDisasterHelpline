@@ -138,7 +138,7 @@ const EditPasswordScreen = ({ navigation }) => {
           <Text style={styles.label}>Current Password</Text>
 
           <View style={styles.passwordContainer}>
-            <TextInput style={styles.input} value={currentPassword} placeholder='Current Password' onChangeText={setCurrentPassword} secureTextEntry={!showCurrentPassword} cursorColor="#000000" />
+            <TextInput style={styles.input} value={currentPassword} placeholder='Current Password' onChangeText={setCurrentPassword} autoCorrect={false} autoCapitalize="none" secureTextEntry={!showCurrentPassword} cursorColor="#000000" />
             <TouchableHighlight style={styles.icon} onPress={() => setShowCurrentPassword(!showCurrentPassword)} underlayColor={isDarkMode ? '#999999' : '#999999'}>
               <Ionicons name={showCurrentPassword ? 'eye-off' : 'eye'} size={24}/>
             </TouchableHighlight>
@@ -148,7 +148,7 @@ const EditPasswordScreen = ({ navigation }) => {
 
           <Text style={styles.label}>New Password</Text>
           <View style={styles.passwordContainer}>
-            <TextInput style={styles.input} value={newPassword} placeholder='New Password' onChangeText={setNewPassword} secureTextEntry={!showNewPassword} cursorColor="#000000" />
+            <TextInput style={styles.input} value={newPassword} placeholder='New Password' onChangeText={setNewPassword} autoCorrect={false} autoCapitalize="none" secureTextEntry={!showNewPassword} cursorColor="#000000" />
             <TouchableHighlight style={styles.icon} onPress={() => setShowNewPassword(!showNewPassword)} underlayColor={isDarkMode ? '#999999' : '#999999'} >
               <Ionicons name={showNewPassword ? 'eye-off' : 'eye'} size={24}/>
             </TouchableHighlight>
@@ -157,7 +157,7 @@ const EditPasswordScreen = ({ navigation }) => {
 
           <Text style={styles.label}>Confirm Password</Text>
           <View style={styles.passwordContainer}>
-            <TextInput style={styles.input} value={repeatPassword} placeholder='Confirm Password' onChangeText={setRepeatPassword} secureTextEntry={!showConfirmPassword} cursorColor="#000000" />
+            <TextInput style={styles.input} value={repeatPassword} placeholder='Confirm Password' onChangeText={setRepeatPassword} autoCorrect={false} autoCapitalize="none" secureTextEntry={!showConfirmPassword} cursorColor="#000000" />
             <TouchableHighlight style={styles.icon} onPress={() => setShowConfirmPassword(!showConfirmPassword)} underlayColor={isDarkMode ? '#999999' : '#999999'} >
               <Ionicons name={showConfirmPassword ? 'eye-off' : 'eye'} size={24} />
             </TouchableHighlight>
