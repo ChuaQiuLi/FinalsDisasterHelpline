@@ -52,7 +52,9 @@ require('./cron/fetchNotificationData');
 
 const port = process.env.PORT || 10000 
 
-
+// app.listen(PORT, '192.168.50.181', () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
 
 
 app.listen(port, () => {

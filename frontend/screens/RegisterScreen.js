@@ -152,7 +152,7 @@ const RegisterScreen = ({ navigation }) => {
           </Text>
         </View>
 
-        <TouchableHighlight style={[ styles.registerButton, (isRegisterButtonDisabled || loading) && styles.registerButtonDisabled]} onPress={handleSubmit} disabled={isRegisterDisabled || loading} underlayColor={isDarkMode ? '#999999' : '#999999'} >
+        <TouchableHighlight style={[ styles.registerButton, (isRegisterButtonDisabled || loading) && styles.registerButtonDisabled]} onPress={handleSubmit} underlayColor={isDarkMode ? '#999999' : '#999999'} >
           <Text style={styles.registerButtonText}> {loading ? 'Registering...' : 'Register'} </Text>
         </TouchableHighlight>
 
