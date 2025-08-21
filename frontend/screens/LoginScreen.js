@@ -19,7 +19,7 @@ const LoginScreen = ({ navigation }) => {
   const { isDarkMode } = useTheme();
   const styles = isDarkMode ? darkStyles : lightStyles;
   const [showPassword, setShowPassword] = useState(false);
-  const loginButtonDisabled = !username.trim() || password.trim();
+  const loginButtonDisabled = !username.trim() || !password.trim();
 
 
   const logoSource = isDarkMode ? require('../assets/icon_dark.png') : require('../assets/icon_light.png');
