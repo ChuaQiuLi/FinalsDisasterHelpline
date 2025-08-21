@@ -20,7 +20,7 @@ const RegisterScreen = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const isRegisterButtonDisabled = !username.trim() || !email.trim() || !password.trim() || !confirmPassword.trim();
+  const isRegisterButtonDisabled = !username.trim() || !email.trim() || !password.trim() || !confirmPassword.trim() || loading;
 
   // Determine the logo source based on the theme
   const logoSource = isDarkMode ? require('../assets/icon_dark.png') : require('../assets/icon_light.png');
@@ -39,12 +39,14 @@ const RegisterScreen = ({ navigation }) => {
   const handleSubmit = async () => {
     // Prevent multiple requests if already loading
     if (loading) return;
+
     setLoading(true);
 
     const trimmedUsername = username.trim();
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
     const trimmedConfirmPassword = confirmPassword.trim();
+    
 
     try {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -152,7 +154,7 @@ const RegisterScreen = ({ navigation }) => {
           </Text>
         </View>
 
-        <TouchableHighlight style={[ styles.registerButton, (isRegisterButtonDisabled || loading) && styles.registerButtonDisabled]} onPress={handleSubmit} underlayColor={isDarkMode ? '#999999' : '#999999'} >
+        <TouchableHighlight style={[ styles.registerButton, isRegisterButtonDisabled && styles.registerButtonDisabled]} disabled={isRegisterButtonDisabled} onPress={handleSubmit} underlayColor={isDarkMode ? '#999999' : '#999999'} >
           <Text style={styles.registerButtonText}> {loading ? 'Registering...' : 'Register'} </Text>
         </TouchableHighlight>
 

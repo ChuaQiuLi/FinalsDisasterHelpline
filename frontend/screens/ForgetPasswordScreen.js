@@ -190,7 +190,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
                                 <Text style={styles.title}>Forget Password</Text>
                             </View>
                             
-                            <Text>Enter the email address associated with your account and we'll send you a code to reset your password.</Text>
+                            <Text>Please enter the email address linked to your account. A verification code will then be sent to that address to reset your password.</Text>
                             <Text style={styles.label}>Email</Text>
                             <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} keyboardType="email-address" autoCorrect={false} autoCapitalize="none" cursorColor="#000000" />
                         
@@ -205,7 +205,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
                 ) : step === 2 ? (
                     <>
                         <View style={styles.inputContainer}>
-                            <Text style={styles.infoText}> We sent a code to <Text style={styles.boldText}>{email}</Text>. </Text>
+                            <Text style={styles.infoText}>A verification code has been sent to <Text style={styles.boldText}>{email}</Text>. </Text>
                             <Text style={styles.label}>Reset Code</Text>
                             <TextInput style={styles.input} placeholder="Enter reset code" value={resetCode} autoCorrect={false} autoCapitalize="none" onChangeText={setResetCode} maxLength={6} cursorColor="#000000" />
                         </View>

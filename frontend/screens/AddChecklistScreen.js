@@ -28,7 +28,7 @@ const AddChecklistScreen = ({ route }) => {
     const [items, setItems] = useState([]);
     const [checklistText, setChecklistText] = useState('');
     const [loading, setLoading] = useState(false);
-    const addChecklistButtonDisabled = !select || !checklistText.trim();
+    const addChecklistButtonDisabled = !select || !checklistText.trim() || loading;
 
 
     const previousPage = () => {
@@ -128,7 +128,7 @@ const AddChecklistScreen = ({ route }) => {
 
             <TextInput multiline value={checklistText} onChangeText={setChecklistText} style={styles.textInput} placeholder="Write checklist item..." placeholderTextColor={isDarkMode ? '#888888' : '#888888'} />
 
-            <TouchableHighlight style={[styles.addButton, (addChecklistButtonDisabled|| loading) && styles.addChecklistButtonDisabled ]} onPress={handleSave} underlayColor={isDarkMode ? '#999999' : '#999999'}>
+            <TouchableHighlight style={[styles.addButton, addChecklistButtonDisabled && styles.addChecklistButtonDisabled ]} disabled={addChecklistButtonDisabled} onPress={handleSave} underlayColor={isDarkMode ? '#999999' : '#999999'}>
                 <Text style={styles.addButtonText}>{loading ? 'Saving...' : 'Save'}</Text>
             </TouchableHighlight>
 

@@ -20,29 +20,48 @@ const LoginScreen = ({ navigation }) => {
   const styles = isDarkMode ? darkStyles : lightStyles;
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const loginButtonDisabled = !username.trim() || !password.trim();
+  const loginButtonDisabled = !username.trim() || !password.trim() || loading;
 
 
   const logoSource = isDarkMode ? require('../assets/icon_dark.png') : require('../assets/icon_light.png');
 
 
   const handleLogin = async () => { 
+
+    // Prevent multiple requests if already loading
+    if (loading) return;
+
     setLoading(true);
     const trimmedUsername = username.trim();
     const trimmedPassword = password.trim();
 
-
-    // Must use await to make sure login is successful before proceeding.
-    const result = await dispatch(loginUser({ username: trimmedUsername, password: trimmedPassword }));
-    setLoading(false);
-    
-    if (loginUser.fulfilled.match(result)) {
-      const token = await SecureStore.getItemAsync('token');
+    try {
+      // Must use await to make sure login is successful before proceeding.
+      const result = await dispatch(loginUser({ username: trimmedUsername, password: trimmedPassword }));
       
-    } 
-    
-    else {
-      Alert.alert('Login failed', 'Invalid username or password');
+      if (loginUser.fulfilled.match(result)) {
+        const token = await SecureStore.getItemAsync('token');
+        
+      } 
+      
+      else {
+        Alert.alert('Login failed', 'Invalid username or password');
+      }
+
+    }
+
+    catch (error) {
+      Alert.alert('Error', error.response?.data?.error || 'Failed to login. Please try again later.');
+
+    }
+
+
+    finally {
+      // Delay to smooth out spinner transition
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
+
     }
 
 
@@ -93,8 +112,8 @@ const LoginScreen = ({ navigation }) => {
 
         </View>
 
-        <TouchableHighlight style={[styles.loginButton, (loginButtonDisabled || loading) && styles.loginButtonDisabled ]} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleLogin}>
-          <Text style={styles.loginButtonText}>Login</Text>
+        <TouchableHighlight style={[styles.loginButton, loginButtonDisabled && styles.loginButtonDisabled ]} disabled={loginButtonDisabled} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleLogin}>
+          <Text style={styles.loginButtonText}> {loading ? "Logging in..." : "Login"} </Text>
         </TouchableHighlight>
 
       </KeyboardAwareScrollView>

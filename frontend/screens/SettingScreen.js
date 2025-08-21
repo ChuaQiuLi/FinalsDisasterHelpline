@@ -54,18 +54,20 @@ const SettingScreen = ({ navigation }) => {
     );
   };
 
+
+  
   const handleDeleteAccount = () => {
     Alert.alert(
       "Delete Account",
-      "Deleting the account means all information stored in our database will be wiped. Are you sure you want to delete the account?",
+      "Deleting this account will permanently erase all associated data from the system. This action cannot be undone. Do you wish to continue?",
       [
         {
-          text: "Cancel",
+          text: "No",
           onPress: () => { },
-          style: "cancel"
+          style: "No"
         },
         {
-          text: "Delete",
+          text: "Yes",
           onPress: async () => {
             try {
               
