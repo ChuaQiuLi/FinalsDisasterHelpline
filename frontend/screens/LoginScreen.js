@@ -19,6 +19,7 @@ const LoginScreen = ({ navigation }) => {
   const { isDarkMode } = useTheme();
   const styles = isDarkMode ? darkStyles : lightStyles;
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const loginButtonDisabled = !username.trim() || !password.trim();
 
 
@@ -26,14 +27,18 @@ const LoginScreen = ({ navigation }) => {
 
 
   const handleLogin = async () => { 
+    setLoading(true);
     const trimmedUsername = username.trim();
     const trimmedPassword = password.trim();
 
 
     // Must use await to make sure login is successful before proceeding.
     const result = await dispatch(loginUser({ username: trimmedUsername, password: trimmedPassword }));
+    setLoading(false);
+    
     if (loginUser.fulfilled.match(result)) {
       const token = await SecureStore.getItemAsync('token');
+      
     } 
     
     else {
