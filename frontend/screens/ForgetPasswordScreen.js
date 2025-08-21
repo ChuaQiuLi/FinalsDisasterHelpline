@@ -9,21 +9,22 @@ import API from '../api';
 
 
 const ForgetPasswordScreen = ({ navigation }) => {
+    const { isDarkMode } = useTheme();
+    const styles = isDarkMode ? darkStyles : lightStyles;
     const [step, setStep] = useState(1);
     const [email, setEmail] = useState('');
     const [resetCode, setResetCode] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
-    const { isDarkMode } = useTheme();
     const [showNewPassword, setShowNewPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
     const [isSendingCode, setIsSendingCode] = useState(false);
     const [isVerifyingCode, setIsVerifyingCode] = useState(false);
     const [isResettingPassword, setIsResettingPassword] = useState(false);
-    const styles = isDarkMode ? darkStyles : lightStyles;
-    const verifyEmailButtonDisabled = !email.trim();
-    const verifyCodeButtonDisabled = !resetCode.trim();
-    const passwordButtonDisabled = !newPassword.trim() || !confirmNewPassword.trim();
+    const verifyEmailButtonDisabled = !email.trim() || isSendingCode;
+    const verifyCodeButtonDisabled = !resetCode.trim() || isVerifyingCode;
+    const passwordButtonDisabled = !newPassword.trim() || !confirmNewPassword.trim() || isResettingPassword;
 
 
 
@@ -196,7 +197,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
                         
                         </View>
                         
-                        <TouchableHighlight style={[styles.button, (verifyEmailButtonDisabled || isSendingCode) && styles.verifyEmailButtonDisabled ]} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleEmailVerification} >
+                        <TouchableHighlight style={[styles.button, verifyEmailButtonDisabled && styles.verifyEmailButtonDisabled ]} disabled={verifyEmailButtonDisabled} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleEmailVerification} >
                             <Text style={styles.buttonText}>{isSendingCode ? 'Sending code...' : 'Send Code'}</Text>
                         </TouchableHighlight>
 
@@ -210,7 +211,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
                             <TextInput style={styles.input} placeholder="Enter reset code" value={resetCode} autoCorrect={false} autoCapitalize="none" onChangeText={setResetCode} maxLength={6} cursorColor="#000000" />
                         </View>
 
-                        <TouchableHighlight style={[styles.button, (verifyCodeButtonDisabled || isVerifyingCode) && styles.verifyCodeButtonDisabled ]} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleCodeVerification} >
+                        <TouchableHighlight style={[styles.button, verifyCodeButtonDisabled && styles.verifyCodeButtonDisabled ]} disabled={verifyCodeButtonDisabled} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handleCodeVerification} >
                             <Text style={styles.buttonText}>{isVerifyingCode ? 'Verifying...' : 'Continue'}</Text>
                         </TouchableHighlight>
 
@@ -243,7 +244,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
 
                     </View>
 
-                    <TouchableHighlight style={[styles.button, (passwordButtonDisabled || isResettingPassword) && styles.passwordButtonDisabled ]} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handlePasswordReset} >
+                    <TouchableHighlight style={[styles.button, passwordButtonDisabled && styles.passwordButtonDisabled ]} disabled={passwordButtonDisabled} underlayColor={isDarkMode ? '#999999' : '#999999'} onPress={handlePasswordReset} >
                         <Text style={styles.buttonText}>{isResettingPassword ? 'Resetting...' : 'Reset Password'}</Text>
                     </TouchableHighlight>
                 </>

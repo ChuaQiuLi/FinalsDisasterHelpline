@@ -57,7 +57,7 @@ const LoginScreen = ({ navigation }) => {
 
 
     finally {
-      // Delay to smooth out spinner transition
+      // Delay to smooth out button text transition
       setTimeout(() => {
         setLoading(false);
       }, 500);
