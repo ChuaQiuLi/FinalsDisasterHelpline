@@ -27,10 +27,10 @@ router.get('/user/country', async (req, res) => {
       return res.status(400).json({ error: 'Invalid user ID' });
     }
 
-    // Have a default country when user country cannot be found
+    // Have a default country when the user country cannot be found 
     const countryName = user.country?.trim() || "Singapore";
 
-    const emergencyContact = await prisma.country.findUnique({
+    let emergencyContact = await prisma.country.findUnique({
       where: {
         country_name: countryName,
       },
@@ -53,6 +53,31 @@ router.get('/user/country', async (req, res) => {
 
     });
 
+
+    // If the user country cannot be found in the database
+    if (!emergencyContact) {
+      emergencyContact = await prisma.country.findUnique({
+        where: { country_name: "Singapore" },
+        select: {
+          country_name: true,
+          emergencyContact: {
+            select: {
+              police: true,
+              fire: true,
+              medical: true,
+              description: true,
+              safety_guidelines: true
+            }
+
+          }
+
+        }
+
+      });
+
+    }
+
+
     res.json(emergencyContact);
 
   }
@@ -64,6 +89,8 @@ router.get('/user/country', async (req, res) => {
   }
 
 });
+
+
 
 
 // The link will look like this: api/contact/user/countries?search=
