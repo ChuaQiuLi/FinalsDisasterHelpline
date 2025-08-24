@@ -9,12 +9,17 @@ const lightStyles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center', 
-    marginBottom: 20,
+    marginBottom: 8,
   },
 
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+  },
+
+  passwordCriteria: {
+    fontSize: 16,
+    marginBottom: 10
   },
 
   inputContainer: {
@@ -56,10 +61,11 @@ const lightStyles = StyleSheet.create({
   },
 
   errorContainer: {
-    margin: 10,
+    marginVertical: 10,
     padding: 10,
     backgroundColor: '#f8d7da',
     borderRadius: 5,
+    marginBottom: 10
   },
 
   errorText: {
@@ -94,13 +100,19 @@ const darkStyles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center', 
-    marginBottom: 20,
+    marginBottom: 8,
   },
 
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#ffffff',
+  },
+
+  passwordCriteria: {
+    color: '#ffffff',
+    fontSize: 16,
+    marginBottom: 10
   },
 
   inputContainer: {
@@ -143,10 +155,11 @@ const darkStyles = StyleSheet.create({
   },
 
   errorContainer: {
-    margin: 10,
+    marginVertical: 10,
     padding: 10,
     backgroundColor: '#f8d7da',
     borderRadius: 5,
+    marginBottom: 10
   },
 
   errorText: {

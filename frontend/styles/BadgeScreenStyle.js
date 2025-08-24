@@ -16,10 +16,22 @@ const lightStyles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        
     },
 
+    badgeImage: {
+        width: 60, 
+        height: 60,
+        marginTop: 12,
+        marginBottom: 12
 
+    },
+
+    badgeCriteria: {
+        marginBottom: 12
+
+    },
+
+    
     loadingContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -31,14 +43,11 @@ const lightStyles = StyleSheet.create({
         fontSize: 16,
     },
 
+    
     noBadgeText: {
-        textAlign: 'center',
+       textAlign: 'center',
+ 
     },
-
-
-
-
-
 
 
 });

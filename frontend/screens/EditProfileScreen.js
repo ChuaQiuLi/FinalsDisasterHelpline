@@ -81,6 +81,8 @@ const EditProfileScreen = ({ route, navigation }) => {
 
         </View>
 
+        <Text style={styles.profileCriteria}>Enter unique username and/or email to update your account profile successfully.</Text>
+
         {errorMessage ? (
           <View style={styles.errorContainer}>
             <Text style={styles.errorText}>{errorMessage}</Text>

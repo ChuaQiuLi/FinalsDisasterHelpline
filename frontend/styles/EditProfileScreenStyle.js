@@ -19,6 +19,12 @@ const lightStyles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
+  profileCriteria: {
+    fontSize: 16,
+    marginBottom: 10
+
+  },
+
   inputContainer: {
     marginBottom: 20,
   },
@@ -55,10 +61,11 @@ const lightStyles = StyleSheet.create({
   },
 
   errorContainer: {
-    margin: 10,
+    marginVertical: 10,
     padding: 10,
     backgroundColor: '#f8d7da',
     borderRadius: 5,
+    marginBottom: 10
   },
 
   errorText: {
@@ -91,6 +98,13 @@ const darkStyles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#ffffff',
+  },
+
+  profileCriteria: {
+    color: '#ffffff',
+    fontSize: 16,
+    marginBottom: 10
+
   },
 
   inputContainer: {
@@ -133,10 +147,11 @@ const darkStyles = StyleSheet.create({
   },
 
   errorContainer: {
-    margin: 10,
+    marginVertical: 10,
     padding: 10,
     backgroundColor: '#f8d7da',
     borderRadius: 5,
+    marginBottom: 10
   },
 
   errorText: {

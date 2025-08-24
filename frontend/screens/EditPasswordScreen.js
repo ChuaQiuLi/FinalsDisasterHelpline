@@ -25,7 +25,7 @@ const EditPasswordScreen = ({ navigation }) => {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const editPasswordButtonDisabled = !currentPassword.trim() || !newPassword.trim() || repeatPassword.trim() || loading;
+  const editPasswordButtonDisabled = !currentPassword.trim() || !newPassword.trim() || !repeatPassword.trim() || loading;
 
 
 
@@ -127,6 +127,9 @@ const EditPasswordScreen = ({ navigation }) => {
           <BackButton onPress={previousPage} />
           <Text style={styles.title}>Change Password</Text>
         </View>
+
+
+        <Text style={styles.passwordCriteria}>Enter your current password to reset your account password successfully.</Text>
 
         {errorMessage ? (
           <View style={styles.errorContainer}>
