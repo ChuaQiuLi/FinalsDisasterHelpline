@@ -54,11 +54,13 @@ const ForgetPasswordScreen = ({ navigation }) => {
 
         if (!trimmedEmail) {
             Alert.alert('Error', 'Please enter your email');
+            setIsSendingCode(false);
             return;
         }
 
         else if (!emailRegex.test(trimmedEmail)) {
             Alert.alert('Error', 'Invalid email format!');
+            setIsSendingCode(false);
             return;
         }
         
@@ -82,7 +84,9 @@ const ForgetPasswordScreen = ({ navigation }) => {
             console.error('Error sending reset code:', error);
         }
 
-        setIsSendingCode(false);
+        finally {
+            setIsSendingCode(false);
+        }
 
     };
 
@@ -116,7 +120,9 @@ const ForgetPasswordScreen = ({ navigation }) => {
             Alert.alert('Error', 'Failed to verify reset code. Please try again.');
         }
 
-        setIsVerifyingCode(false);
+        finally {
+            setIsVerifyingCode(false);
+        }
 
     };
 
@@ -168,7 +174,9 @@ const ForgetPasswordScreen = ({ navigation }) => {
         }
 
 
-        setIsResettingPassword(false);
+        finally {
+            setIsResettingPassword(false);
+        }
 
     };
 

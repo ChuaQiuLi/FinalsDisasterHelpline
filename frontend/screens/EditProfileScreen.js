@@ -33,6 +33,7 @@ const EditProfileScreen = ({ route, navigation }) => {
 
     if (!emailRegex.test(trimmedEmail)) {
       Alert.alert('Error', 'Invalid email format!');
+      setLoading(false);
       return;
 
     }

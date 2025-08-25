@@ -62,14 +62,17 @@ const EditPasswordScreen = ({ navigation }) => {
 
     if (trimmedNewPassword !== trimmedRepeatPassword) {
       setErrorMessage('New password and repeat password do not match');
+      setLoading(false);
       return;
     }
 
     const validationError = validatePassword(trimmedNewPassword);
     if (validationError) {
       setErrorMessage(validationError);
+      setLoading(false);
       return;
     }
+    
 
     try {
       const response = await API.post('/api/user/update-password', { user_id: userId, currentPassword: trimmedCurrentPassword, newPassword: newPassword });
