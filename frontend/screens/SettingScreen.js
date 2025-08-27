@@ -32,16 +32,14 @@ const SettingScreen = ({ navigation }) => {
       "Are you sure you want to logout?",
       [
         {
-          text: "Cancel",
-          onPress: () => { },
-          style: "cancel"
+          text: "Cancel", style: "cancel" 
+        
         },
         {
           text: "Logout",
           onPress: async () => {
             try {
               dispatch(logout());
-              navigation.navigate('Login');
             } 
 
             catch (error) {
@@ -74,7 +72,6 @@ const SettingScreen = ({ navigation }) => {
               await API.delete('/api/user/delete-account', { params: { user_id: userId }});
 
               dispatch(logout());
-              navigation.navigate('Login');
               Alert.alert('Success', 'Account deleted successfully.');
             } 
             
