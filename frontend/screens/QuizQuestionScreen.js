@@ -23,6 +23,8 @@ const QuizQuestionScreen = ({ route }) => {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [score, setScore] = useState(0);
     const [ansExplanation, setAnsExplanation] = useState(null); 
+    const submitButtonDisabled = !selectedAnswer || loading;
+    const nextButtonDisabled = !ansExplanation || loading;
 
     // Gets the list of questions and answer that is passed from previous screen
     const questions = quizQuestion.quizQuestions;
@@ -35,13 +37,10 @@ const QuizQuestionScreen = ({ route }) => {
         // Prevent multiple requests if already loading
         if (loading) return;
 
-        if (selectedAnswer === null) {
-            Alert.alert('Select an answer for the question.');
-            return;
-        }
-
+        
         // Set loading to true before starting the request
         setLoading(true);
+
 
         try {
             const response = await API.get('/api/quiz/check-answer', { params: { quiz_id: quizQuestion.quiz_id, question_id: currentQuestion.question_id, answer_id: selectedAnswer }});
@@ -83,12 +82,6 @@ const QuizQuestionScreen = ({ route }) => {
 
     
     const nextQuestion = async () => {
-
-        // Prevent going to next question if the current answer hasn't been checked
-        if (!ansExplanation) {
-            Alert.alert('Please submit your answer before going to the next question.');
-            return;
-        }
 
         if (currentIndex + 1 < questions.length) {
             // Move to the next question
@@ -190,12 +183,12 @@ const QuizQuestionScreen = ({ route }) => {
 
 
             <View style={styles.buttonContainer}>
-                <TouchableHighlight style={styles.submitButton} onPress={checkQuestion} underlayColor={isDarkMode ? '#999999' : '#999999'} disabled={loading}>
+                <TouchableHighlight style={[styles.submitButton, submitButtonDisabled && styles.submitButtonDisabled]} onPress={checkQuestion} underlayColor={isDarkMode ? '#999999' : '#999999'} disabled={submitButtonDisabled}>
                 <Text style={styles.submitText}>{loading ? 'Submitting...' : 'Submit'}</Text>
                 </TouchableHighlight>
 
 
-                <TouchableHighlight onPress={nextQuestion} style={styles.nextButton} underlayColor={isDarkMode ? '#999999' : '#999999'} disabled={loading && currentIndex + 1 === questions.length}>
+                <TouchableHighlight onPress={nextQuestion} style={[styles.nextButton, nextButtonDisabled && styles.nextButtonDisabled ]} underlayColor={isDarkMode ? '#999999' : '#999999'} disabled={nextButtonDisabled}>
                     <Text style={styles.nextText}>{loading && currentIndex + 1 === questions.length ? 'Saving score...' : 'Next'}</Text>
                 </TouchableHighlight>
    

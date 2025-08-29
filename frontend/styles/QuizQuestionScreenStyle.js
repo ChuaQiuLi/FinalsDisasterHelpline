@@ -128,6 +128,16 @@ const lightStyles = StyleSheet.create({
         marginTop: 5,
         marginBottom: 10
 
+    },
+
+    submitButtonDisabled: {
+        backgroundColor: '#A9A9A9'
+    },
+    
+
+    nextButtonDisabled: {
+        backgroundColor: '#A9A9A9'
+
     }
 
 
@@ -267,6 +277,15 @@ const darkStyles = StyleSheet.create({
         marginLeft: 10,
         marginTop: 5,
         marginBottom: 10
+
+    },
+
+    submitButtonDisabled: {
+        backgroundColor: '#A9A9A9'
+    },
+
+    nextButtonDisabled: {
+        backgroundColor: '#A9A9A9'
 
     }
 
