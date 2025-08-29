@@ -178,7 +178,7 @@ const QuizQuestionScreen = ({ route }) => {
             {ansExplanation && (
                 // change the background colour of this container based to red or green based on user answer
                 <View style={[styles.explanationContainer, { backgroundColor: ansExplanation.is_correct ? '#00FF00' : '#FF0000', },]}>
-                    <Text style={styles.explanationHeader}>{ansExplanation.is_correct ? 'Correct!' : 'Incorrect'}</Text>
+                    <Text style={[styles.explanationHeader, !ansExplanation.is_correct && { color: '#FFFFFF' }, ]}>{ansExplanation.is_correct ? 'Correct!' : 'Incorrect'}</Text>
                     
                     {ansExplanation.answer_explanation ? (
                         <Text style={styles.explanationText}>{ansExplanation.answer_explanation}</Text>
