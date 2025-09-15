@@ -1,46 +1,54 @@
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcrypt');
-const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const dotenv = require('dotenv');
+const { Resend } = require('resend');
 
 const prisma = new PrismaClient();
 const router = express.Router();
 
 
-
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER, 
-    pass: process.env.EMAIL_PASS, 
-
-  },
-
-});
+// Initialize Resend
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 
+
+// Send reset code function using Resend
 const sendResetCode = async (email, resetCode) => {
   try {
-
-    let info = await transporter.sendMail({
-      from: 'final.disaster.helpline@gmail.com',
+    const data = await resend.emails.send({
+      // use Resend domain
+      from: 'Disaster Helpline <onboarding@resend.dev>',
+      replyTo: 'final.disaster.helpline@gmail.com',
       to: email,
       subject: 'Password Reset Code',
       text: `Your password reset code is ${resetCode}.`
-
     });
 
+    console.log('Reset code sent:', data);
   } 
   
   catch (error) {
     console.error('Error sending reset code:', error);
   }
-  
+
 };
 
+
 const resetRequests = {};
+
+
+// Cleanup expired reset codes every 1 minute
+setInterval(() => {
+  const now = Date.now();
+  for (const email in resetRequests) {
+    if (resetRequests[email].expiresAt < now) {
+      delete resetRequests[email];
+    }
+  }
+
+}, 60000);
 
 
 
